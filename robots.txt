@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /go/
+
+Sitemap: https://v0-guide.com/sitemap.xml
