@@ -34,7 +34,40 @@ const compareCollection = defineCollection({
   }),
 });
 
+const useCasesCollection = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    useCase: z.string(),
+    publishDate: z.coerce.date(),
+    updatedDate: z.coerce.date().optional(),
+    author: z.string(),
+    audience: z.string(),
+    keyBenefits: z.array(z.string()),
+    image: z.string().optional(),
+    affiliateLink: z.string().url(),
+  }),
+});
+
+const guidesCollection = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    publishDate: z.coerce.date(),
+    updatedDate: z.coerce.date().optional(),
+    author: z.string(),
+    difficulty: z.enum(['beginner', 'intermediate', 'advanced']),
+    tags: z.array(z.string()).default([]),
+    image: z.string().optional(),
+    readingTime: z.number().optional(),
+  }),
+});
+
 export const collections = {
   blog: blogCollection,
   compare: compareCollection,
+  'use-cases': useCasesCollection,
+  guides: guidesCollection,
 };

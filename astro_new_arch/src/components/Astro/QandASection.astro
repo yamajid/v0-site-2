@@ -1,0 +1,24 @@
+---
+export interface QandAItem {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  items: QandAItem[];
+  id?: string;
+}
+
+const { items, id } = Astro.props;
+---
+
+<section id={id} class="space-y-6">
+  {items.map((item) => (
+    <div class="border-b border-gray-200 pb-6 last:border-b-0 last:pb-0">
+      <h2 class="text-xl font-semibold text-gray-900">{item.question}</h2>
+      <div class="mt-2 text-gray-600">
+        <slot name={item.question} />
+      </div>
+    </div>
+  ))}
+</section>

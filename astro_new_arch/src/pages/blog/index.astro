@@ -1,52 +1,9 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
+import { blogIndexPosts } from '@lib/blog-index';
 
 const title = 'Blog - v0 Affiliate';
 const description = 'Latest tutorials, reviews, and insights about v0 by Vercel.';
-
-// Mock blog posts data
-const posts = [
-  {
-    slug: 'getting-started-with-v0',
-    title: 'Getting Started with v0: A Complete Beginner\'s Guide',
-    description: 'Learn how to use v0 by Vercel to generate production-ready UI components using AI.',
-    publishDate: '2026-04-10',
-    author: 'John Doe',
-    category: 'tutorials',
-    readingTime: 8,
-    image: '/assets/blog/getting-started.jpg',
-  },
-  {
-    slug: 'v0-vs-cursor-ai',
-    title: 'v0 vs Cursor AI: Which is Better for UI Development?',
-    description: 'An in-depth comparison of two leading AI-powered development tools.',
-    publishDate: '2026-04-08',
-    author: 'Jane Smith',
-    category: 'reviews',
-    readingTime: 12,
-    image: '/assets/blog/v0-vs-cursor.jpg',
-  },
-  {
-    slug: 'advanced-v0-techniques',
-    title: '10 Advanced v0 Techniques for Power Users',
-    description: 'Take your v0 skills to the next level with these pro tips and tricks.',
-    publishDate: '2026-04-05',
-    author: 'Alex Chen',
-    category: 'guides',
-    readingTime: 15,
-    image: '/assets/blog/advanced-techniques.jpg',
-  },
-  {
-    slug: 'v0-pricing-review-2026',
-    title: 'Is v0 Worth It in 2026? Pricing Review',
-    description: 'We analyze v0\'s pricing plans and help you choose the right one.',
-    publishDate: '2026-04-01',
-    author: 'Sarah Johnson',
-    category: 'reviews',
-    readingTime: 10,
-    image: '/assets/blog/pricing-review.jpg',
-  },
-];
 ---
 
 <BaseLayout title={title} description={description}>
@@ -71,7 +28,7 @@ const posts = [
   <section class="py-12 sm:py-16">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-        {posts.map((post) => (
+        {blogIndexPosts.map((post) => (
           <article class="group overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition-all hover:shadow-md">
             <a href={`/blog/${post.slug}`}>
               {post.image && (

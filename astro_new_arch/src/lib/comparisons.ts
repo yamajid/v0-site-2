@@ -1,0 +1,60 @@
+export const comparisons = [
+  {
+    competitor: 'v0-vs-cursor',
+    competitorName: 'Cursor AI',
+    title: 'v0 vs Cursor AI: Complete Comparison Guide',
+    description: 'Compare v0 by Vercel with Cursor AI for UI development.',
+    rating: 4.8,
+    publishDate: new Date('2026-04-08'),
+    author: 'Jane Smith',
+    pros: [
+      'Superior UI generation capabilities',
+      'Native React/Next.js integration',
+      'Free tier available',
+      'Clean, production-ready code',
+    ],
+    cons: [
+      'Limited to frontend components',
+      'Requires internet connection',
+    ],
+    affiliateLink: 'https://v0.dev?ref=v0affiliate',
+  },
+  {
+    competitor: 'v0-vs-tailwind-ai',
+    competitorName: 'Tailwind AI',
+    title: 'v0 vs Tailwind AI: Which is Better?',
+    description: 'A detailed comparison between v0 and Tailwind AI.',
+    rating: 4.5,
+    publishDate: new Date('2026-04-05'),
+    author: 'Alex Chen',
+    pros: [
+      'Better Tailwind CSS integration',
+      'More consistent output quality',
+      'Active development by Vercel',
+    ],
+    cons: [
+      'Steeper learning curve for beginners',
+      'Limited customization options',
+    ],
+    affiliateLink: 'https://v0.dev?ref=v0affiliate',
+  },
+  {
+    competitor: 'v0-vs-codeium',
+    competitorName: 'Codeium',
+    title: 'v0 vs Codeium: Developer Showdown',
+    description: 'See how v0 stacks up against Codeium for AI-assisted development.',
+    rating: 4.7,
+    publishDate: new Date('2026-04-01'),
+    author: 'Sarah Johnson',
+    pros: [
+      'Specialized for UI development',
+      'Better component architecture',
+      'Faster iteration cycles',
+    ],
+    cons: [
+      'Smaller ecosystem',
+      'Fewer language support options',
+    ],
+    affiliateLink: 'https://v0.dev?ref=v0affiliate',
+  },
+];

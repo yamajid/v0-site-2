@@ -10,6 +10,7 @@
       "@layouts/*": ["./src/layouts/*"],
       "@utils/*": ["./src/utils/*"],
       "@content/*": ["./src/content/*"],
+      "@lib/*": ["./src/lib/*"]
     }
   },
   "include": [

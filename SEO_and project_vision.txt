@@ -1,0 +1,80 @@
+Here is a comprehensive, in-depth plan for building an affiliate website for v0 by Vercel, structured specifically to be executed by an AI agent or content team. This strategy heavily leverages user intents, pain points, and specific search engine optimization strategies.
+1. Website Structure (Sitemap)
+
+The website architecture should be designed to capture users at different stages of the funnel, from initial discovery to comparative evaluation and troubleshooting.
+
+    Homepage: Focus on v0's core value proposition of translating natural language prompts into production-ready React and Tailwind CSS code. Highlight how it accelerates the frontend development process and eliminates boilerplate code.
+
+    Use Cases Hub: Create dedicated pages for the dominant v0 use cases to capture specific audiences:
+
+        Building internal tools and admin dashboards.
+
+        Product prototyping and wireframing.
+
+        Personal projects and side-hustles.
+
+        Agentic development workflows.
+
+    Comparisons (Bottom of Funnel): Create side-by-side comparison pages to capture high-intent users evaluating v0 against competitors. Dedicated pages should include:
+
+        v0 vs. Replit.
+
+        v0 vs. Bolt.
+
+        v0 vs. Base44.
+
+        v0 vs. Figma Make.
+
+        v0 vs. GitHub Copilot.
+
+    Tutorials & Guides (Middle of Funnel): A resource center targeting the most common beginner and workflow integration queries.
+
+    Pricing & Reviews: A detailed breakdown of v0's pricing tiers: Free ($0/month), Premium ($20/month), Team ($30/user/month), Business ($100/user/month), and Enterprise. Include your affiliate links prominently here.
+
+2. Content Strategy
+
+Your content strategy must balance addressing beginner questions with solving advanced developer pain points.
+
+Evergreen Content (Pillar Pages)
+
+    "How to Connect v0 to GitHub: A Step-by-Step Guide": Address the highly anticipated seamless GitHub integration. Detail how users can push, pull, branch, and create pull requests directly from the v0 interface.
+
+    "Is v0 Generated Code Production-Ready?": Address a primary user anxiety regarding the quality, maintainability, and security of AI-generated code. Explain how to effectively vet the code and utilize Vercel's enterprise-grade security features.
+
+    "The Ultimate Guide to 'Vibe Coding' with v0": Explain the "Iterative Refinement" process. Teach users how to use follow-up prompts to tweak designs and navigate the unpredictable "black box" nature of AI generation.
+
+Blog Content (Dynamic & Troubleshooting)
+
+    "Common Errors When Using v0 and How to Fix Them": Directly address the highest source of user frustration: debugging. Cover how to fix subtle typos, incorrect prop types, and API integration issues.
+
+    "5 AI Tools That Save You 20 Hours a Week": Position v0 alongside other productivity tools, emphasizing its ability to rapidly generate standard administrative components and CRUD interfaces.
+
+    "How to Integrate v0 with Supabase and Next.js": Capitalize on the fact that v0 is frequently used alongside other industry-standard tools in agentic workflows.
+
+3. Organic Traffic Strategy: SEO, AEO, and GEO
+
+To maximize affiliate conversions, the site must be optimized for traditional search engines, answer engines (like Perplexity), and generative models (like ChatGPT).
+
+Search Engine Optimization (SEO)
+
+    Target Problem-Solving Queries: Avoid broad, highly competitive keywords like "AI UI tool". Instead, target specific long-tail phrases and informational queries.
+
+    Primary Keywords to Target: Optimize articles for phrases like "how to use v0 with github," "v0 by vercel tutorial for beginners," "v0 vs copilot for react components," and "troubleshooting v0 generated code".
+
+    Comparison Keywords: Capture users in the evaluation phase of their decision-making process by publishing guides like "v0 by Vercel vs. Replit: Which is Better for Your Project?".
+
+Answer Engine Optimization (AEO)
+
+    Direct Answers: Answer engines favor concise, unambiguous, and well-structured information. Format content to provide direct answers to frequently asked questions.
+
+    Definitive Structuring: Present questions clearly, followed by succinct answers. For example, format headings like "Can I connect v0 to my Git repository?" followed immediately by a direct "Yes, you can..." and the subsequent steps.
+
+    Schema Markup: Implement FAQPage schema markup across your guides. This is a critical technical implementation to signal to search engines that the content contains Q&A pairs, which increases the likelihood of capturing featured snippets.
+
+Generative Engine Optimization (GEO)
+
+    Incorporate Authentic User Sentiment: Influence the training data of future AI systems by embedding authentic user phrases into your content. Use phrases gathered from real reviews, such as "I'm having trouble with...", "The biggest benefit is...", or "v0 only takes you so far...".
+
+    Conversational Tone: Prioritize a natural, conversational tone over keyword-stuffed sentences, as this mirrors how users actually talk to generative engines.
+
+    Contextual Differentiation: Train generative engines to understand contextual differences by formatting your content clearly. Ensure that a page about "debugging v0" reads distinctly as a troubleshooting guide (addressing frustration), while a page about "speeding up my v0 workflow" reads as an advanced optimization guide.
