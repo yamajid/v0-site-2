@@ -1,0 +1,172 @@
+---
+// src/pages/use-cases/internal-tools-dashboards.astro
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+const title = 'Building Internal Tools & Admin Dashboards with v0';
+const description = 'How to use v0 by Vercel to rapidly generate admin panels, data tables, and workflow tools — with real prompts and export patterns.';
+const useCase = 'internal-tools';
+---
+
+<BaseLayout title={title} description={description}>
+  <main class="container mx-auto px-4 py-12">
+    <article class="max-w-4xl mx-auto">
+      
+      <!-- Hero -->
+      <header class="mb-10">
+        <span class="inline-flex items-center rounded-full bg-primary-100 px-3 py-1 text-sm font-medium text-primary-700">
+          Use Case: Internal Tools
+        </span>
+        <h1 class="mt-4 text-3xl sm:text-4xl font-bold text-slate-900">{title}</h1>
+        <p class="mt-4 text-lg text-slate-600">{description}</p>
+      </header>
+
+      <!-- The Problem -->
+      <section class="mb-12 p-6 bg-amber-50 border border-amber-200 rounded-xl">
+        <h2 class="text-xl font-semibold text-amber-900 mb-3">🎯 The Challenge</h2>
+        <p class="text-amber-800">
+          Internal tools and admin dashboards are critical for operations, but they're often deprioritized in design sprints. Teams waste days building repetitive data tables, filter forms, and CRUD interfaces — work that doesn't differentiate the product but is essential for daily workflows.
+        </p>
+      </section>
+
+      <!-- How v0 Solves It -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold text-slate-900 mb-6">✅ How v0 Accelerates Internal Tool Development</h2>
+        
+        <div class="space-y-6">
+          <div class="p-5 bg-slate-50 rounded-lg border border-slate-200">
+            <h3 class="font-semibold text-slate-900 mb-2">1. Generate Data Tables in Seconds</h3>
+            <p class="text-slate-600 mb-3">Instead of manually coding sortable, paginated tables, prompt v0 with your schema:</p>
+            <div class="bg-slate-900 text-slate-100 p-4 rounded-lg font-mono text-sm overflow-x-auto">
+              <p class="text-green-400"># Prompt:</p>
+              <p>"Create a responsive data table for user management with columns: ID, Name, Email, Role, Status, Last Active. Include search, sort, and pagination. Use Tailwind CSS and shadcn/ui components."</p>
+            </div>
+            <p class="mt-3 text-sm text-slate-500">✅ Result: Production-ready React component with accessibility attributes and mobile responsiveness.</p>
+          </div>
+
+          <div class="p-5 bg-slate-50 rounded-lg border border-slate-200">
+            <h3 class="font-semibold text-slate-900 mb-2">2. Build Filter Forms Without Boilerplate</h3>
+            <p class="text-slate-600 mb-3">Admin filters are repetitive. Let v0 handle the UI plumbing:</p>
+            <div class="bg-slate-900 text-slate-100 p-4 rounded-lg font-mono text-sm overflow-x-auto">
+              <p class="text-green-400"># Prompt:</p>
+              <p>"Generate a filter sidebar for an orders dashboard with: date range picker, status multi-select, customer search, and export button. Use React Hook Form and Tailwind."</p>
+            </div>
+            <p class="mt-3 text-sm text-slate-500">✅ Result: Validated form with proper ARIA labels and keyboard navigation.</p>
+          </div>
+
+          <div class="p-5 bg-slate-50 rounded-lg border border-slate-200">
+            <h3 class="font-semibold text-slate-900 mb-2">3. Rapidly Prototype Workflow Steps</h3>
+            <p class="text-slate-600 mb-3">Map complex approval flows visually before coding logic:</p>
+            <div class="bg-slate-900 text-slate-100 p-4 rounded-lg font-mono text-sm overflow-x-auto">
+              <p class="text-green-400"># Prompt:</p>
+              <p>"Create a 3-step approval workflow UI: 1) Submit request form, 2) Manager review with approve/reject, 3) Status notification. Include progress indicator and undo actions."</p>
+            </div>
+            <p class="mt-3 text-sm text-slate-500">✅ Result: Interactive prototype you can validate with stakeholders before backend integration.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Real Example: Admin Dashboard -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold text-slate-900 mb-6">📊 Real Example: Customer Support Dashboard</h2>
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="p-5 bg-green-50 border border-green-200 rounded-lg">
+            <h3 class="font-semibold text-green-900 mb-2">Prompt Used</h3>
+            <code class="block bg-green-100 p-3 rounded text-sm text-green-800 overflow-x-auto">
+              "Build a customer support dashboard with: 1) Ticket summary cards (open, pending, resolved), 2) Recent tickets table with priority badges, 3) Agent availability status, 4) Quick reply templates sidebar. Use a clean, professional design with Tailwind CSS."
+            </code>
+          </div>
+          <div class="p-5 bg-blue-50 border border-blue-200 rounded-lg">
+            <h3 class="font-semibold text-blue-900 mb-2">Result</h3>
+            <ul class="space-y-2 text-sm text-blue-800">
+              <li>✓ Generated in 47 seconds</li>
+              <li>✓ Fully responsive layout</li>
+              <li>✓ Accessible color contrast (WCAG AA)</li>
+              <li>✓ Clean React + Tailwind code export</li>
+              <li>✓ Ready to connect to your API</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Export & Integration -->
+      <section class="mb-12 p-6 bg-slate-50 rounded-xl border border-slate-200">
+        <h2 class="text-xl font-semibold text-slate-900 mb-4">🔧 Export & Integration Workflow</h2>
+        <ol class="space-y-3 text-slate-700">
+          <li class="flex gap-3">
+            <span class="font-bold text-primary-600">1.</span>
+            <span>Generate component in v0 → iterate with follow-up prompts</span>
+          </li>
+          <li class="flex gap-3">
+            <span class="font-bold text-primary-600">2.</span>
+            <span>Export code via "Copy Code" or GitHub sync (Premium)</span>
+          </li>
+          <li class="flex gap-3">
+            <span class="font-bold text-primary-600">3.</span>
+            <span>Replace mock data with your API calls (fetch, React Query, etc.)</span>
+          </li>
+          <li class="flex gap-3">
+            <span class="font-bold text-primary-600">4.</span>
+            <span>Deploy to your internal Vercel project with environment variables</span>
+          </li>
+        </ol>
+        <p class="mt-4 text-sm text-slate-500">
+          💡 Pro Tip: Use v0's "Edit in Place" feature to tweak specific sections without regenerating the entire component.
+        </p>
+      </section>
+
+      <!-- When This Use Case Shines -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold text-slate-900 mb-6">🎯 When to Use v0 for Internal Tools</h2>
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="p-5 bg-green-50 border border-green-200 rounded-lg">
+            <h3 class="font-semibold text-green-900 mb-2">✅ Ideal For</h3>
+            <ul class="space-y-2 text-sm text-green-800">
+              <li>• Admin panels for SaaS products</li>
+              <li>• Data visualization dashboards</li>
+              <li>• CRUD interfaces for internal databases</li>
+              <li>• Workflow approval systems</li>
+              <li>• Reporting and analytics views</li>
+            </ul>
+          </div>
+          <div class="p-5 bg-amber-50 border border-amber-200 rounded-lg">
+            <h3 class="font-semibold text-amber-900 mb-2">⚠️ Consider Alternatives When</h3>
+            <ul class="space-y-2 text-sm text-amber-800">
+              <li>• You need complex real-time collaboration (use Socket.io + custom UI)</li>
+              <li>• Your tool requires heavy backend logic in the frontend (split concerns)</li>
+              <li>• You're building for non-technical end-users (consider no-code tools)</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Affiliate CTA -->
+      <section class="text-center p-8 bg-slate-900 text-white rounded-2xl">
+        <h3 class="text-xl font-semibold mb-3">Ready to build internal tools 10x faster?</h3>
+        <p class="text-slate-300 mb-6">Generate production-ready admin UIs with v0 — no design skills required.</p>
+        <a 
+          href="https://v0.dev?ref=v0affiliate"
+          class="inline-flex items-center justify-center px-8 py-4 bg-white text-slate-900 font-bold rounded-lg hover:bg-slate-100 transition transform hover:scale-105"
+        >
+          Start Building Free →
+        </a>
+        <p class="mt-4 text-xs text-slate-400">Affiliate link: We may earn a commission at no extra cost to you.</p>
+      </section>
+
+      <!-- Related Use Cases -->
+      <section class="mt-16 pt-8 border-t border-slate-200">
+        <h3 class="text-lg font-semibold text-slate-900 mb-4">Explore More Use Cases</h3>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <a href="/use-cases/prototyping-wireframing" class="block p-4 rounded-lg border border-slate-200 hover:border-primary-300 hover:bg-primary-50 transition">
+            <span class="text-2xl mb-2 block">✏️</span>
+            <span class="font-medium text-slate-900">Product Prototyping & Wireframing</span>
+          </a>
+          <a href="/use-cases/personal-projects-side-hustles" class="block p-4 rounded-lg border border-slate-200 hover:border-primary-300 hover:bg-primary-50 transition">
+            <span class="text-2xl mb-2 block">🚀</span>
+            <span class="font-medium text-slate-900">Personal Projects & Side-Hustles</span>
+          </a>
+        </div>
+      </section>
+
+    </article>
+  </main>
+</BaseLayout>

@@ -5,13 +5,25 @@ import sitemap from '@astrojs/sitemap';
 import mdx from '@astrojs/mdx';
 
 export default defineConfig({
-  site: 'https://v0affiliate.com',
+  site: 'https://localhost:4321',
   integrations: [
     react(),
     tailwind({
       applyBaseStyles: true,
     }),
-    sitemap(),
+    sitemap({
+      // Optional but recommended settings:
+      filter: (page) => !page.includes('/draft'), // exclude draft pages if any
+      changefreq: 'weekly',
+      priority: 0.7,
+      lastmod: new Date(),
+      i18n: {
+        defaultLocale: 'en',
+        locales: {
+          en: 'en-US'
+        }
+      }
+    }),
     mdx(),
   ],
   markdown: {

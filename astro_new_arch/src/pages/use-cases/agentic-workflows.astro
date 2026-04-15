@@ -1,0 +1,183 @@
+---
+// src/pages/use-cases/agentic-workflows.astro
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+const title = 'Agentic Development Workflows with v0';
+const description = 'Integrate v0 by Vercel into AI agent pipelines for autonomous UI generation. Advanced patterns for developers building agentic systems.';
+const useCase = 'agentic';
+---
+
+<BaseLayout title={title} description={description}>
+  <main class="container mx-auto px-4 py-12">
+    <article class="max-w-4xl mx-auto">
+      
+      <!-- Hero -->
+      <header class="mb-10">
+        <span class="inline-flex items-center rounded-full bg-primary-100 px-3 py-1 text-sm font-medium text-primary-700">
+          Use Case: Agentic Workflows
+        </span>
+        <h1 class="mt-4 text-3xl sm:text-4xl font-bold text-slate-900">{title}</h1>
+        <p class="mt-4 text-lg text-slate-600">{description}</p>
+      </header>
+
+      <!-- The Problem -->
+      <section class="mb-12 p-6 bg-amber-50 border border-amber-200 rounded-xl">
+        <h2 class="text-xl font-semibold text-amber-900 mb-3">🎯 The Challenge</h2>
+        <p class="text-amber-800">
+          AI agents can plan, reason, and execute tasks — but generating high-quality UI code remains a bottleneck. Most agents output generic HTML/CSS that lacks accessibility, responsiveness, or production readiness. Teams need a reliable way to delegate UI generation to specialized tools while maintaining code quality.
+        </p>
+      </section>
+
+      <!-- How v0 Solves It -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold text-slate-900 mb-6">✅ How v0 Powers Agentic UI Generation</h2>
+        
+        <div class="space-y-6">
+          <div class="p-5 bg-slate-50 rounded-lg border border-slate-200">
+            <h3 class="font-semibold text-slate-900 mb-2">1. Agent → v0 API → Production Code</h3>
+            <p class="text-slate-600 mb-3">Use v0 as a specialized tool in your agent's toolkit:</p>
+            <div class="bg-slate-900 text-slate-100 p-4 rounded-lg font-mono text-sm overflow-x-auto">
+              <p class="text-green-400"># Agent workflow example:</p>
+              <p>1. Agent receives task: "Build a user profile settings page"</p>
+              <p>2. Agent crafts structured prompt for v0 API:</p>
+<p class="ml-4 text-blue-300">&#123;</p>
+<p class="ml-4 text-blue-300">  "prompt": "Create a user settings page with: profile avatar upload, personal info form, notification preferences, security settings. Use React, Tailwind, and shadcn/ui components.",</p>
+<p class="ml-4 text-blue-300">  "config": &#123; "framework": "react", "styling": "tailwind", "accessibility": "wcag-aa" &#125;</p>
+<p class="ml-4 text-blue-300">&#125;</p>
+              <p>3. Agent receives clean, typed React code from v0</p>
+              <p>4. Agent integrates code into project repo via GitHub API</p>
+            </div>
+            <p class="mt-3 text-sm text-slate-500">✅ Result: Autonomous UI generation with production-grade output.</p>
+          </div>
+
+          <div class="p-5 bg-slate-50 rounded-lg border border-slate-200">
+            <h3 class="font-semibold text-slate-900 mb-2">2. Iterative Refinement via Agent Feedback Loops</h3>
+            <p class="text-slate-600 mb-3">Agents can evaluate and refine v0 output programmatically:</p>
+            <div class="bg-slate-900 text-slate-100 p-4 rounded-lg font-mono text-sm overflow-x-auto">
+              <p class="text-green-400"># Agent refinement loop:</p>
+              <p>1. Generate initial component via v0</p>
+              <p>2. Agent runs accessibility audit (axe-core)</p>
+              <p>3. If issues found → craft follow-up prompt:</p>
+              <p class="ml-4 text-blue-300">"Add aria-labels to all buttons, ensure color contrast meets WCAG AA, add keyboard navigation support"</p>
+              <p>4. Regenerate and re-audit until passing</p>
+            </div>
+            <p class="mt-3 text-sm text-slate-500">✅ Result: Self-correcting UI generation that meets quality gates autonomously.</p>
+          </div>
+
+          <div class="p-5 bg-slate-50 rounded-lg border border-slate-200">
+            <h3 class="font-semibold text-slate-900 mb-2">3. Context-Aware Prompt Engineering</h3>
+            <p class="text-slate-600 mb-3">Agents can inject project context into v0 prompts for better output:</p>
+            <div class="bg-slate-900 text-slate-100 p-4 rounded-lg font-mono text-sm overflow-x-auto">
+              <p class="text-green-400"># Agent-enhanced prompt:</p>
+              <p>"Create a dashboard widget for [PROJECT_NAME] that displays [METRIC_TYPE]. Use the existing design system: primary color #[HEX], font family '[FONT]', spacing scale based on 8px grid. Follow our component naming convention: [ComponentName].tsx"</p>
+            </div>
+            <p class="mt-3 text-sm text-slate-500">✅ Result: UI output that aligns with project conventions without manual tweaking.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Real Example: Autonomous Bug Fix -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold text-slate-900 mb-6">🤖 Real Example: Agent Fixes UI Bug</h2>
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="p-5 bg-green-50 border border-green-200 rounded-lg">
+            <h3 class="font-semibold text-green-900 mb-2">Agent Task</h3>
+            <code class="block bg-green-100 p-3 rounded text-sm text-green-800 overflow-x-auto">
+              "Fix the mobile layout bug in the pricing card component: buttons overflow on small screens. Use v0 to regenerate with responsive constraints."
+            </code>
+          </div>
+          <div class="p-5 bg-blue-50 border border-blue-200 rounded-lg">
+            <h3 class="font-semibold text-blue-900 mb-2">Agent Workflow</h3>
+            <ul class="space-y-2 text-sm text-blue-800">
+              <li>✓ Analyzed existing component code</li>
+              <li>✓ Crafted v0 prompt with responsive constraints</li>
+              <li>✓ Received regenerated component from v0</li>
+              <li>✓ Ran visual regression test (Playwright)</li>
+              <li>✓ Committed fix to GitHub via API</li>
+            </ul>
+          </div>
+        </div>
+        <p class="mt-4 text-sm text-slate-600 italic">
+          Total time: 4 minutes (vs ~45 minutes for manual fix + test)
+        </p>
+      </section>
+
+      <!-- Advanced Integration Patterns -->
+      <section class="mb-12 p-6 bg-slate-50 rounded-xl border border-slate-200">
+        <h2 class="text-xl font-semibold text-slate-900 mb-4">🔧 Advanced Integration Patterns</h2>
+        <ul class="space-y-3 text-slate-700">
+          <li class="flex gap-3">
+            <span class="font-bold text-primary-600">•</span>
+            <span><strong>Webhook Triggers</strong>: Configure v0 to POST generated code to your agent's endpoint for automated ingestion.</span>
+          </li>
+          <li class="flex gap-3">
+            <span class="font-bold text-primary-600">•</span>
+            <span><strong>Schema Validation</strong>: Have agents validate v0 output against your TypeScript interfaces before merging.</span>
+          </li>
+          <li class="flex gap-3">
+            <span class="font-bold text-primary-600">•</span>
+            <span><strong>Multi-Agent Collaboration</strong>: One agent handles logic, another delegates UI to v0, a third handles testing — orchestrated via LangGraph or similar.</span>
+          </li>
+          <li class="flex gap-3">
+            <span class="font-bold text-primary-600">•</span>
+            <span><strong>Human-in-the-Loop</strong>: Agents can flag complex UI decisions for human review before finalizing v0 output.</span>
+          </li>
+        </ul>
+      </section>
+
+      <!-- When This Use Case Shines -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold text-slate-900 mb-6">🎯 When to Use v0 in Agentic Workflows</h2>
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="p-5 bg-green-50 border border-green-200 rounded-lg">
+            <h3 class="font-semibold text-green-900 mb-2">✅ Ideal For</h3>
+            <ul class="space-y-2 text-sm text-green-800">
+              <li>• Autonomous bug fixing and UI refactoring</li>
+              <li>• Dynamic UI generation based on user context</li>
+              <li>• A/B test variant generation at scale</li>
+              <li>• Documentation-driven UI scaffolding</li>
+              <li>• Multi-tenant UI customization pipelines</li>
+            </ul>
+          </div>
+          <div class="p-5 bg-amber-50 border border-amber-200 rounded-lg">
+            <h3 class="font-semibold text-amber-900 mb-2">⚠️ Consider Alternatives When</h3>
+            <ul class="space-y-2 text-sm text-amber-800">
+              <li>• Your agent needs pixel-perfect brand control (use design tokens + custom renderer)</li>
+              <li>• You require real-time collaborative editing (use CRDTs + custom UI)</li>
+              <li>• Your workflow demands sub-100ms UI generation latency (pre-generate templates)</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Affiliate CTA -->
+      <section class="text-center p-8 bg-slate-900 text-white rounded-2xl">
+        <h3 class="text-xl font-semibold mb-3">Ready to build autonomous UI workflows?</h3>
+        <p class="text-slate-300 mb-6">Integrate v0 into your agent stack for production-ready UI generation.</p>
+        <a 
+          href="https://v0.dev?ref=v0affiliate"
+          class="inline-flex items-center justify-center px-8 py-4 bg-white text-slate-900 font-bold rounded-lg hover:bg-slate-100 transition transform hover:scale-105"
+        >
+          Start Building Free →
+        </a>
+        <p class="mt-4 text-xs text-slate-400">Affiliate link: We may earn a commission at no extra cost to you.</p>
+      </section>
+
+      <!-- Related Use Cases -->
+      <section class="mt-16 pt-8 border-t border-slate-200">
+        <h3 class="text-lg font-semibold text-slate-900 mb-4">Explore More Use Cases</h3>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <a href="/use-cases/internal-tools-dashboards" class="block p-4 rounded-lg border border-slate-200 hover:border-primary-300 hover:bg-primary-50 transition">
+            <span class="text-2xl mb-2 block">📊</span>
+            <span class="font-medium text-slate-900">Internal Tools & Dashboards</span>
+          </a>
+          <a href="/use-cases/personal-projects-side-hustles" class="block p-4 rounded-lg border border-slate-200 hover:border-primary-300 hover:bg-primary-50 transition">
+            <span class="text-2xl mb-2 block">🚀</span>
+            <span class="font-medium text-slate-900">Personal Projects & Side-Hustles</span>
+          </a>
+        </div>
+      </section>
+
+    </article>
+  </main>
+</BaseLayout>
