@@ -1,0 +1,70 @@
+---
+// src/pages/compare/index.astro
+// Static comparison index: clickable cards linking to individual comparison pages
+
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+const title = 'v0 Comparisons - Find the Best AI UI Tool';
+const description = 'Detailed, data-driven comparisons between v0 and other AI development tools.';
+
+// ✅ Planned comparisons per SEO strategy
+const comparisons = [
+  { slug: 'v0-vs-replit', title: 'v0 vs Replit', description: 'UI generation vs full-stack deployment workflows', image: '/assets/compare/replit.jpg' },
+  { slug: 'v0-vs-bolt', title: 'v0 vs Bolt.new', description: 'Component-focused vs app-focused AI builders', image: '/assets/compare/bolt.jpg' },
+  { slug: 'v0-vs-base44', title: 'v0 vs Base44', description: 'Code generation vs no-code platform capabilities', image: '/assets/compare/base44.jpg' },
+  { slug: 'v0-vs-figma-make', title: 'v0 vs Figma Make', description: 'AI prompt-to-code vs design-to-code workflows', image: '/assets/compare/figma.jpg' },
+  { slug: 'v0-vs-github-copilot', title: 'v0 vs GitHub Copilot', description: 'UI-specific AI vs general code assistant', image: '/assets/compare/copilot.jpg' },
+];
+---
+
+<BaseLayout title={title} description={description}>
+  <!-- Header -->
+  <section class="bg-gradient-to-b from-primary-50 to-white py-16 sm:py-24">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+      <span class="inline-block rounded-full bg-primary-100 px-4 py-1.5 text-sm font-medium text-primary-700">
+        Comparisons
+      </span>
+      <h1 class="mt-4 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
+        How v0 Stacks Up
+      </h1>
+      <p class="mx-auto mt-4 max-w-2xl text-lg text-gray-600">
+        {description}
+      </p>
+    </div>
+  </section>
+
+  <!-- Cards Grid -->
+  <section class="py-12 sm:py-16">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        {comparisons.map((comp) => (
+          <a href={`/compare/${comp.slug}`} class="group block overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition-all hover:shadow-md hover:-translate-y-0.5">
+            <!-- Image with graceful fallback -->
+            <div class="aspect-video overflow-hidden bg-gray-100">
+              <img
+                src={comp.image}
+                alt={comp.title}
+                class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                loading="lazy"
+                onerror="this.parentElement.style.backgroundColor='#f1f5f9'; this.style.display='none'"
+              />
+            </div>
+            
+            <!-- Content -->
+            <div class="p-6">
+              <h2 class="text-lg font-semibold text-gray-900 group-hover:text-primary-600">
+                {comp.title}
+              </h2>
+              <p class="mt-2 text-sm text-gray-600">
+                {comp.description}
+              </p>
+              <p class="mt-4 text-sm text-primary-600 font-medium group-hover:underline">
+                Read comparison →
+              </p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
