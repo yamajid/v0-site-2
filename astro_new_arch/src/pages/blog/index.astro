@@ -1,0 +1,130 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+const title = 'Blog - v0 Affiliate';
+const description = 'Latest tutorials, reviews, and insights about v0 by Vercel.';
+
+// Mock blog posts data
+const posts = [
+  {
+    slug: 'getting-started-with-v0',
+    title: 'Getting Started with v0: A Complete Beginner\'s Guide',
+    description: 'Learn how to use v0 by Vercel to generate production-ready UI components using AI.',
+    publishDate: '2026-04-10',
+    author: 'John Doe',
+    category: 'tutorials',
+    readingTime: 8,
+    image: '/assets/blog/getting-started.jpg',
+  },
+  {
+    slug: 'v0-vs-cursor-ai',
+    title: 'v0 vs Cursor AI: Which is Better for UI Development?',
+    description: 'An in-depth comparison of two leading AI-powered development tools.',
+    publishDate: '2026-04-08',
+    author: 'Jane Smith',
+    category: 'reviews',
+    readingTime: 12,
+    image: '/assets/blog/v0-vs-cursor.jpg',
+  },
+  {
+    slug: 'advanced-v0-techniques',
+    title: '10 Advanced v0 Techniques for Power Users',
+    description: 'Take your v0 skills to the next level with these pro tips and tricks.',
+    publishDate: '2026-04-05',
+    author: 'Alex Chen',
+    category: 'guides',
+    readingTime: 15,
+    image: '/assets/blog/advanced-techniques.jpg',
+  },
+  {
+    slug: 'v0-pricing-review-2026',
+    title: 'Is v0 Worth It in 2026? Pricing Review',
+    description: 'We analyze v0\'s pricing plans and help you choose the right one.',
+    publishDate: '2026-04-01',
+    author: 'Sarah Johnson',
+    category: 'reviews',
+    readingTime: 10,
+    image: '/assets/blog/pricing-review.jpg',
+  },
+];
+---
+
+<BaseLayout title={title} description={description}>
+  <!-- Blog Header -->
+  <section class="bg-gradient-to-b from-primary-50 to-white py-16 sm:py-24">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <span class="inline-block rounded-full bg-primary-100 px-4 py-1.5 text-sm font-medium text-primary-700">
+          Blog
+        </span>
+        <h1 class="mt-4 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
+          Latest from Our Team
+        </h1>
+        <p class="mx-auto mt-4 max-w-2xl text-lg text-gray-600">
+          {description}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog Posts Grid -->
+  <section class="py-12 sm:py-16">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        {posts.map((post) => (
+          <article class="group overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition-all hover:shadow-md">
+            <a href={`/blog/${post.slug}`}>
+              {post.image && (
+                <div class="aspect-video overflow-hidden bg-gray-100">
+                  <img
+                    src={post.image}
+                    alt={post.title}
+                    class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                </div>
+              )}
+              <div class="p-6">
+                <div class="flex items-center gap-2 text-xs text-gray-500">
+                  <span class="rounded-full bg-primary-100 px-2 py-0.5 font-medium text-primary-700">
+                    {post.category}
+                  </span>
+                  <time dateTime={post.publishDate}>
+                    {new Date(post.publishDate).toLocaleDateString('en-US', {
+                      month: 'short',
+                      day: 'numeric',
+                      year: 'numeric',
+                    })}
+                  </time>
+                  <span>•</span>
+                  <span>{post.readingTime} min read</span>
+                </div>
+                <h2 class="mt-3 text-lg font-semibold text-gray-900 group-hover:text-primary-600">
+                  {post.title}
+                </h2>
+                <p class="mt-2 text-sm text-gray-600 line-clamp-2">
+                  {post.description}
+                </p>
+                <div class="mt-4 flex items-center gap-2">
+                  <div class="h-6 w-6 rounded-full bg-primary-100">
+                    <span class="flex h-full w-full items-center justify-center text-xs font-medium text-primary-700">
+                      {post.author.charAt(0)}
+                    </span>
+                  </div>
+                  <span class="text-xs text-gray-500">{post.author}</span>
+                </div>
+              </div>
+            </a>
+          </article>
+        ))}
+      </div>
+
+      <!-- Load More -->
+      <div class="mt-12 text-center">
+        <button class="inline-flex items-center justify-center rounded-lg border border-gray-300 bg-white px-6 py-2.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50">
+          Load More Posts
+        </button>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

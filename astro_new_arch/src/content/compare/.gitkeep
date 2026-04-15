@@ -1,0 +1,19 @@
+# Compare Content Collection
+
+Add markdown comparison posts here with frontmatter matching the schema in content/config.ts.
+
+Example frontmatter:
+---
+title: "v0 vs Competitor"
+description: "A brief description of the comparison"
+competitor: "Competitor Name"
+publishDate: 2026-04-15
+author: "Author Name"
+verdict: "v0 is better because..."
+pros: ["Pro 1", "Pro 2"]
+cons: ["Con 1", "Con 2"]
+rating: 4.5
+affiliateLink: "https://v0.dev?ref=v0affiliate"
+---
+
+Your comparison content here...

@@ -1,0 +1,178 @@
+---
+import type { GetStaticPaths, InferGetStaticPropsType } from 'astro';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import FeatureTabs from '@components/React/FeatureTabs.tsx';
+
+// Mock comparison data
+const comparisons = [
+  {
+    competitor: 'v0-vs-cursor',
+    competitorName: 'Cursor AI',
+    title: 'v0 vs Cursor AI: Complete Comparison Guide',
+    description: 'Compare v0 by Vercel with Cursor AI for UI development. See which tool wins in features, pricing, and output quality.',
+    rating: 4.8,
+    publishDate: new Date('2026-04-08'),
+    author: 'Jane Smith',
+    pros: [
+      'Superior UI generation capabilities',
+      'Native React/Next.js integration',
+      'Free tier available',
+      'Clean, production-ready code',
+    ],
+    cons: [
+      'Limited to frontend components',
+      'Requires internet connection',
+    ],
+    affiliateLink: 'https://v0.dev?ref=v0affiliate',
+  },
+  {
+    competitor: 'v0-vs-tailwind-ai',
+    competitorName: 'Tailwind AI',
+    title: 'v0 vs Tailwind AI: Which is Better?',
+    description: 'A detailed comparison between v0 and Tailwind AI for generating UI components.',
+    rating: 4.5,
+    publishDate: new Date('2026-04-05'),
+    author: 'Alex Chen',
+    pros: [
+      'Better Tailwind CSS integration',
+      'More consistent output quality',
+      'Active development by Vercel',
+    ],
+    cons: [
+      'Steeper learning curve for beginners',
+      'Limited customization options',
+    ],
+    affiliateLink: 'https://v0.dev?ref=v0affiliate',
+  },
+  {
+    competitor: 'v0-vs-codeium',
+    competitorName: 'Codeium',
+    title: 'v0 vs Codeium: Developer Showdown',
+    description: 'See how v0 stacks up against Codeium for AI-assisted development.',
+    rating: 4.7,
+    publishDate: new Date('2026-04-01'),
+    author: 'Sarah Johnson',
+    pros: [
+      'Specialized for UI development',
+      'Better component architecture',
+      'Faster iteration cycles',
+    ],
+    cons: [
+      'Smaller ecosystem',
+      'Fewer language support options',
+    ],
+    affiliateLink: 'https://v0.dev?ref=v0affiliate',
+  },
+];
+
+export function getStaticPaths(): InferGetStaticPropsType<typeof getStaticPaths>[] {
+  return comparisons.map((comp) => ({
+    params: { competitor: comp.competitor },
+    props: { comparison: comp },
+  }));
+}
+
+const { comparison } = Astro.props;
+const { title, description, competitorName, rating, publishDate, author, pros, cons, affiliateLink } = comparison;
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  type="article"
+  keywords={['v0', competitorName, 'comparison', 'review']}
+>
+  <!-- Comparison Header -->
+  <section class="bg-gradient-to-b from-primary-50 to-white py-16 sm:py-24">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <span class="inline-block rounded-full bg-primary-100 px-4 py-1.5 text-sm font-medium text-primary-700">
+          Comparison
+        </span>
+        <h1 class="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+          {title}
+        </h1>
+        <p class="mx-auto mt-4 max-w-2xl text-lg text-gray-600">
+          {description}
+        </p>
+        <div class="mt-6 flex items-center justify-center gap-4 text-sm text-gray-500">
+          <span>By {author}</span>
+          <time dateTime={publishDate.toISOString()}>
+            {publishDate.toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
+            })}
+          </time>
+          <div class="flex items-center gap-1">
+            <span class="text-yellow-500">★</span>
+            <span className="font-medium">{rating}/5</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Comparison Content -->
+  <section class="py-12 sm:py-16">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <!-- Feature Comparison Component -->
+      <div class="mx-auto max-w-4xl">
+        <FeatureTabs competitor={competitorName} client:visible />
+      </div>
+
+      <!-- Pros and Cons -->
+      <div class="mt-12 grid gap-8 md:grid-cols-2">
+        <!-- Pros -->
+        <div class="rounded-xl border border-green-200 bg-green-50 p-6">
+          <h3 class="text-lg font-semibold text-green-900">✓ v0 Advantages</h3>
+          <ul class="mt-4 space-y-2">
+            {pros.map((pro) => (
+              <li class="flex items-start gap-2 text-sm text-green-800">
+                <span class="mt-1 text-green-600">✓</span>
+                <span>{pro}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Cons -->
+        <div class="rounded-xl border border-red-200 bg-red-50 p-6">
+          <h3 class="text-lg font-semibold text-red-900">✗ v0 Limitations</h3>
+          <ul class="mt-4 space-y-2">
+            {cons.map((con) => (
+              <li class="flex items-start gap-2 text-sm text-red-800">
+                <span class="mt-1 text-red-600">✗</span>
+                <span>{con}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      <!-- Verdict -->
+      <div class="mt-12 rounded-xl border border-gray-200 bg-white p-8 shadow-sm">
+        <h3 class="text-2xl font-bold text-gray-900">Our Verdict</h3>
+        <p class="mt-4 text-gray-600">
+          After thorough testing, we found that <strong>v0 by Vercel</strong> significantly outperforms {competitorName} for UI component generation. Its specialized AI models, clean code output, and seamless Vercel integration make it the top choice for frontend developers.
+        </p>
+        <div class="mt-6 flex flex-col gap-4 sm:flex-row">
+          <a
+            href={affiliateLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center rounded-lg bg-primary-600 px-6 py-3 text-base font-semibold text-white transition-colors hover:bg-primary-700"
+          >
+            Try v0 for Free →
+          </a>
+          <a
+            href="/compare"
+            class="inline-flex items-center justify-center rounded-lg border border-gray-300 bg-white px-6 py-3 text-base font-semibold text-gray-700 transition-colors hover:bg-gray-50"
+          >
+            View All Comparisons
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

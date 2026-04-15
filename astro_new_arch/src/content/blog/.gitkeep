@@ -1,0 +1,16 @@
+# Blog Content Collection
+
+Add markdown blog posts here with frontmatter matching the schema in content/config.ts.
+
+Example frontmatter:
+---
+title: "Your Blog Title"
+description: "A brief description of the blog post"
+publishDate: 2026-04-15
+author: "Author Name"
+category: "tutorials" # tutorials, reviews, news, guides
+tags: ["v0", "tutorial"]
+featured: false
+---
+
+Your markdown content here...

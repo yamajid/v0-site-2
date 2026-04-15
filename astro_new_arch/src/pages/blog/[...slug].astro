@@ -1,0 +1,154 @@
+---
+import { slug } from 'github-slugger';
+import type { GetStaticPaths, InferGetStaticPropsType } from 'astro';
+import ArticleLayout from '@layouts/ArticleLayout.astro';
+
+// Mock blog content data
+const blogPosts = [
+  {
+    slug: 'getting-started-with-v0',
+    collection: 'blog',
+    data: {
+      title: 'Getting Started with v0: A Complete Beginner\'s Guide',
+      description: 'Learn how to use v0 by Vercel to generate production-ready UI components using AI.',
+      publishDate: new Date('2026-04-10'),
+      updatedDate: new Date('2026-04-12'),
+      author: 'John Doe',
+      category: 'tutorials',
+      tags: ['v0', 'tutorial', 'beginner', 'AI'],
+      image: '/assets/blog/getting-started.jpg',
+      featured: true,
+      readingTime: 8,
+    },
+    body: `
+# Getting Started with v0
+
+v0 by Vercel is an AI-powered UI generation platform that allows you to create production-ready React components using natural language prompts.
+
+## What is v0?
+
+v0 (pronounced "v-zero") is Vercel's latest innovation in AI-assisted development. It uses large language models to generate React components with Tailwind CSS styling based on your text descriptions.
+
+## Getting Started
+
+### Step 1: Create an Account
+
+Head over to [v0.dev](https://v0.dev?ref=v0affiliate) and sign up for a free account. You can get started with the free tier which includes 10 generations per day.
+
+### Step 2: Write Your First Prompt
+
+Once logged in, you'll see a simple text input. Try describing the component you want to build:
+
+\`\`\`
+Create a pricing card with three tiers, featuring a monthly and annual billing toggle.
+\`\`\`
+
+### Step 3: Iterate and Refine
+
+v0 allows you to refine the generated component with follow-up prompts. You can ask it to:
+- Change colors
+- Add animations
+- Modify layout
+- Add interactive elements
+
+## Pro Tips
+
+1. **Be Specific**: The more detailed your prompt, the better the output.
+2. **Use Iterations**: Don't expect perfection on the first try. Use follow-up prompts.
+3. **Learn from Output**: Study the generated code to improve your own skills.
+
+## Conclusion
+
+v0 is a powerful tool that can significantly speed up your UI development workflow. Start with the free tier and upgrade when you're ready for more features.
+
+> **Ready to get started?** [Sign up for v0 today](https://v0.dev?ref=v0affiliate) and transform your development workflow!
+    `,
+  },
+  {
+    slug: 'v0-vs-cursor-ai',
+    collection: 'blog',
+    data: {
+      title: 'v0 vs Cursor AI: Which is Better for UI Development?',
+      description: 'An in-depth comparison of two leading AI-powered development tools.',
+      publishDate: new Date('2026-04-08'),
+      updatedDate: new Date('2026-04-09'),
+      author: 'Jane Smith',
+      category: 'reviews',
+      tags: ['v0', 'cursor', 'comparison', 'AI', 'review'],
+      image: '/assets/blog/v0-vs-cursor.jpg',
+      featured: false,
+      readingTime: 12,
+    },
+    body: `
+# v0 vs Cursor AI: Comprehensive Comparison
+
+Both v0 and Cursor AI promise to accelerate your development workflow using AI, but they take very different approaches.
+
+## Overview
+
+### v0 by Vercel
+- **Focus**: UI component generation
+- **Output**: React + Tailwind CSS code
+- **Best for**: Frontend developers, designers
+
+### Cursor AI
+- **Focus**: Full codebase assistance
+- **Output**: Any programming language
+- **Best for**: Full-stack developers
+
+## Key Differences
+
+| Feature | v0 | Cursor AI |
+|---------|-----|-----------|
+| UI Generation | ✓ Excellent | △ Limited |
+| Code Editing | △ Basic | ✓ Excellent |
+| Full-Stack | ✗ No | ✓ Yes |
+| Free Tier | ✓ Yes | ✗ No |
+
+## When to Use v0
+
+Choose v0 when you need to:
+- Rapidly prototype UI components
+- Generate consistent design systems
+- Create responsive layouts
+
+## When to Use Cursor AI
+
+Choose Cursor when you need to:
+- Work on backend code
+- Refactor existing codebases
+- Debug complex issues
+
+## Our Verdict
+
+For **UI-focused development**, v0 is the clear winner. Its specialized AI models produce better component code and integrate seamlessly with the Vercel ecosystem.
+
+[**Try v0 for free →**](https://v0.dev?ref=v0affiliate)
+    `,
+  },
+];
+
+export function getStaticPaths(): InferGetStaticPropsType<typeof getStaticPaths>[] {
+  return blogPosts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { title, description, image, publishDate, updatedDate, author, tags, readingTime, body } = post.data;
+---
+
+<ArticleLayout
+  title={title}
+  description={description}
+  image={image}
+  publishedTime={publishDate.toISOString()}
+  modifiedTime={updatedDate?.toISOString()}
+  author={author}
+  category={post.data.category}
+  tags={tags}
+  readingTime={readingTime}
+>
+  <Fragment set:html={body} />
+</ArticleLayout>

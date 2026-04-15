@@ -1,0 +1,11 @@
+# Assets Directory
+
+Place static assets here:
+- Images (OG images, logos, favicons)
+- Fonts
+- Documents
+
+Recommended files:
+- og-default.jpg (default Open Graph image)
+- logo.png (site logo)
+- favicon.svg (site favicon)
