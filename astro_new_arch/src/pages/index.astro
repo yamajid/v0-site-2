@@ -2,18 +2,24 @@
 import BaseLayout from '@layouts/BaseLayout.astro';
 import AffiliateInteractiveCalculator from '@components/React/AffiliateInteractiveCalculator.tsx';
 import FeatureTabs from '@components/React/FeatureTabs.tsx';
+import { definePageMeta } from '@lib/metadata';
 
-const title = 'v0 by Vercel - The AI-Powered UI Generation Platform';
-const description = 'Discover how v0 by Vercel revolutionizes UI development with AI. Get exclusive insights, comparisons, and deals through our affiliate platform.';
+const meta = definePageMeta({
+  title: 'Home',
+  description: 'Discover how v0 by Vercel revolutionizes UI development with AI. Get exclusive insights, comparisons, and affiliate deals.',
+  path: '/',
+  image: '/assets/og-home.jpg',
+  keywords: ['home', 'affiliate', 'ai-ui'],
+});
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout meta={meta}>
   <!-- Hero Section -->
   <section class="relative overflow-hidden bg-gradient-to-b from-primary-50 to-white py-20 sm:py-32">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div class="text-center">
         <span class="inline-block rounded-full bg-primary-100 px-4 py-1.5 text-sm font-medium text-primary-700">
-          🚀 Official v0 Affiliate Partner
+          🚀 Official v0-guide Partner
         </span>
         <h1 class="mt-6 text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
           Build UIs Faster with{' '}
@@ -26,7 +32,7 @@ const description = 'Discover how v0 by Vercel revolutionizes UI development wit
         </p>
         <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <a
-            href="https://v0.dev?ref=v0affiliate"
+            href="https://v0.dev?ref=v0-guide"
             target="_blank"
             rel="noopener noreferrer"
             class="rounded-lg bg-primary-600 px-8 py-3 text-base font-semibold text-white shadow-sm transition-colors hover:bg-primary-700"
@@ -180,7 +186,7 @@ const description = 'Discover how v0 by Vercel revolutionizes UI development wit
       </p>
       <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
         <a
-          href="https://v0.dev?ref=v0affiliate"
+          href="https://v0.dev?ref=v0-guide"
           target="_blank"
           rel="noopener noreferrer"
           class="rounded-lg bg-white px-8 py-3 text-base font-semibold text-primary-600 shadow-sm transition-colors hover:bg-gray-100"

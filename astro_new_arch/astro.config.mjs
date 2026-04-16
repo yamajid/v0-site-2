@@ -5,30 +5,35 @@ import sitemap from '@astrojs/sitemap';
 import mdx from '@astrojs/mdx';
 
 export default defineConfig({
-  site: 'https://localhost:4321',
+  site: 'https://v0-guide.com',
   integrations: [
     react(),
     tailwind({
       applyBaseStyles: true,
     }),
     sitemap({
-      // Optional but recommended settings:
-      filter: (page) => !page.includes('/draft'), // exclude draft pages if any
-      changefreq: 'weekly',
-      priority: 0.7,
-      lastmod: new Date(),
-      i18n: {
-        defaultLocale: 'en',
-        locales: {
-          en: 'en-US'
-        }
+      // Skip dynamic routes that depend on collections
+      filter: (page) => {
+        // Allow static pages only
+        const staticPages = ['/', '/pricing', '/compare', '/blog', '/guides', '/use-cases'];
+        return staticPages.some(p => page === p || page.startsWith(p + '/'));
       }
     }),
+    
     mdx(),
   ],
   markdown: {
     shikiConfig: {
       theme: 'github-dark',
+    },
+  },
+    vite: {
+    resolve: {
+      alias: {
+        '@lib': './src/lib',
+        '@layouts': './src/layouts',
+        '@components': './src/components',
+      },
     },
   },
 });

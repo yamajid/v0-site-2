@@ -12,9 +12,9 @@ export const GET: APIRoute = async ({ site }) => {
   );
 
   return rss({
-    title: 'v0 Affiliate Blog',
+    title: 'v0-Guide Blog',
     description: 'Latest tutorials, reviews, and insights about v0 by Vercel',
-    site: site || 'https://v0affiliate.com',
+    site: site || 'https://v0-guide.com',
     items: sortedPosts.map((post) => ({
       link: `/blog/${post.slug}/`,
       title: post.data.title,

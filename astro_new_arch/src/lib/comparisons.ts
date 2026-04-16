@@ -17,7 +17,7 @@ export const comparisons = [
       'Limited to frontend components',
       'Requires internet connection',
     ],
-    affiliateLink: 'https://v0.dev?ref=v0affiliate',
+    affiliateLink: 'https://v0.dev?ref=v0-guide',
   },
   {
     competitor: 'v0-vs-tailwind-ai',
@@ -36,7 +36,7 @@ export const comparisons = [
       'Steeper learning curve for beginners',
       'Limited customization options',
     ],
-    affiliateLink: 'https://v0.dev?ref=v0affiliate',
+    affiliateLink: 'https://v0.dev?ref=v0-guide',
   },
   {
     competitor: 'v0-vs-codeium',
@@ -55,6 +55,6 @@ export const comparisons = [
       'Smaller ecosystem',
       'Fewer language support options',
     ],
-    affiliateLink: 'https://v0.dev?ref=v0affiliate',
+    affiliateLink: 'https://v0.dev?ref=v0-guide',
   },
 ];

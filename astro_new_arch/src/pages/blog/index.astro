@@ -3,9 +3,16 @@
 // Simple static cards: image + title → clickable link to blog post
 
 import BaseLayout from '@layouts/BaseLayout.astro';
+import { definePageMeta } from '@lib/metadata';
 
-const title = 'Blog - v0 Affiliate';
-const description = 'Latest tutorials, reviews, and insights about v0 by Vercel.';
+const meta = definePageMeta({
+  title: 'Blog - Vercel v0 guide',
+  description: 'Latest tutorials, reviews, and insights about v0 by Vercel.',
+  path: '/',
+  image: '/assets/og-home.jpg',
+  keywords: ['home', 'affiliate', 'ai-ui'],
+});
+
 
 // ✅ Minimal static data: only what's needed for linking
 const posts = [
@@ -40,7 +47,7 @@ const posts = [
 ];
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout meta={meta}>
   <!-- Blog Header -->
   <section class="bg-gradient-to-b from-primary-50 to-white py-16 sm:py-24">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">

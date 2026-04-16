@@ -2,24 +2,24 @@
 import Header from '@components/Astro/Header.astro';
 import Footer from '@components/Astro/Footer.astro';
 import SEO from '@components/Astro/SEO.astro';
+import type { PageMetaResolved } from '@lib/metadata';
 
 interface Props {
-  title: string;
-  description: string;
-  image?: string;
-  canonicalURL?: string;
-  type?: 'website' | 'article';
-  keywords?: string[];
+  meta: PageMetaResolved;
 }
 
-const {
-  title,
-  description,
-  image,
-  canonicalURL,
-  type = 'website',
-  keywords = [],
-} = Astro.props;
+const { meta } = Astro.props;
+
+// Map to your SEO.astro prop names if they differ
+const seoProps = {
+  title: meta.title,
+  description: meta.description,
+  image: meta.image,
+  canonicalURL: meta.canonicalURL,
+  keywords: meta.keywords,
+  type: meta.type,
+  publishedTime: meta.publishedTime,
+};
 ---
 
 <!doctype html>
@@ -29,15 +29,7 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
 	
-    <meta name="generator" content={Astro.generator} />
-    <SEO
-      title={title}
-      description={description}
-      image={image}
-      canonicalURL={canonicalURL}
-      type={type}
-      keywords={keywords}
-    />
+    <SEO {...seoProps} />
   </head>
   <body class="min-h-screen bg-white font-sans text-gray-900 antialiased">
     <Header />

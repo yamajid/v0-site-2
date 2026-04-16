@@ -20,13 +20,13 @@ v0 by Vercel is an AI-powered UI generation platform.
 
 ## Getting Started
 
-Head over to [v0.dev](https://v0.dev?ref=v0affiliate) and sign up for a free account.
+Head over to [v0.dev](https://v0.dev?ref=v0-guide) and sign up for a free account.
 
 ## Conclusion
 
 v0 is a powerful tool that can significantly speed up your UI development workflow.
 
-> **Ready to get started?** [Sign up for v0 today](https://v0.dev?ref=v0affiliate)
+> **Ready to get started?** [Sign up for v0 today](https://v0.dev?ref=v0-guide)
     `,
   },
   {
@@ -52,7 +52,7 @@ Both v0 and Cursor AI promise to accelerate your development workflow using AI.
 
 For **UI-focused development**, v0 is the clear winner.
 
-[**Try v0 for free →**](https://v0.dev?ref=v0affiliate)
+[**Try v0 for free →**](https://v0.dev?ref=v0-guide)
     `,
   },
 ];

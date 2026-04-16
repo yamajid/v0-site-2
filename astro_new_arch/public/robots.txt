@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemaps
-Sitemap: https://v0affiliate.com/sitemap.xml
+Sitemap: https://v0-guide.com/sitemap.xml
 
 # Disallow admin and API routes
 Disallow: /admin/
