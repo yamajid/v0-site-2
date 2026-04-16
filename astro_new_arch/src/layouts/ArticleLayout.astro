@@ -1,5 +1,11 @@
 ---
+// src/layouts/ArticleLayout.astro
 import BaseLayout from './BaseLayout.astro';
+import ArticleSchema from '../components/schema/ArticleSchema.astro';
+import BreadcrumbSchema from '../components/schema/BreadcrumbSchema.astro';
+import FAQSection from '../components/schema/FAQSection.astro';
+import HowToSchema from '../components/schema/HowToSchema.astro';
+import SoftwareAppSchema from '../components/schema/SoftwareAppSchema.astro';
 
 interface Props {
   title: string;
@@ -11,6 +17,12 @@ interface Props {
   category?: string;
   tags?: string[];
   readingTime?: number;
+  // Optional P2 Schema Props
+  faqItems?: Array<{ question: string; answer: string }>;
+  steps?: Array<{ title: string; text: string }>;
+  estimatedTime?: string; // ISO 8601, e.g., "PT15M"
+  softwareName?: string;
+  softwareOffers?: Array<{ price: string | number; currency: string; availability?: string }>;
 }
 
 const {
@@ -19,11 +31,27 @@ const {
   image,
   publishedTime,
   modifiedTime,
-  author = 'v0 Affiliate Team',
+  author = 'v0-Guide Team',
   category,
   tags = [],
   readingTime,
+  faqItems,
+  steps,
+  estimatedTime,
+  softwareName,
+  softwareOffers,
 } = Astro.props;
+
+// Generate breadcrumbs from URL path
+const pathSegments = Astro.url.pathname.split('/').filter(Boolean);
+const breadcrumbItems = pathSegments.map((segment, index) => ({
+  name: segment
+    .split('-')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' '),
+  url: `https://${Astro.site?.host}${pathSegments.slice(0, index + 1).join('/')}`,
+  position: index + 1
+}));
 ---
 
 <BaseLayout
@@ -33,6 +61,26 @@ const {
   type="article"
   keywords={tags}
 >
+  <!-- Core Schemas (always injected for article pages) -->
+  <ArticleSchema
+    headline={title}
+    description={description}
+    image={image}
+    author={author}
+    publishedTime={publishedTime}
+    modifiedTime={modifiedTime}
+    siteUrl={Astro.site?.href}
+  />
+  <BreadcrumbSchema items={breadcrumbItems} />
+
+  <!-- Conditional Schemas (only render when props provided) -->
+  {softwareName && (
+    <SoftwareAppSchema name={softwareName} offers={softwareOffers} />
+  )}
+  {steps && steps.length > 0 && (
+    <HowToSchema title={title} steps={steps} estimatedTime={estimatedTime} />
+  )}
+
   <article class="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
     <!-- Article Header -->
     <header class="mb-8">
@@ -57,7 +105,7 @@ const {
           <span>{author}</span>
         </div>
         {publishedTime && (
-          <time dateTime={publishedTime}>
+          <time datetime={publishedTime}>
             {new Date(publishedTime).toLocaleDateString('en-US', {
               year: 'numeric',
               month: 'long',
@@ -86,6 +134,11 @@ const {
       <slot />
     </div>
 
+    <!-- FAQ Section (renders visible HTML + schema via component) -->
+    {faqItems && faqItems.length > 0 && (
+      <FAQSection items={faqItems} />
+    )}
+
     <!-- Tags -->
     {tags.length > 0 && (
       <div class="mt-12 border-t border-gray-200 pt-8">
@@ -107,7 +160,11 @@ const {
     <footer class="mt-12 border-t border-gray-200 pt-8">
       <div class="flex items-center justify-between">
         <div>
-          <p class="text-sm text-gray-500">Last updated: {modifiedTime ? new Date(modifiedTime).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : 'N/A'}</p>
+          <p class="text-sm text-gray-500">
+            Last updated: {modifiedTime 
+              ? new Date(modifiedTime).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) 
+              : 'N/A'}
+          </p>
         </div>
         <div class="flex items-center gap-4">
           <a

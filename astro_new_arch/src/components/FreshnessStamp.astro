@@ -1,0 +1,21 @@
+---
+interface Props {
+  published?: Date | string;
+  modified?: Date | string;
+}
+const { published, modified } = Astro.props;
+const pub = published ? new Date(published) : new Date();
+const mod = modified ? new Date(modified) : pub;
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "datePublished": pub.toISOString(),
+  "dateModified": mod.toISOString()
+};
+---
+<div class="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400 mb-6">
+  <time datetime={pub.toISOString()}>Published: {pub.toLocaleDateString()}</time>
+  <time datetime={mod.toISOString()}>Updated: {mod.toLocaleDateString()}</time>
+</div>
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

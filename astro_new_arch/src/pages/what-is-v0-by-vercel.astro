@@ -1,0 +1,26 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SoftwareAppSchema from '../components/schema/SoftwareAppSchema.astro';
+import FAQSection from '../components/schema/FAQSection.astro';
+import FreshnessStamp from '../components/FreshnessStamp.astro';
+
+const faqItems = [
+  { question: "What is v0 by Vercel?", answer: "v0 is an AI-powered UI generation tool that translates natural language prompts into production-ready React and Tailwind CSS code, accelerating frontend development workflows." },
+  { question: "Is v0 free?", answer: "Yes. v0 offers a free tier with 100 generations/month, ideal for prototyping and personal projects." },
+  { question: "Does v0 integrate with GitHub?", answer: "Yes. v0 supports native GitHub sync for pushing, pulling, branching, and creating PRs directly from the interface." }
+];
+---
+<BaseLayout title="What is v0 by Vercel? | Complete AI UI Generator Guide" description="A comprehensive breakdown of v0: features, pricing, workflows, and how it compares to other AI coding tools.">
+  <SoftwareAppSchema name="v0 by Vercel" offers={[{ price: "0", currency: "USD" }, { price: "20", currency: "USD" }]} />
+  
+  <article class="prose lg:prose-xl mx-auto py-12 px-4 max-w-4xl">
+    <h1>What is v0 by Vercel?</h1>
+    <p class="lead">v0 is an AI-powered UI generation tool that translates natural language prompts into production-ready React and Tailwind CSS code. It bridges the gap between design intent and functional implementation, saving developers an average of ~20 hours per week on boilerplate tasks.</p>
+    
+    <h2>Core Value & Real-World Impact</h2>
+    <p>Developers describe v0 as <em>"basically cheating if you're already in the Next.js ecosystem"</em> and a <em>"game changer for rapid prototyping."</em> It integrates seamlessly with GitHub, Supabase, and Vercel deployments, enabling agentic workflows from concept to production.</p>
+    
+    <FreshnessStamp modified={new Date()} />
+    <FAQSection items={faqItems} />
+  </article>
+</BaseLayout>
