@@ -2,10 +2,19 @@
 // src/pages/compare/index.astro
 // Static comparison index: clickable cards linking to individual comparison pages
 
-import BaseLayout from '@layouts/BaseLayout.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { definePageMeta } from '@/lib/metadata';
 
 const title = 'v0 Comparisons - Find the Best AI UI Tool';
 const description = 'Detailed, data-driven comparisons between v0 and other AI development tools.';
+
+const meta = definePageMeta({
+  title: 'v0 Comparisons - Find the Best AI UI Tool',
+  description: 'Detailed, data-driven comparisons between v0 and other AI development tools.',
+  path: '/',
+  image: '/assets/og-home.jpg',
+  keywords: ['home', 'affiliate', 'ai-ui'],
+});
 
 // ✅ Planned comparisons per SEO strategy
 const comparisons = [
@@ -17,7 +26,7 @@ const comparisons = [
 ];
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout meta={meta}>
   <!-- Header -->
   <section class="bg-gradient-to-b from-primary-50 to-white py-16 sm:py-24">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
@@ -28,7 +37,7 @@ const comparisons = [
         How v0 Stacks Up
       </h1>
       <p class="mx-auto mt-4 max-w-2xl text-lg text-gray-600">
-        {description}
+        {meta.description}
       </p>
     </div>
   </section>

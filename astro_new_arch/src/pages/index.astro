@@ -1,8 +1,8 @@
 ---
-import BaseLayout from '@layouts/BaseLayout.astro';
-import AffiliateInteractiveCalculator from '@components/React/AffiliateInteractiveCalculator.tsx';
-import FeatureTabs from '@components/React/FeatureTabs.tsx';
-import { definePageMeta } from '@lib/metadata.ts';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import AffiliateInteractiveCalculator from '@/components/React/AffiliateInteractiveCalculator.tsx';
+import FeatureTabs from '@/components/React/FeatureTabs.tsx';
+import { definePageMeta } from '@/lib/metadata.ts';
 
 const meta = definePageMeta({
   title: 'Home',
@@ -28,7 +28,7 @@ const meta = definePageMeta({
           </span>
         </h1>
         <p class="mx-auto mt-6 max-w-2xl text-lg text-gray-600">
-          {description}
+          {meta.description}
         </p>
         <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <a

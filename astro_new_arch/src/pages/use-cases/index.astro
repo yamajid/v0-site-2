@@ -2,11 +2,19 @@
 // src/pages/use-cases/index.astro
 // Minimal static page: Use Cases Hub (placeholder)
 
-import BaseLayout from '@layouts/BaseLayout.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { definePageMeta } from '@/lib/metadata';
 
 const title = 'Use Cases - v0-guide';
 const description = 'Explore real-world ways to use v0 by Vercel for faster UI development.';
 
+const meta = definePageMeta({
+  title: 'Use Cases - v0-guide',
+  description: 'Explore real-world ways to use v0 by Vercel for faster UI development.',
+  path: '/',
+  image: '/assets/og-home.jpg',
+  keywords: ['home', 'affiliate', 'ai-ui'],
+});
 // ✅ Planned use cases per SEO strategy (Section 2.3)
 const useCases = [
   {
@@ -36,7 +44,7 @@ const useCases = [
 ];
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout meta={meta}>
   
   <!-- Hero -->
   <section class="bg-gradient-to-b from-primary-50 to-white py-16 sm:py-24">

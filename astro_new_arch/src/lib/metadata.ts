@@ -5,7 +5,7 @@ export const SITE = {
   url: import.meta.env.SITE || 'https://localhost:4321',
   image: '/assets/og-default.jpg',
   keywords: ['v0', 'vercel', 'ai', 'ui generation', 'react', 'tailwind', ],
-  author: 'Your Name',
+  author: 'V0 guide',
   twitter: '@yourhandle',
 } as const;
 

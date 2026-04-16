@@ -2,8 +2,8 @@
 // src/pages/blog/index.astro
 // Simple static cards: image + title → clickable link to blog post
 
-import BaseLayout from '@layouts/BaseLayout.astro';
-import { definePageMeta } from '@lib/metadata.ts';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { definePageMeta } from '@/lib/metadata.ts';
 
 const meta = definePageMeta({
   title: 'Blog - Vercel v0 guide',
@@ -58,7 +58,7 @@ const posts = [
         Latest from Our Team
       </h1>
       <p class="mx-auto mt-4 max-w-2xl text-lg text-gray-600">
-        {description}
+        {meta.description}
       </p>
     </div>
   </section>
