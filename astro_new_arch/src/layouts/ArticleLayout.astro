@@ -6,18 +6,23 @@ import BreadcrumbSchema from '../components/schema/BreadcrumbSchema.astro';
 import FAQSection from '../components/schema/FAQSection.astro';
 import HowToSchema from '../components/schema/HowToSchema.astro';
 import SoftwareAppSchema from '../components/schema/SoftwareAppSchema.astro';
+import type { PageMetaResolved } from '@lib/metadata';
 
 interface Props {
-  title: string;
-  description: string;
-  image?: string;
+  // ✅ Unified SEO metadata (from definePageMeta)
+  meta: PageMetaResolved;
+  
+  // ✅ Display title for <h1> (optional: defaults to base title from meta.title)
+  displayTitle?: string;
+  
+  // ✅ Article-specific props (unchanged)
   publishedTime?: string;
   modifiedTime?: string;
   author?: string;
   category?: string;
-  tags?: string[];
   readingTime?: number;
-  // Optional P2 Schema Props
+  
+  // ✅ P2 Schema Props (optional)
   faqItems?: Array<{ question: string; answer: string }>;
   steps?: Array<{ title: string; text: string }>;
   estimatedTime?: string; // ISO 8601, e.g., "PT15M"
@@ -26,14 +31,12 @@ interface Props {
 }
 
 const {
-  title,
-  description,
-  image,
+  meta,
+  displayTitle,
   publishedTime,
   modifiedTime,
   author = 'v0-Guide Team',
   category,
-  tags = [],
   readingTime,
   faqItems,
   steps,
@@ -42,30 +45,31 @@ const {
   softwareOffers,
 } = Astro.props;
 
-// Generate breadcrumbs from URL path
+// ✅ Extract display title: use provided value, or strip site suffix from SEO title
+const h1Title = displayTitle || meta.title.split(' | ')[0];
+
+// ✅ Generate breadcrumbs from URL path
 const pathSegments = Astro.url.pathname.split('/').filter(Boolean);
 const breadcrumbItems = pathSegments.map((segment, index) => ({
   name: segment
     .split('-')
     .map(word => word.charAt(0).toUpperCase() + word.slice(1))
     .join(' '),
-  url: `https://${Astro.site?.host}${pathSegments.slice(0, index + 1).join('/')}`,
+  url: `https://${Astro.site?.host || 'localhost'}${pathSegments.slice(0, index + 1).join('/')}`,
   position: index + 1
 }));
+
+// ✅ Extract tags from meta.keywords (filter out global site keywords if needed)
+// Optional: customize this logic based on your keyword strategy
+const articleTags = meta.keywords || [];
 ---
 
-<BaseLayout
-  title={title}
-  description={description}
-  image={image}
-  type="article"
-  keywords={tags}
->
+<BaseLayout meta={meta}>
   <!-- Core Schemas (always injected for article pages) -->
   <ArticleSchema
-    headline={title}
-    description={description}
-    image={image}
+    headline={h1Title}
+    description={meta.description}
+    image={meta.image}
     author={author}
     publishedTime={publishedTime}
     modifiedTime={modifiedTime}
@@ -78,7 +82,7 @@ const breadcrumbItems = pathSegments.map((segment, index) => ({
     <SoftwareAppSchema name={softwareName} offers={softwareOffers} />
   )}
   {steps && steps.length > 0 && (
-    <HowToSchema title={title} steps={steps} estimatedTime={estimatedTime} />
+    <HowToSchema title={h1Title} steps={steps} estimatedTime={estimatedTime} />
   )}
 
   <article class="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
@@ -90,9 +94,9 @@ const breadcrumbItems = pathSegments.map((segment, index) => ({
         </span>
       )}
       <h1 class="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-        {title}
+        {h1Title}
       </h1>
-      <p class="mt-4 text-lg text-gray-600">{description}</p>
+      <p class="mt-4 text-lg text-gray-600">{meta.description}</p>
 
       <!-- Meta Info -->
       <div class="mt-6 flex flex-wrap items-center gap-4 text-sm text-gray-500">
@@ -118,11 +122,11 @@ const breadcrumbItems = pathSegments.map((segment, index) => ({
     </header>
 
     <!-- Featured Image -->
-    {image && (
+    {meta.image && (
       <div class="mb-8">
         <img
-          src={image}
-          alt={title}
+          src={meta.image}
+          alt={h1Title}
           class="w-full rounded-xl object-cover"
           loading="lazy"
         />
@@ -140,13 +144,13 @@ const breadcrumbItems = pathSegments.map((segment, index) => ({
     )}
 
     <!-- Tags -->
-    {tags.length > 0 && (
+    {articleTags.length > 0 && (
       <div class="mt-12 border-t border-gray-200 pt-8">
         <h3 class="text-sm font-semibold text-gray-900">Tags</h3>
         <div class="mt-3 flex flex-wrap gap-2">
-          {tags.map((tag) => (
+          {articleTags.map((tag) => (
             <a
-              href={`/blog?tag=${tag}`}
+              href={`/blog?tag=${encodeURIComponent(tag)}`}
               class="inline-block rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700 transition-colors hover:bg-gray-200"
             >
               {tag}
@@ -168,7 +172,7 @@ const breadcrumbItems = pathSegments.map((segment, index) => ({
         </div>
         <div class="flex items-center gap-4">
           <a
-            href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(Astro.url.href)}`}
+            href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(h1Title)}&url=${encodeURIComponent(Astro.url.href)}`}
             target="_blank"
             rel="noopener noreferrer"
             class="text-gray-400 hover:text-primary-600 transition-colors"

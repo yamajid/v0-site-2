@@ -1,4 +1,5 @@
 ---
+// src/layouts/BaseLayout.astro
 import Header from '@components/Astro/Header.astro';
 import Footer from '@components/Astro/Footer.astro';
 import SEO from '@components/Astro/SEO.astro';
@@ -9,17 +10,6 @@ interface Props {
 }
 
 const { meta } = Astro.props;
-
-// Map to your SEO.astro prop names if they differ
-const seoProps = {
-  title: meta.title,
-  description: meta.description,
-  image: meta.image,
-  canonicalURL: meta.canonicalURL,
-  keywords: meta.keywords,
-  type: meta.type,
-  publishedTime: meta.publishedTime,
-};
 ---
 
 <!doctype html>
@@ -28,8 +18,17 @@ const seoProps = {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
-	
-    <SEO {...seoProps} />
+    
+    <!-- ✅ Direct prop passing (cleaner than spreading an intermediate object) -->
+    <SEO
+      title={meta.title}
+      description={meta.description}
+      image={meta.image}
+      canonicalURL={meta.canonicalURL}
+      keywords={meta.keywords}
+      type={meta.type}
+      publishedTime={meta.publishedTime}
+    />
   </head>
   <body class="min-h-screen bg-white font-sans text-gray-900 antialiased">
     <Header />
@@ -50,7 +49,6 @@ const seoProps = {
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
-
     body {
       @apply text-gray-900 bg-white;
     }
@@ -60,11 +58,9 @@ const seoProps = {
     .container {
       @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
     }
-
     .btn-primary {
       @apply inline-flex items-center justify-center rounded-lg bg-primary-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
     }
-
     .btn-secondary {
       @apply inline-flex items-center justify-center rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
     }

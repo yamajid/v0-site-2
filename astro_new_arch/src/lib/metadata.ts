@@ -1,10 +1,10 @@
 // src/lib/metadata.ts
 export const SITE = {
-  title: 'v0 by Vercel Affiliate',
+  title: 'The best way to use V0 By Vercel',
   description: 'Expert guides, comparisons, and tutorials for v0 by Vercel',
   url: import.meta.env.SITE || 'https://localhost:4321',
   image: '/assets/og-default.jpg',
-  keywords: ['v0', 'vercel', 'ai', 'ui generation', 'react', 'tailwind'],
+  keywords: ['v0', 'vercel', 'ai', 'ui generation', 'react', 'tailwind', ],
   author: 'Your Name',
   twitter: '@yourhandle',
 } as const;
