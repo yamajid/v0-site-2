@@ -17,14 +17,14 @@ const faqSchema = {
   }))
 };
 ---
-<section class="space-y-4 my-10">
+<section class="space-y-3 my-12">
   {items.map(item => (
-    <details class="group border border-gray-200 rounded-lg p-5 bg-white dark:bg-gray-800">
-      <summary class="font-semibold text-lg cursor-pointer list-none flex justify-between items-center select-none">
+    <details class="group border border-primary-200 rounded-xl p-6 bg-gradient-to-br from-primary-50 to-white shadow-sm hover:shadow-md transition-shadow">
+      <summary class="font-semibold text-lg cursor-pointer list-none flex justify-between items-center select-none text-gray-900 hover:text-primary-600">
         {item.question}
-        <span class="transition-transform duration-200 group-open:rotate-180">▾</span>
+        <span class="transition-transform duration-200 group-open:rotate-180 text-primary-600">▾</span>
       </summary>
-      <div class="mt-3 text-gray-600 dark:text-gray-300 leading-relaxed">{item.answer}</div>
+      <div class="mt-4 text-gray-700 leading-relaxed">{item.answer}</div>
     </details>
   ))}
 </section>

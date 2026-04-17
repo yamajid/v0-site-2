@@ -3,32 +3,57 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import AffiliateInteractiveCalculator from '@/components/React/AffiliateInteractiveCalculator.tsx';
 import FeatureTabs from '@/components/React/FeatureTabs.tsx';
 import { definePageMeta } from '@/lib/metadata.ts';
+import { getPageMeta } from '@/data/page-metadata.ts';
 
 const meta = definePageMeta({
-  title: 'Home',
-  description: 'Discover how v0 by Vercel revolutionizes UI development with AI. Get exclusive insights, comparisons, and affiliate deals.',
+  title: 'v0 — Prompt to Production — Agentic AI for React — AI UI Generator',
+  description: 'v0 scaffolds entire features from prompts. Iterate with natural language. Ship production-ready React with Next.js App Router and shadcn/ui in minutes.',
   path: '/',
   image: '/assets/og-home.jpg',
-  keywords: ['home', 'affiliate', 'ai-ui'],
+  keywords: ['agentic ai', 'prompt to production', 'react ui generation', 'vibe coding', 'next.js', 'v0', 'shadcn/ui', 'server components', 'typescript', 'tailwindcss'],
 });
+
+// Extract FAQ items from page metadata for schema generation
+const pageMeta = getPageMeta('/');
+const faqItems = pageMeta.faqItems || [];
+
+// Define HowTo steps for workflow schema
+const steps = [
+  {
+    name: 'Write Your Prompt',
+    text: 'Describe what you need in plain English. "Create a sales dashboard with revenue card, customer table, and trend chart."',
+  },
+  {
+    name: 'Get Full Scaffolding',
+    text: 'v0 generates entire component trees with Next.js, shadcn/ui, Server Components, and Tailwind. No snippets—full features.',
+  },
+  {
+    name: 'Refine with Natural Language',
+    text: 'Iterate instantly. "Add dark mode." "Reorganize columns." v0 understands context and adapts intelligently.',
+  },
+  {
+    name: 'Deploy to Production',
+    text: 'Push to GitHub with one click. Deploy to Vercel instantly. Your entire workflow, no copy-paste friction.',
+  },
+];
 ---
 
-<BaseLayout meta={meta}>
+<BaseLayout meta={meta} faqItems={faqItems} steps={steps}>
   <!-- Hero Section -->
   <section class="relative overflow-hidden bg-gradient-to-b from-primary-50 to-white py-20 sm:py-32">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div class="text-center">
         <span class="inline-block rounded-full bg-primary-100 px-4 py-1.5 text-sm font-medium text-primary-700">
-          🚀 Official v0-guide Partner
+          ✨v0 Agentic AI for React Developers
         </span>
         <h1 class="mt-6 text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-          Build UIs Faster with{' '}
-          <span class="bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent">
-            v0 by Vercel
+           Prompt to Production
+          <span class="block bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent">
+            in Minutes
           </span>
         </h1>
         <p class="mx-auto mt-6 max-w-2xl text-lg text-gray-600">
-          {meta.description}
+          v0 scaffolds entire features from prompts. You iterate with natural language. Ship production-ready React with Next.js, shadcn/ui, and Server Components.
         </p>
         <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <a
@@ -37,7 +62,7 @@ const meta = definePageMeta({
             rel="noopener noreferrer"
             class="rounded-lg bg-primary-600 px-8 py-3 text-base font-semibold text-white shadow-sm transition-colors hover:bg-primary-700"
           >
-            Get Started Free →
+            Start Vibe Coding →
           </a>
           <a
             href="/compare"
@@ -54,96 +79,96 @@ const meta = definePageMeta({
     </div>
   </section>
 
-  <!-- Features Section -->
+  <!-- Features Section (4 Core Agentic Capabilities) -->
   <section id="features" class="py-16 sm:py-24">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div class="text-center">
         <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-          Why Choose v0?
+          Built for Agentic Development
         </h2>
         <p class="mx-auto mt-4 max-w-2xl text-lg text-gray-600">
-          The most advanced AI-powered UI generation platform built by Vercel.
+          v0 isn't reactive. It understands intent, scaffolds features, and iterates intelligently.
         </p>
       </div>
 
-      <div class="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-        <!-- Feature 1 -->
+      <div class="mt-16 grid gap-8 sm:grid-cols-2">
+        <!-- Feature 1: Context-Aware Generation -->
         <div class="rounded-xl border border-gray-200 bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
           <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-primary-100">
-            <svg class="h-6 w-6 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg class="h-6 w-6 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-label="Check mark icon">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7 12a5 5 0 1110 0A5 5 0 017 12z" />
+            </svg>
+          </div>
+          <h3 class="mt-4 text-lg font-semibold text-gray-900">Context-Aware Scaffolding</h3>
+          <p class="mt-2 text-gray-600">
+            Entire feature trees from one prompt. Not snippets—full components with context preserved across iterations.
+          </p>
+        </div>
+
+        <!-- Feature 2: Live Iteration -->
+        <div class="rounded-xl border border-gray-200 bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
+          <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-primary-100">
+            <svg class="h-6 w-6 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-label="Refresh icon">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+            </svg>
+          </div>
+          <h3 class="mt-4 text-lg font-semibold text-gray-900">Vibe Coding Loop</h3>
+          <p class="mt-2 text-gray-600">
+            Natural language refinement. "Add dark mode." "Reorganize columns." v0 understands and adapts.
+          </p>
+        </div>
+
+        <!-- Feature 3: Stack Intelligence -->
+        <div class="rounded-xl border border-gray-200 bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
+          <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-primary-100">
+            <svg class="h-6 w-6 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-label="Lightning icon">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
             </svg>
           </div>
-          <h3 class="mt-4 text-lg font-semibold text-gray-900">Lightning Fast</h3>
+          <h3 class="mt-4 text-lg font-semibold text-gray-900">Modern Stack Default</h3>
           <p class="mt-2 text-gray-600">
-            Generate production-ready React components in seconds using natural language prompts.
+            Next.js App Router, shadcn/ui, Server Components, TypeScript, Tailwind. <a href="/guides" class="font-medium text-primary-600 hover:underline">Learn the stack →</a>
           </p>
         </div>
 
-        <!-- Feature 2 -->
+        <!-- Feature 4: GitHub-Native Workflow -->
         <div class="rounded-xl border border-gray-200 bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
           <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-primary-100">
-            <svg class="h-6 w-6 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg class="h-6 w-6 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-label="Code branches icon">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
             </svg>
           </div>
-          <h3 class="mt-4 text-lg font-semibold text-gray-900">Clean Code Output</h3>
+          <h3 class="mt-4 text-lg font-semibold text-gray-900">GitHub-Native Sync</h3>
           <p class="mt-2 text-gray-600">
-            Get TypeScript, Tailwind CSS, and React code that follows best practices.
+            Push to branches. Deploy to Vercel. One-click. Your entire workflow, no copy-paste.
           </p>
         </div>
+      </div>
+    </div>
+  </section>
 
-        <!-- Feature 3 -->
-        <div class="rounded-xl border border-gray-200 bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
-          <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-primary-100">
-            <svg class="h-6 w-6 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
-            </svg>
-          </div>
-          <h3 class="mt-4 text-lg font-semibold text-gray-900">Responsive Designs</h3>
-          <p class="mt-2 text-gray-600">
-            All generated components are mobile-first and fully responsive by default.
-          </p>
-        </div>
+  <!-- How It Works Section -->
+  <section class="bg-gray-50 py-16 sm:py-24">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+          Your Agentic Workflow
+        </h2>
+        <p class="mx-auto mt-4 max-w-2xl text-lg text-gray-600">
+          From prompt to production. Four simple steps powered by intent-aware AI.
+        </p>
+      </div>
 
-        <!-- Feature 4 -->
-        <div class="rounded-xl border border-gray-200 bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
-          <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-primary-100">
-            <svg class="h-6 w-6 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
-            </svg>
+      <div class="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        {steps.map((step, index) => (
+          <div class="text-center">
+            <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-primary-100">
+              <span class="text-2xl font-bold text-primary-600">{index + 1}</span>
+            </div>
+            <h3 class="mt-4 text-lg font-semibold text-gray-900">{step.name}</h3>
+            <p class="mt-2 text-sm text-gray-600">{step.text}</p>
           </div>
-          <h3 class="mt-4 text-lg font-semibold text-gray-900">Customizable</h3>
-          <p class="mt-2 text-gray-600">
-            Iterate on designs with follow-up prompts to get exactly what you need.
-          </p>
-        </div>
-
-        <!-- Feature 5 -->
-        <div class="rounded-xl border border-gray-200 bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
-          <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-primary-100">
-            <svg class="h-6 w-6 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-            </svg>
-          </div>
-          <h3 class="mt-4 text-lg font-semibold text-gray-900">Team Collaboration</h3>
-          <p class="mt-2 text-gray-600">
-            Share components and collaborate with your team in real-time.
-          </p>
-        </div>
-
-        <!-- Feature 6 -->
-        <div class="rounded-xl border border-gray-200 bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
-          <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-primary-100">
-            <svg class="h-6 w-6 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-            </svg>
-          </div>
-          <h3 class="mt-4 text-lg font-semibold text-gray-900">Enterprise Security</h3>
-          <p class="mt-2 text-gray-600">
-            SOC 2 compliant with enterprise-grade security and privacy features.
-          </p>
-        </div>
+        ))}
       </div>
     </div>
   </section>
@@ -165,7 +190,7 @@ const meta = definePageMeta({
           How Does v0 Compare?
         </h2>
         <p class="mx-auto mt-4 max-w-2xl text-lg text-gray-600">
-          See why developers and teams are choosing v0 over the competition.
+          <a href="/compare" class="font-medium text-primary-600 hover:underline">See detailed comparisons</a> why developers are choosing agentic AI over reactive tools.
         </p>
       </div>
 
@@ -179,10 +204,10 @@ const meta = definePageMeta({
   <section class="bg-gradient-to-r from-primary-600 to-accent-600 py-16 sm:py-24">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
       <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-        Ready to Transform Your UI Workflow?
+        Ship Features, Not Files
       </h2>
       <p class="mx-auto mt-4 max-w-2xl text-lg text-primary-100">
-        Join thousands of developers who are already building faster with v0.
+        Start agentic development today. From prompt to production in minutes.
       </p>
       <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
         <a
@@ -191,13 +216,13 @@ const meta = definePageMeta({
           rel="noopener noreferrer"
           class="rounded-lg bg-white px-8 py-3 text-base font-semibold text-primary-600 shadow-sm transition-colors hover:bg-gray-100"
         >
-          Start Building for Free →
+          Launch Your First Project →
         </a>
         <a
           href="/blog"
           class="rounded-lg border border-white bg-transparent px-8 py-3 text-base font-semibold text-white transition-colors hover:bg-white/10"
         >
-          Read Our Blog
+          Read the Docs
         </a>
       </div>
     </div>
