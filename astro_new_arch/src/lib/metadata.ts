@@ -1,8 +1,13 @@
 // src/lib/metadata.ts
+
+import { getSiteUrl } from '@/lib/site-config';
+import { getRouteFromPathname } from '@/lib/site-config';
+
+
 export const SITE = {
   title: 'The best way to use V0 By Vercel',
   description: 'Expert guides, comparisons, and tutorials for v0 by Vercel',
-  url: import.meta.env.SITE || 'https://localhost:4321',
+  url: getSiteUrl(),
   image: '/assets/og-default.jpg',
   keywords: ['v0', 'vercel', 'ai', 'ui generation', 'react', 'tailwind', ],
   author: 'V0 guide',
@@ -12,7 +17,7 @@ export const SITE = {
 export type PageMetaInput = {
   title: string;
   description?: string;
-  path: string;
+  path?: string;
   image?: string;
   keywords?: string[];
   type?: 'website' | 'article';
@@ -34,12 +39,14 @@ export type PageMetaResolved = {
  * Automatically appends site title to page title, merges keywords,
  * and generates canonical URLs.
  */
-export function definePageMeta(input: PageMetaInput): PageMetaResolved {
+export function definePageMeta(input: PageMetaInput, pathname?: string): PageMetaResolved {
+  const resolvedPath = input.path ?? (pathname ? getRouteFromPathname(pathname) : '/');
+  const siteUrl = getSiteUrl();
   return {
     title: `${input.title} | ${SITE.title}`,
     description: input.description || SITE.description,
     image: input.image || SITE.image,
-    canonicalURL: `${SITE.url}${input.path.replace(/\/$/, '')}`,
+    canonicalURL: `${siteUrl}${resolvedPath === '/' ? '' : resolvedPath}`,
     keywords: [...new Set([...SITE.keywords, ...(input.keywords || [])])],
     type: input.type || 'website',
     publishedTime: input.publishedTime,

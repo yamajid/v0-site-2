@@ -4,6 +4,7 @@ import { getPageMeta } from "../data/page-metadata";
 import FAQSection from "../components/schema/FAQSection.astro";
 import HowToSchema from "../components/schema/HowToSchema.astro";
 import SoftwareAppSchema from "../components/schema/SoftwareAppSchema.astro";
+import { getSiteUrl } from "@/lib/site-config";
 // import AggregateRatingSchema from "../components/schema/AggregateRatingSchema.astro";
 
 const { pathname } = Astro.url;
@@ -37,7 +38,7 @@ const {
 } = Astro.props;
 
 // ── Auto-generate BreadcrumbList from pathname ─────────────────────────────
-const siteUrl  = Astro.site?.toString().replace(/\/$/, "") ?? "";
+const siteUrl  = getSiteUrl();
 const segments = pathname.replace(/^\/|\/$/g, "").split("/").filter(Boolean);
 
 const breadcrumbs = [
@@ -107,7 +108,7 @@ const articleSchema = {
   <slot />
 
   <!-- Schema components — only render when props are present -->
-  {faqItems?.length     && <FAQSection faqItems={faqItems} />}
+  {faqItems?.length     && <FAQSection items={faqItems} />}
   {steps?.length        && <HowToSchema name={title} steps={steps} />}
   {softwareName         && <SoftwareAppSchema name={softwareName} />}
   <!-- {aggregateRating      && <AggregateRatingSchema {...aggregateRating} />} -->

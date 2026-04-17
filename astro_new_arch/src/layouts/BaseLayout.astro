@@ -4,6 +4,9 @@ import Header from '@/components/Astro/Header.astro';
 import Footer from '@/components/Astro/Footer.astro';
 import SEO from '@/components/Astro/SEO.astro';
 import type { PageMetaResolved } from '@/lib/metadata';
+import { initSiteConfig } from '@/lib/site-config';
+
+initSiteConfig(Astro.site);
 
 interface Props {
   meta: PageMetaResolved;

@@ -1,5 +1,10 @@
 ---
 // src/components/SEO.astro
+import { getSiteUrlWithPath } from '@/lib/site-config';
+
+
+
+
 export interface SEOProps {
   title: string;
   description: string;
@@ -26,9 +31,9 @@ interface Props {
 
 const {
   title,
-  description,
-  image,
-  canonicalURL,
+  description = 'Expert guides, comparisons, and tutorials for v0 by Vercel',
+  image = '/assets/og-default.jpg',
+  canonicalURL = getSiteUrlWithPath(Astro.url.pathname),
   publishedTime,
   modifiedTime,
   type = 'website',
@@ -37,7 +42,7 @@ const {
 } = Astro.props;
 
 const siteURL = Astro.site?.href || 'https://v0-guide.com';
-const ogImage = image ? new URL(image, siteURL).href : `${siteURL}/assets/og-default.jpg`;
+const ogImage = image.startsWith('http') ? image : getSiteUrlWithPath(image);
 const canonical = canonicalURL || Astro.url.href;
 ---
 
