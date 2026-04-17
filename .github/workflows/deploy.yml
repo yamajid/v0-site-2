@@ -21,22 +21,22 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '24'
           cache: 'npm'
-          cache-dependency-path: astro_new_arch/package-lock.json  # ← FIXED
+          cache-dependency-path: astro_new_arch/package-lock.json
 
       - name: Install dependencies
-        working-directory: ./astro_new_arch                         # ← ADDED
+        working-directory: ./astro_new_arch
         run: npm ci
 
       - name: Build Astro site
-        working-directory: ./astro_new_arch                         # ← ADDED
+        working-directory: ./astro_new_arch
         run: npm run build
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3                      # ← v2→v3
+      - name: Upload artifact        # ← must come AFTER build
+        uses: actions/upload-pages-artifact@v3
         with:
-          path: ./astro_new_arch/dist                               # ← FIXED
+          path: ./astro_new_arch/dist
 
   deploy:
     needs: build
@@ -47,4 +47,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4                               # ← v2→v4
+        uses: actions/deploy-pages@v4
