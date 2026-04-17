@@ -1,24 +1,23 @@
 ---
 const currentYear = new Date().getFullYear();
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 const footerLinks = {
   product: [
-    { label: 'Features', href: '/#features' },
-    { label: 'Pricing', href: '/pricing' },
-    { label: 'Changelog', href: '/changelog' },
-    { label: 'Docs', href: '/docs' },
+    { label: 'Features', href: `${base}/#features` },
+    { label: 'Pricing', href: `${base}/pricing` },
   ],
   resources: [
-    { label: 'Blog', href: '/blog' },
-    { label: 'Comparisons', href: '/compare' },
-    { label: 'Tutorials', href: '/tutorials' },
-    { label: 'FAQ', href: '/faq' },
+    { label: 'Blog', href: `${base}/blog` },
+    { label: 'Comparisons', href: `${base}/compare` },
+    { label: 'Use Cases', href: `${base}/use-cases` },
+    { label: 'Guides', href: `${base}/guides` },
   ],
-  company: [
-    { label: 'About', href: '/about' },
-    { label: 'Contact', href: '/contact' },
-    { label: 'Privacy Policy', href: '/privacy' },
-    { label: 'Terms of Service', href: '/terms' },
+  compare: [
+    { label: 'v0 vs Bolt', href: `${base}/compare/v0-vs-bolt` },
+    { label: 'v0 vs Replit', href: `${base}/compare/v0-vs-replit` },
+    { label: 'v0 vs Copilot', href: `${base}/compare/v0-vs-github-copilot` },
+    { label: 'v0 vs Figma', href: `${base}/compare/v0-vs-figma-make` },
   ],
 };
 
@@ -30,7 +29,7 @@ const affiliateLink = 'https://v0.dev?ref=v0-guide';
     <div class="grid grid-cols-2 gap-8 md:grid-cols-4">
       <!-- Brand Column -->
       <div class="col-span-2 md:col-span-1">
-        <a href="/" class="flex items-center gap-2">
+        <a href={`${base}/`} class="flex items-center gap-2">
           <span class="text-xl font-bold text-primary-400">v0</span>
           <span class="text-xl font-semibold text-white">Affiliate</span>
         </a>
@@ -75,11 +74,11 @@ const affiliateLink = 'https://v0.dev?ref=v0-guide';
         </ul>
       </div>
 
-      <!-- Company Links -->
+      <!-- Compare Links -->
       <div>
-        <h3 class="text-sm font-semibold uppercase tracking-wider text-white">Company</h3>
+        <h3 class="text-sm font-semibold uppercase tracking-wider text-white">Compare</h3>
         <ul class="mt-4 space-y-3">
-          {footerLinks.company.map((link) => (
+          {footerLinks.compare.map((link) => (
             <li>
               <a href={link.href} class="text-sm hover:text-white transition-colors">
                 {link.label}
