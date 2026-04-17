@@ -1,11 +1,19 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
+import { definePageMeta } from '@/lib/metadata';
 
-const title = 'Guides - v0-guide';
-const description = 'Step-by-step tutorials and evergreen guides for mastering v0 by Vercel.';
+const meta = definePageMeta({
+  title: 'Guides - v0-guide',
+  description: 'Step-by-step tutorials and evergreen guides for mastering v0 by Vercel.',
+  path: '/',
+  image: '/assets/advanced-techniques.jpg',
+  keywords: ['home', 'affiliate', 'ai-ui'],
+});
+// const title = 'Guides - v0-guide';
+// const description = 'Step-by-step tutorials and evergreen guides for mastering v0 by Vercel.';
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout meta={meta}>
   <section>
     <h1>Guides</h1>
   </section>
