@@ -1,19 +1,19 @@
 ---
 interface Props {
-  title: string;
-  steps: Array<{ title: string; text: string }>;
+  name: string;
+  steps: Array<{ name: string; text: string }>;
   estimatedTime?: string; // ISO 8601 duration, e.g., "PT15M"
 }
-const { title, steps, estimatedTime } = Astro.props;
+const { name, steps, estimatedTime } = Astro.props;
 
 const howToSchema = {
   "@context": "https://schema.org",
   "@type": "HowTo",
-  "name": title,
+  "name": name,
   "step": steps.map((step, i) => ({
     "@type": "HowToStep",
     "position": i + 1,
-    "name": step.title,
+    "name": step.name,
     "text": step.text
   })),
   ...(estimatedTime ? { "totalTime": estimatedTime } : {})

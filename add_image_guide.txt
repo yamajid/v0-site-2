@@ -1,0 +1,20 @@
+When you create a page, you define metadata with definePageMeta() 
+containing: title, description, path, keywords, type, publishedTime, 
+and optional faqItems/steps. BaseLayout automatically receives this meta 
+object plus optional props (faqItems, steps, softwareName). It then 
+auto-generates three critical components: (1) BreadcrumbList schema by 
+parsing the URL pathname into segments and building JSON-LD breadcrumb 
+data automatically, (2) Article schema from meta object containing 
+headline, description, dates, author/publisher for SEO rich results, 
+and (3) Breadcrumb navigation UI rendered above your page content. 
+Additionally, BaseLayout conditionally renders optional schema components: 
+if faqItems exist, it renders FAQSection component which emits FAQPage 
+JSON-LD for answer engines; if steps exist, it renders HowToSchema 
+component which emits HowTo JSON-LD for procedural rich results. All 
+schemas are emitted as <script type="application/ld+json"> tags in the 
+<head>, while UI breadcrumbs appear in <main> before your slot content. 
+This means every page automatically gets: canonical URL, meta tags 
+(title/description/OG), BreadcrumbList schema, Article schema, breadcrumb 
+navigation UI, and optional FAQ/HowTo schemas — all without any boilerplate 
+code. You simply pass meta and optional props, and BaseLayout handles all 
+SEO/GEO/AEO infrastructure automatically.

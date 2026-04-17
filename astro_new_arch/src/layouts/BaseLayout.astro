@@ -4,15 +4,70 @@ import Header from '@/components/Astro/Header.astro';
 import Footer from '@/components/Astro/Footer.astro';
 import SEO from '@/components/Astro/SEO.astro';
 import type { PageMetaResolved } from '@/lib/metadata';
-import { initSiteConfig } from '@/lib/site-config';
+import { initSiteConfig, getSiteUrl } from '@/lib/site-config';
+import FAQSection from '@/components/schema/FAQSection.astro';
+import HowToSchema from '@/components/schema/HowToSchema.astro';
+import SoftwareAppSchema from '@/components/schema/SoftwareAppSchema.astro';
 
 initSiteConfig(Astro.site);
 
 interface Props {
   meta: PageMetaResolved;
+  faqItems?: { question: string; answer: string }[];
+  steps?: { name: string; text: string }[];
+  softwareName?: string;
+  aggregateRating?: { ratingValue: number; reviewCount: number };
 }
 
-const { meta } = Astro.props;
+const { 
+  meta,
+  faqItems,
+  steps,
+  softwareName,
+  aggregateRating
+} = Astro.props;
+
+// ── Auto-generate BreadcrumbList from pathname ─────────────────────────────
+const { pathname } = Astro.url;
+const siteUrl = getSiteUrl();
+const segments = pathname.replace(/^\/|\/$/g, "").split("/").filter(Boolean);
+
+const breadcrumbs = [
+  { name: "Home", url: siteUrl + "/" },
+  ...segments.map((seg, i) => ({
+    name: seg
+      .replace(/-/g, " ")
+      .replace(/\b\w/g, (c) => c.toUpperCase()),
+    url: siteUrl + "/" + segments.slice(0, i + 1).join("/") + "/",
+  })),
+];
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: breadcrumbs.map((crumb, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    name: crumb.name,
+    item: crumb.url,
+  })),
+};
+
+// ── Article schema ─────────────────────────────────────────────────────────
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: meta.title,
+  description: meta.description,
+  datePublished: meta.publishedTime,
+  image: siteUrl + meta.image,
+  author: { "@type": "Organization", name: "v0guide.com" },
+  publisher: {
+    "@type": "Organization",
+    name: "v0guide.com",
+    logo: { "@type": "ImageObject", url: siteUrl + "/assets/og-default.jpg" },
+  },
+};
 ---
 
 <!doctype html>
@@ -32,11 +87,38 @@ const { meta } = Astro.props;
       type={meta.type}
       publishedTime={meta.publishedTime}
     />
+
+    <!-- BreadcrumbList JSON-LD (auto-generated, every page) -->
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+
+    <!-- Article JSON-LD -->
+    <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
   </head>
   <body class="min-h-screen bg-white font-sans text-gray-900 antialiased">
     <Header />
     <main class="flex-1">
+      <!-- Breadcrumb UI -->
+      {segments.length > 0 && (
+        <nav aria-label="Breadcrumb" class="breadcrumb">
+          <ol>
+            {breadcrumbs.map((crumb, i) => (
+              <li>
+                {i < breadcrumbs.length - 1
+                  ? <a href={crumb.url}>{crumb.name}</a>
+                  : <span aria-current="page">{crumb.name}</span>
+                }
+              </li>
+            ))}
+          </ol>
+        </nav>
+      )}
+
       <slot />
+
+      <!-- Schema components — only render when props are present -->
+      {faqItems?.length     && <FAQSection items={faqItems} />}
+      {steps?.length        && <HowToSchema name={meta.title} steps={steps} />}
+      {softwareName         && <SoftwareAppSchema name={softwareName} />}
     </main>
     <Footer />
   </body>
