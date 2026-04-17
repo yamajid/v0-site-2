@@ -1,7 +1,7 @@
 import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 import tailwind from '@astrojs/tailwind';
-import sitemap from '@astrojs/sitemap';
+// import sitemap from '@astrojs/sitemap';
 import mdx from '@astrojs/mdx';
 
 export default defineConfig({
@@ -11,15 +11,7 @@ export default defineConfig({
     tailwind({
       applyBaseStyles: true,
     }),
-    sitemap({
-      // Skip dynamic routes that depend on collections
-      filter: (page) => {
-        // Allow static pages only
-        const staticPages = ['/', '/pricing', '/compare', '/blog', '/guides', '/use-cases'];
-        return staticPages.some(p => page === p || page.startsWith(p + '/'));
-      }
-    }),
-    
+    // sitemap plugin disabled - using manual sitemap.xml instead
     mdx(),
   ],
   markdown: {
