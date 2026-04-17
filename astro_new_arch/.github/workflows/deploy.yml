@@ -1,7 +1,7 @@
 name: Deploy to GitHub Pages
 
 on:
-  # Trigger on push to main branch
+  # Trigger on push to gh-pages branch
   push:
     branches:
       - gh-pages
@@ -23,7 +23,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: '18'
           cache: 'npm'
 
       - name: Install dependencies
