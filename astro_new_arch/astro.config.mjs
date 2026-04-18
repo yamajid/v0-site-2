@@ -5,8 +5,8 @@ import tailwind from '@astrojs/tailwind';
 import mdx from '@astrojs/mdx';
 
 export default defineConfig({
-  site: 'https://yamajid.github.io/v0-site-2/',
-  base: '/',
+  site: 'https://v0-guide.com',
+  base: '',
   output: 'static',
   integrations: [
     react(),
