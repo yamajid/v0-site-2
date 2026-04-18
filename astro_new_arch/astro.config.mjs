@@ -6,7 +6,7 @@ import mdx from '@astrojs/mdx';
 
 export default defineConfig({
   site: 'https://yamajid.github.io/v0-site-2/',
-  base: '/v0-site-2/',
+  base: '/',
   output: 'static',
   integrations: [
     react(),
