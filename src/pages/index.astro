@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import AuthorByline from '@/components/Astro/AuthorByline.astro';
 import AffiliateInteractiveCalculator from '@/components/React/AffiliateInteractiveCalculator.tsx';
 import FeatureTabs from '@/components/React/FeatureTabs.tsx';
 import { definePageMeta } from '@/lib/metadata.ts';
@@ -227,4 +228,8 @@ const steps = [
       </div>
     </div>
   </section>
+
+  <article class="mx-auto max-w-4xl px-4 py-12">
+    <AuthorByline author="v0 Guide" date={new Date(2026, 3, 20)} linkedIn="https://linkedin.com/in/yamajid" github="https://github.com/yamajid" />
+  </article>
 </BaseLayout>

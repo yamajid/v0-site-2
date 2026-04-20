@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import AuthorByline from '../components/Astro/AuthorByline.astro';
 import SoftwareAppSchema from '../components/schema/SoftwareAppSchema.astro';
 import FAQSection from '../components/schema/FAQSection.astro';
 import FreshnessStamp from '../components/FreshnessStamp.astro';
@@ -32,5 +33,6 @@ const faqItems = [
     
     <FreshnessStamp modified={new Date()} />
     <FAQSection items={faqItems} />
+    <AuthorByline author="v0 Guide" date={new Date(2026, 3, 20)} linkedIn="https://linkedin.com/in/yamajid" github="https://github.com/yamajid" />
   </article>
 </BaseLayout>
