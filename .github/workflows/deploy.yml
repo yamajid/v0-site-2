@@ -23,20 +23,18 @@ jobs:
         with:
           node-version: '24'
           cache: 'npm'
-          cache-dependency-path: astro_new_arch/package-lock.json
+          cache-dependency-path: package-lock.json
 
       - name: Install dependencies
-        working-directory: ./astro_new_arch
         run: npm ci
 
       - name: Build Astro site
-        working-directory: ./astro_new_arch
         run: npm run build
 
       - name: Upload artifact        # ← must come AFTER build
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./astro_new_arch/dist
+          path: ./dist
 
   deploy:
     needs: build
