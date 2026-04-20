@@ -1,0 +1,31 @@
+---
+// src/components/analytics/GA4Script.astro
+// Insert your GA4 Measurement ID below (format: G-XXXXXXXXXX)
+
+const MEASUREMENT_ID = 'G-XXXXXXXXXX'; // ← REPLACE WITH YOUR MEASUREMENT ID
+
+---
+
+<!-- Google Analytics 4 -->
+<script async src={`https://www.googletagmanager.com/gtag/js?id=${MEASUREMENT_ID}`}></script>
+<script is:inline define:vars={{ MEASUREMENT_ID }}>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', MEASUREMENT_ID, {
+    'page_path': window.location.pathname,
+    'anonymize_ip': false,
+  });
+  
+  // Track outbound clicks (for affiliate links)
+  document.addEventListener('click', function(event) {
+    const target = event.target.closest('a[href^="http"]');
+    if (target && !target.href.includes(window.location.hostname)) {
+      gtag('event', 'click', {
+        'event_category': 'outbound',
+        'event_label': target.href,
+        'value': 1,
+      });
+    }
+  });
+</script>
