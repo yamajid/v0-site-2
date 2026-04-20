@@ -1,0 +1,12 @@
+---
+// src/components/schema/JSONLDScript.astro
+// Reusable component for rendering JSON-LD structured data
+
+export interface Props {
+  schema: Record<string, any>;
+}
+
+const { schema } = Astro.props;
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

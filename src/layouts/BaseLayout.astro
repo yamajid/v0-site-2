@@ -3,6 +3,8 @@
 import Header from '@/components/Astro/Header.astro';
 import Footer from '@/components/Astro/Footer.astro';
 import SEO from '@/components/Astro/SEO.astro';
+import GA4Script from '@/components/analytics/GA4Script.astro';
+import JSONLDScript from '@/components/schema/JSONLDScript.astro';
 import type { PageMetaResolved } from '@/lib/metadata';
 import { initSiteConfig, getSiteUrl } from '@/lib/site-config';
 import FAQSection from '@/components/schema/FAQSection.astro';
@@ -67,6 +69,33 @@ const articleSchema = {
     logo: { "@type": "ImageObject", url: siteUrl + "/assets/og-default.jpg" },
   },
 };
+
+// ── FAQPage schema (only if faqItems exist) ────────────────────────────────
+const faqPageSchema = faqItems && faqItems.length > 0 ? {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqItems.map(item => ({
+    "@type": "Question",
+    name: item.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.answer,
+    },
+  })),
+} : null;
+
+// ── HowTo schema (only if steps exist) ──────────────────────────────────────
+const howToSchema = steps && steps.length > 0 ? {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  name: meta.title,
+  step: steps.map((step, index) => ({
+    "@type": "HowToStep",
+    position: index + 1,
+    name: step.name,
+    text: step.text,
+  })),
+} : null;
 ---
 
 <!doctype html>
@@ -87,11 +116,20 @@ const articleSchema = {
       publishedTime={meta.publishedTime}
     />
 
+    <!-- Google Analytics 4 -->
+    <GA4Script />
+
     <!-- BreadcrumbList JSON-LD (auto-generated, every page) -->
     <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
 
     <!-- Article JSON-LD -->
     <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+
+    <!-- FAQPage JSON-LD (only if faqItems exist) -->
+    {faqPageSchema && <script type="application/ld+json" set:html={JSON.stringify(faqPageSchema)} />}
+
+    <!-- HowTo JSON-LD (only if steps exist) -->
+    {howToSchema && <script type="application/ld+json" set:html={JSON.stringify(howToSchema)} />}
   </head>
   <body class="flex flex-col min-h-screen bg-white font-sans text-gray-900 antialiased">
     <Header />
