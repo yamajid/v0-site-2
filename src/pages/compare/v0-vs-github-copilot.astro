@@ -13,19 +13,6 @@ const meta = definePageMeta({
   publishedTime: '2026-04-18',
 });
 
-const itemListElements = [
-  {
-    name: 'v0',
-    url: 'https://v0.dev',
-    description: 'Specialized AI UI generator for React with design system integration and one-click Vercel deployment.'
-  },
-  {
-    name: 'GitHub Copilot',
-    url: 'https://github.com/features/copilot',
-    description: 'General-purpose AI coding assistant supporting 100+ languages for backend, logic, infrastructure, and frontend code.'
-  }
-];
-
 const faqItems = [
   {
     question: 'Can GitHub Copilot generate UI components like v0?',
@@ -54,7 +41,7 @@ const faqItems = [
 ];
 ---
 
-<BaseLayout meta={meta} faqItems={faqItems} itemListElements={itemListElements}>
+<BaseLayout meta={meta} faqItems={faqItems}>
   <!-- SECTION 1: Hero & TL;DR -->
   <section class="bg-gradient-to-b from-slate-50 to-white py-16 sm:py-24">
     <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">

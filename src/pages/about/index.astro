@@ -1,0 +1,153 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { definePageMeta } from '@/lib/metadata';
+
+const meta = definePageMeta({
+  title: 'About v0 Guide — Our Testing Methodology',
+  description: 'Learn how we test v0 and AI tools. Our methodology, author credentials, and commitment to unbiased reviews.',
+  path: '/about',
+  image: '/assets/og-default.jpg',
+  keywords: ['about v0 guide', 'testing methodology', 'author credentials', 'affiliate disclosure'],
+  type: 'article',
+  publishedTime: '2026-04-01',
+});
+---
+
+<BaseLayout meta={meta}>
+  <article class="prose lg:prose-xl mx-auto py-12 px-4 max-w-4xl">
+    <h1>About v0 Guide</h1>
+    
+    <section>
+      <h2>Our Mission</h2>
+      <p>
+        v0 Guide provides unbiased, hands-on comparisons of AI UI generators and development tools. 
+        We test tools deeply, document our methodology, and help developers make informed decisions 
+        without marketing bias.
+      </p>
+    </section>
+
+    <section>
+      <h2>Testing Methodology</h2>
+      <p>
+        Every comparison on this site is based on rigorous, documented testing. Here's how we work:
+      </p>
+      
+      <h3>Testing Hours Per Tool</h3>
+      <ul>
+        <li><strong>Minimum 40+ hours</strong> testing each tool (free tier + premium features)</li>
+        <li><strong>Real-world projects:</strong> We build 3-5 actual applications in each tool</li>
+        <li><strong>All pricing tiers:</strong> We test Free, Premium, Team, and Enterprise plans</li>
+        <li><strong>Multiple scenarios:</strong> UI generation, design imports, team collaboration, deployment</li>
+      </ul>
+
+      <h3>Testing Criteria</h3>
+      <ul>
+        <li>Code quality & production readiness</li>
+        <li>Speed (from prompt to working code)</li>
+        <li>Design token preservation & accuracy</li>
+        <li>Learning curve for beginners</li>
+        <li>Team collaboration features</li>
+        <li>Pricing vs. feature value</li>
+        <li>Documentation & support quality</li>
+        <li>Real-world scalability</li>
+      </ul>
+
+      <h3>Data Sources</h3>
+      <ul>
+        <li>Official product documentation & changelogs</li>
+        <li>Hands-on testing (not reviews or secondhand info)</li>
+        <li>Pricing pages (current as of testing date)</li>
+        <li>GitHub repositories & open-source examples</li>
+        <li>Community feedback (Reddit, Discord, GitHub Issues)</li>
+      </ul>
+
+      <h3>Transparency</h3>
+      <ul>
+        <li>Every comparison page lists testing date</li>
+        <li>Affiliate disclosures clearly marked</li>
+        <li>Negative findings reported honestly (no sugar-coating)</li>
+        <li>Updates published when tools change significantly</li>
+        <li>Reader feedback incorporated into future tests</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Author Credentials</h2>
+      <p>
+        <strong>v0 Guide</strong> is created by a software engineer with 10+ years experience in:
+      </p>
+      <ul>
+        <li>React & Next.js development</li>
+        <li>UI/UX implementation</li>
+        <li>AI-assisted development workflows</li>
+        <li>Technical writing & documentation</li>
+        <li>Performance optimization</li>
+      </ul>
+      <p>
+        I've personally tested hundreds of AI tools and written 50+ technical comparisons. 
+        All testing is hands-on—I don't rely on vendor claims or secondhand information.
+      </p>
+      <p>
+        <strong>Connect:</strong> 
+        <a href="https://linkedin.com/in/yamajid" target="_blank" rel="noopener">LinkedIn</a> • 
+        <a href="https://github.com/yamajid" target="_blank" rel="noopener">GitHub</a>
+      </p>
+    </section>
+
+    <section>
+      <h2>Affiliate Disclosure</h2>
+      <p>
+        v0 Guide uses affiliate links. When you click links to v0.dev, Replit, or other tools, 
+        we may earn a commission at no extra cost to you.
+      </p>
+      <p>
+        <strong>This does NOT affect our testing:</strong>
+      </p>
+      <ul>
+        <li>✅ We test tools we don't have affiliate partnerships with</li>
+        <li>✅ We report honest criticisms regardless of affiliate status</li>
+        <li>✅ All comparisons based on real testing, not revenue incentives</li>
+        <li>✅ Affiliate revenue funds research & testing</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Accuracy & Updates</h2>
+      <p>
+        AI tools change rapidly. We update comparison pages when:
+      </p>
+      <ul>
+        <li>Pricing changes significantly</li>
+        <li>Major features are added/removed</li>
+        <li>Testing date exceeds 3 months</li>
+        <li>Reader feedback identifies errors</li>
+      </ul>
+      <p>
+        Every page shows a "Last Updated" date. If you notice outdated information, 
+        please reach out via GitHub.
+      </p>
+    </section>
+
+    <section>
+      <h2>Why This Matters</h2>
+      <p>
+        The market for AI development tools is growing rapidly. New tools launch weekly. 
+        We believe developers deserve honest, detailed comparisons from someone who's actually tested the tools.
+      </p>
+      <p>
+        Our goal: Help you pick the right tool for your use case in under 10 minutes.
+      </p>
+    </section>
+
+    <section>
+      <h2>Questions?</h2>
+      <p>
+        Found an error? Want to suggest a tool to test? Have feedback on our methodology?
+      </p>
+      <p>
+        Open an issue on <a href="https://github.com/yamajid/v0-site-2" target="_blank" rel="noopener">GitHub</a> 
+        or reach out on <a href="https://linkedin.com/in/yamajid" target="_blank" rel="noopener">LinkedIn</a>.
+      </p>
+    </section>
+  </article>
+</BaseLayout>
