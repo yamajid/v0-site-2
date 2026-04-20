@@ -1,0 +1,56 @@
+---
+interface Props {
+  author: string;
+  date: Date;
+  linkedIn?: string;
+  github?: string;
+}
+
+const { author, date, linkedIn, github } = Astro.props;
+
+// Format date as "Month DD, YYYY"
+const formattedDate = new Intl.DateTimeFormat('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+}).format(date);
+---
+
+<div class="flex items-center gap-2 text-sm text-gray-600 border-t border-gray-200 pt-4 mt-8">
+  <span class="font-medium text-gray-900">By {author}</span>
+  <span class="text-gray-400">•</span>
+  <span>Last updated: {formattedDate}</span>
+  
+  {(linkedIn || github) && (
+    <>
+      <span class="text-gray-400">•</span>
+      <div class="flex gap-2">
+        {linkedIn && (
+          <a
+            href={linkedIn}
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Visit LinkedIn profile"
+            class="text-primary-600 hover:text-primary-700 hover:underline transition-colors"
+          >
+            LinkedIn
+          </a>
+        )}
+        {github && linkedIn && (
+          <span class="text-gray-400">/</span>
+        )}
+        {github && (
+          <a
+            href={github}
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Visit GitHub profile"
+            class="text-primary-600 hover:text-primary-700 hover:underline transition-colors"
+          >
+            GitHub
+          </a>
+        )}
+      </div>
+    </>
+  )}
+</div>
