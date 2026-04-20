@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "competitor": {
+      "type": "string"
+    },
+    "publishDate": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedDate": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "author": {
+      "type": "string"
+    },
+    "verdict": {
+      "type": "string"
+    },
+    "pros": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "cons": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "rating": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 5
+    },
+    "image": {
+      "type": "string"
+    },
+    "affiliateLink": {
+      "type": "string",
+      "format": "uri"
+    },
+    "$schema": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "title",
+    "description",
+    "competitor",
+    "publishDate",
+    "author",
+    "verdict",
+    "pros",
+    "cons",
+    "rating",
+    "affiliateLink"
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "useCase": {
+      "type": "string"
+    },
+    "publishDate": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedDate": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "author": {
+      "type": "string"
+    },
+    "audience": {
+      "type": "string"
+    },
+    "keyBenefits": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "image": {
+      "type": "string"
+    },
+    "affiliateLink": {
+      "type": "string",
+      "format": "uri"
+    },
+    "$schema": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "title",
+    "description",
+    "useCase",
+    "publishDate",
+    "author",
+    "audience",
+    "keyBenefits",
+    "affiliateLink"
+  ]
+}
