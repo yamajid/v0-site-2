@@ -13,6 +13,19 @@ const meta = definePageMeta({
   publishedTime: '2026-04-18',
 });
 
+const itemListElements = [
+  {
+    name: 'v0',
+    url: 'https://v0.dev',
+    description: 'Specialized AI UI generator for React and Next.js with design token extraction and Figma integration.'
+  },
+  {
+    name: 'Bolt.new',
+    url: 'https://bolt.new',
+    description: 'Full-stack AI app builder by StackBlitz with integrated infrastructure, databases, hosting, and automated error correction.'
+  }
+];
+
 const faqItems = [
   {
     question: 'What is Bolt.new and how is it different from v0?',
@@ -41,7 +54,7 @@ const faqItems = [
 ];
 ---
 
-<BaseLayout meta={meta} faqItems={faqItems}>
+<BaseLayout meta={meta} faqItems={faqItems} itemListElements={itemListElements}>
   <!-- SECTION 1: Hero & TL;DR -->
   <section class="bg-gradient-to-b from-slate-50 to-white py-16 sm:py-24">
     <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
