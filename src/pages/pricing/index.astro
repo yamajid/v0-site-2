@@ -15,6 +15,31 @@ const meta = definePageMeta({
   image: '/assets/og-home.jpg',
   keywords: ['home', 'affiliate', 'ai-ui'],
 });
+
+// ✅ FAQ items for FAQPage schema
+const faqItems = [
+  {
+    question: 'Is v0 free?',
+    answer: 'Yes, v0 offers a free tier with 100 generations per month—perfect for learning and prototyping. Premium plans start at $20/month for unlimited generations.'
+  },
+  {
+    question: 'What is the difference between Premium and Team pricing?',
+    answer: 'Premium ($20/month) is for individual developers with unlimited generations. Team ($30/user/month) adds shared workspaces, version history, and collaborative editing for small teams.'
+  },
+  {
+    question: 'Do I need Enterprise for a startup?',
+    answer: 'Not necessarily. Most startups use Premium ($20/month) or Team ($30/user/month). Enterprise ($100+/user/month) is for organizations needing SSO, audit logs, and dedicated support.'
+  },
+  {
+    question: 'Can I change my plan anytime?',
+    answer: 'Yes, v0 allows you to upgrade or downgrade your plan at any time. You\'ll be charged proportionally for changes mid-cycle.'
+  },
+  {
+    question: 'What payment methods does v0 accept?',
+    answer: 'v0 accepts credit cards (Visa, Mastercard, American Express) and enterprise customers can arrange invoice billing through the sales team.'
+  },
+];
+
 // ✅ Corrected Pricing Data per SEO Report (Section 6.1)
 const tiers = [
   {
@@ -99,7 +124,7 @@ const tiers = [
 ];
 ---
 
-<BaseLayout meta={meta}>
+<BaseLayout meta={meta} faqItems={faqItems}>
   
   <!-- Hero -->
   <section class="bg-gradient-to-b from-primary-50 to-white py-16 sm:py-24">
