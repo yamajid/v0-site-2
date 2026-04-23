@@ -30,22 +30,22 @@ export const pageMetadata: Record<string, PageMeta> = {
     description:
       "v0 turns plain-text prompts into production-ready React components. The fastest way to prototype dashboards, SaaS UIs, and admin panels without writing boilerplate.",
     datePublished: "2024-11-01",
-    dateModified: "2026-04-01",
+    dateModified: "2026-04-21",
     faqItems: [
       {
         question: "What is v0 by Vercel?",
         answer:
-          "v0 is an AI-powered UI generation tool by Vercel. You describe a component or page in plain English and v0 generates clean React + Tailwind code you can copy directly into your project.",
+          "v0 is an AI-powered text-to-UI component generator by Vercel that transforms plain English descriptions into production-ready React code with Tailwind CSS styling. You prompt what you need, iterate with natural language refinements, and export clean, type-safe code directly into your project. It's built specifically for Next.js workflows and the modern React ecosystem.",
       },
       {
         question: "Is v0 free to use?",
         answer:
-          "v0 has a free tier with limited monthly generations. Paid plans unlock higher limits and priority access.",
+          "Yes, v0 has a free tier with limited monthly usage. Beyond that, you pay with token-based billing where costs depend on your prompt complexity, model choice (Mini/Pro/Max), and output size. Always check the official v0.app pricing page for current tier limits since they update regularly.",
       },
       {
         question: "Does v0 work with Next.js?",
         answer:
-          "Yes. v0 is built by the Vercel team and outputs components that are optimised for Next.js and the App Router out of the box.",
+          "Yes, v0 is built by Vercel and outputs components optimized for Next.js App Router and Server Components by default. Generated code uses shadcn/ui, Tailwind CSS, and modern TypeScript patterns. It's the strongest match if your project is already Next.js-based.",
       },
     ],
   },
@@ -55,7 +55,7 @@ export const pageMetadata: Record<string, PageMeta> = {
     description:
       "A plain-English explanation of v0 by Vercel — how it works, who it's for, and why developers call it basically cheating if you're already in the Next.js ecosystem.",
     datePublished: "2024-11-15",
-    dateModified: "2026-04-01",
+    dateModified: "2026-04-21",
     faqItems: [
       {
         question: "What does v0 actually do?",
@@ -76,21 +76,26 @@ export const pageMetadata: Record<string, PageMeta> = {
   },
 
   "/pricing/": {
-    title: "v0 Pricing Plans 2026 — Free vs Pro vs Team",
+    title: "v0 Pricing 2026 — Token Billing, Model Tiers, and Team Plans",
     description:
-      "Full breakdown of v0 by Vercel pricing: what you get on the free plan, when to upgrade to Pro, and whether the Team plan is worth it for agencies.",
+      "Clear breakdown of v0 pricing in 2026: token-based usage, current model tiers, and when upgrading makes sense for teams.",
     datePublished: "2024-12-01",
-    dateModified: "2026-04-01",
+    dateModified: "2026-04-21",
     faqItems: [
       {
-        question: "How many generations do you get on the v0 free plan?",
+        question: "How does v0 pricing work in 2026?",
         answer:
-          "The free plan includes a limited number of monthly credits. Each generation (or regeneration) uses one credit.",
+          "v0 switched to token-based billing in February 2026, replacing the fixed-credit model. You pay based on token consumption, which depends on prompt length, chosen model tier, and output size. Always check v0.app/pricing for current tier limits and free-tier allocation since these can shift. If you exceed your monthly allocation, you either upgrade or wait for reset.",
       },
       {
-        question: "Does v0 Pro include unlimited generations?",
+        question: "What are Mini, Pro, and Max models in v0?",
         answer:
-          "Pro plans come with a significantly higher credit ceiling. Check the official v0 pricing page for the current limits as they update regularly.",
+          "v0 now offers three model tiers that trade speed and cost against quality. Mini is fastest and cheapest for simple iterations. Pro balances speed and output quality for everyday work. Max generates the highest-fidelity, most complete code but costs more tokens per generation. Your choice depends on task complexity and budget.",
+      },
+      {
+        question: "Can v0 handle full-stack workflows now?",
+        answer:
+          "v0 now supports broader workflows than pre-2026 versions, including Git-connected iteration, sandbox runtime testing, and design-import features for Figma. However, for production apps, you still need to validate backend architecture, database design, authentication, and security controls in your own stack—don't rely entirely on generated code.",
       },
     ],
   },
@@ -100,17 +105,17 @@ export const pageMetadata: Record<string, PageMeta> = {
     description:
       "Hands-on comparison of v0 by Vercel and Replit. We cover UI quality, deployment, pricing, and which tool wins for React developers vs beginners.",
     datePublished: "2025-01-10",
-    dateModified: "2026-04-01",
+    dateModified: "2026-04-21",
     faqItems: [
       {
         question: "Is v0 better than Replit for React projects?",
         answer:
-          "For pure UI generation in a React/Next.js stack, v0 produces cleaner component code. Replit's strength is full-stack app scaffolding and a built-in cloud IDE.",
+          "For pure React/Next.js UI generation, v0 produces cleaner, more production-ready component code because it's optimized specifically for that stack. Replit's strength is full-stack app scaffolding with a built-in IDE and deployment environment. Choose v0 for component-first workflows; choose Replit if you need entire applications with infrastructure included.",
       },
       {
         question: "Can Replit deploy to Vercel?",
         answer:
-          "Not natively. Replit has its own hosting. v0 outputs are designed to paste directly into Vercel-hosted Next.js projects.",
+          "No, not natively or automatically. Replit has its own hosting infrastructure. v0-generated code is specifically designed to export cleanly and paste directly into your own Vercel-hosted Next.js project, which is a key workflow advantage over Replit.",
       },
     ],
   },
@@ -120,17 +125,17 @@ export const pageMetadata: Record<string, PageMeta> = {
     description:
       "v0 by Vercel versus Bolt.new — a direct comparison of output quality, framework support, pricing, and the GitHub sync workflow.",
     datePublished: "2025-01-20",
-    dateModified: "2026-04-01",
+    dateModified: "2026-04-21",
     faqItems: [
       {
         question: "What is Bolt.new?",
         answer:
-          "Bolt.new is an AI-powered full-stack app builder by StackBlitz. It runs a full Node environment in the browser and can scaffold complete apps.",
+          "Bolt.new is a full-stack AI app builder by StackBlitz that runs a complete Node.js environment in the browser. It generates entire applications with frontend, backend, database scaffolding, and deployment ready out of the box—going well beyond UI components.",
       },
       {
         question: "Which has better React output — v0 or Bolt?",
         answer:
-          "v0 is specifically tuned for React component generation with Tailwind. Bolt generates broader app scaffolds but component quality can vary.",
+          "v0 is specifically engineered for React component generation with Tailwind CSS and offers tightly integrated Next.js App Router and Server Component support. Bolt generates broader app scaffolds across multiple frameworks but may have less consistency in pure component quality. For React-only work, v0 typically edges out Bolt in code polish.",
       },
     ],
   },
@@ -140,7 +145,7 @@ export const pageMetadata: Record<string, PageMeta> = {
     description:
       "How to use v0 to generate admin dashboard UIs in minutes. Includes prompt templates, real examples, and tips for wiring to a live data source.",
     datePublished: "2025-02-01",
-    dateModified: "2026-04-01",
+    dateModified: "2026-04-21",
     steps: [
       {
         name: "Describe your dashboard layout",
@@ -148,7 +153,7 @@ export const pageMetadata: Record<string, PageMeta> = {
       },
       {
         name: "Iterate on the generated component",
-        text: "Use follow-up prompts to refine — change colours, swap the chart library, or add a modal. Each iteration uses one credit.",
+        text: "Use follow-up prompts to refine — change colours, swap the chart library, or add a modal. Each iteration consumes tokens based on model and output size.",
       },
       {
         name: "Copy the code into your Next.js project",
@@ -166,7 +171,7 @@ export const pageMetadata: Record<string, PageMeta> = {
     description:
       "Skip Figma for early-stage prototypes. Use v0 to generate interactive React prototypes your team can click through and iterate on the same day.",
     datePublished: "2025-02-15",
-    dateModified: "2026-04-01",
+    dateModified: "2026-04-21",
   },
 
   "/blog/getting-started/": {
@@ -174,11 +179,11 @@ export const pageMetadata: Record<string, PageMeta> = {
     description:
       "A step-by-step walkthrough for first-time v0 users. From writing your first prompt to pushing a working component to GitHub.",
     datePublished: "2025-03-01",
-    dateModified: "2026-04-01",
+    dateModified: "2026-04-21",
     steps: [
       {
         name: "Create a free v0 account",
-        text: "Go to v0.dev and sign in with your Vercel or GitHub account. The free tier activates immediately.",
+        text: "Go to v0.app and sign in with your Vercel or GitHub account. The free tier activates immediately.",
       },
       {
         name: "Write your first prompt",
@@ -194,7 +199,7 @@ export const pageMetadata: Record<string, PageMeta> = {
       },
       {
         name: "Sync to GitHub",
-        text: "Use the GitHub sync feature inside v0 to push your iterations directly to a branch. This is the workflow that makes v0 feel like a real professional tool.",
+        text: "Use the Git integration inside v0 to push your iterations directly to a branch. This is the workflow that makes v0 practical for real team delivery.",
       },
     ],
   },
@@ -204,7 +209,7 @@ export const pageMetadata: Record<string, PageMeta> = {
     description:
       "Complete guide to v0's GitHub sync feature. Connect your repo, push components to branches, and ship faster without copy-pasting.",
     datePublished: "2025-03-15",
-    dateModified: "2026-04-01",
+    dateModified: "2026-04-21",
   },
 
   "/guides/production-ready-code/": {
@@ -212,7 +217,7 @@ export const pageMetadata: Record<string, PageMeta> = {
     description:
       "v0 generates great starting points but production code needs review. This guide covers accessibility, bundle size, and error handling checks.",
     datePublished: "2025-03-20",
-    dateModified: "2026-04-01",
+    dateModified: "2026-04-21",
   },
 };
 

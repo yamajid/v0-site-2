@@ -1,0 +1,33 @@
+---
+// src/components/schema/OrganizationSchema.astro
+import { getSiteUrl } from '@/lib/site-config';
+
+const siteUrl = getSiteUrl();
+
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": `${siteUrl}/#organization`,
+  "name": "v0 Guide",
+  "url": siteUrl,
+  "logo": {
+    "@type": "ImageObject",
+    "@id": `${siteUrl}/#logo`,
+    "url": `${siteUrl}/assets/logo.png`,
+    "contentUrl": `${siteUrl}/assets/logo.png`,
+    "caption": "v0 Guide Logo",
+    "width": 512,
+    "height": 512
+  },
+  "image": {
+    "@id": `${siteUrl}/#logo`
+  },
+  "description": "Expert guides, comparisons, and technical reviews for v0 by Vercel and the modern React ecosystem.",
+  "sameAs": [
+    "https://twitter.com/v0_guide",
+    "https://github.com/v0-guide"
+  ]
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />

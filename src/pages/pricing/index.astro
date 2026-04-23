@@ -1,75 +1,75 @@
 ---
 // src/pages/pricing.astro
-// Fixed: All 5 tiers, correct pricing, affiliate CTAs
+// Updated: 2026 positioning (token-based billing, model tiers, current brand URL)
 
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import AuthorByline from '@/components/Astro/AuthorByline.astro';
 import { definePageMeta } from '@/lib/metadata';
 
-const title = 'Pricing - v0-guide';
-const description = 'Compare v0 pricing tiers: Free, Premium, Team, Business, and Enterprise. Find the right plan for your AI development workflow.';
+const title = 'v0 Pricing (2026) - v0-guide';
+const description = 'Understand v0 pricing in 2026: free access, token-based paid usage, model tiers (Mini/Pro/Max), and team options.';
 
 const meta = definePageMeta({
-  title: 'Pricing - v0-guide',
-  description: 'Compare v0 pricing tiers: Free, Premium, Team, Business, and Enterprise. Find the right plan for your AI development workflow.',
+  title: 'v0 Pricing (2026) - v0-guide',
+  description: 'Understand v0 pricing in 2026: free access, token-based paid usage, model tiers (Mini/Pro/Max), and team options.',
   path: '/pricing',
   image: '/assets/og-home.jpg',
-  keywords: ['home', 'affiliate', 'ai-ui'],
+  keywords: ['v0 pricing 2026', 'v0 token billing', 'v0 mini pro max', 'v0 app'],
 });
-// ✅ Corrected Pricing Data per SEO Report (Section 6.1)
+// 2026-safe plan framing: avoid hardcoding volatile pricing numbers
 const tiers = [
   {
     name: 'Free',
     price: '$0',
     frequency: '/mo',
-    description: 'Perfect for hobbyists and learning the basics of AI-generated UI.',
+    description: 'Good for first projects and testing v0 prompts before committing to paid usage.',
     features: [
-      '100 generations per month',
-      'Community support',
-      'Standard export options',
-      'Access to basic components'
+      'Starter usage allocation',
+      'Core UI generation features',
+      'Basic export workflow',
+      'Great for initial experimentation'
     ],
     cta: 'Start for Free',
-    url: 'https://v0.dev?ref=v0-guide',
+    url: 'https://v0.app?ref=v0-guide',
     popular: false
   },
   {
-    name: 'Premium',
-    price: '$20',
+    name: 'Paid Usage',
+    price: 'Varies',
     frequency: '/mo',
-    description: 'Ideal for freelancers and indie developers building real projects.',
+    description: 'Token-based usage for creators shipping production features more frequently.',
     features: [
-      'Unlimited generations',
-      'Priority processing queue',
-      'Custom domain export',
-      'Private projects',
-      'Advanced model access'
+      'Token-based billing',
+      'Higher generation capacity',
+      'Priority workflow features',
+      'Private project support',
+      'Access to advanced models'
     ],
-    cta: 'Get Premium',
-    url: 'https://v0.dev?ref=v0-guide',
+    cta: 'View Paid Options',
+    url: 'https://v0.app/pricing?ref=v0-guide',
     popular: true
   },
   {
     name: 'Team',
-    price: '$30',
-    frequency: '/user/mo',
-    description: 'Collaborate seamlessly with small agencies and dev teams.',
+    price: 'Varies',
+    frequency: '/seat',
+    description: 'Collaboration-focused setup for teams that iterate across product and engineering.',
     features: [
-      'Everything in Premium',
+      'Everything in paid usage',
       'Shared team workspace',
       'Version history',
-      'Collaborative editing',
+      'Collaborative workflows',
       'Admin dashboard'
     ],
     cta: 'Start Team Trial',
-    url: 'https://v0.dev?ref=v0-guide',
+    url: 'https://v0.app/pricing?ref=v0-guide',
     popular: false
   },
   {
     name: 'Business',
-    price: '$100',
-    frequency: '/user/mo',
-    description: 'Enterprise-grade features for scaling organizations.',
+    price: 'Custom',
+    frequency: '/team',
+    description: 'Security and governance capabilities for larger product organizations.',
     features: [
       'Everything in Team',
       'SSO (Single Sign-On)',
@@ -78,7 +78,7 @@ const tiers = [
       'SLA guarantees'
     ],
     cta: 'Contact Sales',
-    url: 'https://v0.dev?ref=v0-guide',
+    url: 'https://v0.app/pricing?ref=v0-guide',
     popular: false
   },
   {
@@ -94,13 +94,23 @@ const tiers = [
       'Dedicated account manager'
     ],
     cta: 'Contact Sales',
-    url: 'https://v0.dev?ref=v0-guide',
+    url: 'https://v0.app/pricing?ref=v0-guide',
     popular: false
   }
 ];
+
+const softwareOffers = [
+  { price: 0, currency: 'USD', availability: 'https://schema.org/InStock' },
+  { price: 20, currency: 'USD', availability: 'https://schema.org/InStock' }
+];
 ---
 
-<BaseLayout meta={meta}>
+<BaseLayout 
+  meta={meta}
+  softwareName="v0 by Vercel"
+  softwareCategory="DeveloperApplication"
+  softwareOffers={softwareOffers}
+>
   
   <!-- Hero -->
   <section class="bg-gradient-to-b from-primary-50 to-white py-16 sm:py-24">
@@ -110,6 +120,9 @@ const tiers = [
       </h1>
       <p class="mx-auto mt-4 max-w-2xl text-lg text-slate-600">
         {description}
+      </p>
+      <p class="mx-auto mt-3 max-w-2xl text-sm text-slate-500">
+        Last reviewed April 2026. v0 now uses token-based billing and model tiers, so always confirm current limits on the official pricing page.
       </p>
     </div>
   </section>
@@ -183,37 +196,49 @@ const tiers = [
       <div class="space-y-8">
         <details class="group rounded-xl bg-white p-6 shadow-sm">
           <summary class="flex cursor-pointer list-none items-center justify-between font-medium text-slate-900">
-            <span>What happens if I exceed my generation limit?</span>
+            <span>How does token-based billing work in v0?</span>
             <span class="ml-4 transition-transform group-open:rotate-180">
               <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
             </span>
           </summary>
           <p class="mt-4 text-slate-600 group-open:animate-fadeIn">
-            Once you reach your monthly limit on the Free plan, you won't be able to generate new components until the next month, or you can upgrade to Premium for unlimited access.
+            v0 usage is metered by tokens, which typically vary based on prompt complexity, chosen model tier, and output length. If your plan limit is reached, you can usually wait for reset windows or move to a higher-capacity paid option.
           </p>
         </details>
 
         <details class="group rounded-xl bg-white p-6 shadow-sm">
           <summary class="flex cursor-pointer list-none items-center justify-between font-medium text-slate-900">
-            <span>Can I export the code to my own project?</span>
+            <span>What is the difference between Mini, Pro, and Max models?</span>
             <span class="ml-4 transition-transform group-open:rotate-180">
               <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
             </span>
           </summary>
           <p class="mt-4 text-slate-600 group-open:animate-fadeIn">
-            Yes! v0 generates standard React + Tailwind CSS code that you can copy and paste directly into your existing projects. Premium and Team plans also offer direct export to GitHub and custom domains.
+            Model tiers generally trade speed and cost against output depth. Mini is typically suited to simpler iterations, Pro balances quality and efficiency for everyday work, and Max is better for complex generation tasks where output quality matters most.
           </p>
         </details>
 
         <details class="group rounded-xl bg-white p-6 shadow-sm">
           <summary class="flex cursor-pointer list-none items-center justify-between font-medium text-slate-900">
-            <span>Is there a discount for annual billing?</span>
+            <span>Can v0 support full-stack workflows and GitHub export?</span>
             <span class="ml-4 transition-transform group-open:rotate-180">
               <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
             </span>
           </summary>
           <p class="mt-4 text-slate-600 group-open:animate-fadeIn">
-            Pricing shown is monthly. Check the official v0 pricing page for any current annual discounts or team volume pricing.
+            Yes, current v0 workflows include Git-connected iteration and runtime-oriented testing patterns for broader app delivery. For production systems, you should still validate backend security, data modeling, and deployment architecture in your own environment.
+          </p>
+        </details>
+
+        <details class="group rounded-xl bg-white p-6 shadow-sm">
+          <summary class="flex cursor-pointer list-none items-center justify-between font-medium text-slate-900">
+            <span>Should I trust static pricing screenshots from old guides?</span>
+            <span class="ml-4 transition-transform group-open:rotate-180">
+              <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+            </span>
+          </summary>
+          <p class="mt-4 text-slate-600 group-open:animate-fadeIn">
+            No. Pricing and model access can change quickly, and many older pages still reference pre-2026 credit systems or old branding. Use this page for context, then verify final numbers directly on the official v0 pricing page before making plan decisions.
           </p>
         </details>
       </div>
@@ -229,7 +254,7 @@ const tiers = [
       </p>
       <div class="mt-8">
         <a 
-          href="https://v0.dev?ref=v0-guide"
+          href="https://v0.app?ref=v0-guide"
           class="inline-flex items-center justify-center rounded-lg bg-primary-600 px-8 py-3 text-base font-bold text-white shadow-lg transition-transform hover:scale-105 hover:bg-primary-700"
         >
           Start Building for Free

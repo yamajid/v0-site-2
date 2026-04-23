@@ -170,7 +170,7 @@ export default function FeatureTabs({ competitor = 'Competitor', features = defa
                   <li>• Enterprise plans custom-priced</li>
                 </ul>
                 <a
-                  href="https://v0.dev/pricing?ref=v0-guide"
+                  href="https://v0.app/pricing?ref=v0-guide"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="mt-6 block w-full rounded-lg bg-primary-600 px-4 py-2 text-center font-medium text-white transition-colors hover:bg-primary-700"

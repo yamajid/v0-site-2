@@ -21,7 +21,7 @@ const tiers: CalculatorTier[] = [
       'Standard models',
     ],
     recommended: false,
-    affiliateLink: 'https://v0.dev?ref=v0-guide',
+    affiliateLink: 'https://v0.app?ref=v0-guide',
   },
   {
     name: 'Pro',
@@ -34,7 +34,7 @@ const tiers: CalculatorTier[] = [
       'Email support',
     ],
     recommended: true,
-    affiliateLink: 'https://v0.dev/pricing?ref=v0-guide',
+    affiliateLink: 'https://v0.app/pricing?ref=v0-guide',
   },
   {
     name: 'Enterprise',
@@ -48,7 +48,7 @@ const tiers: CalculatorTier[] = [
       'SLA guarantee',
     ],
     recommended: false,
-    affiliateLink: 'https://v0.dev/enterprise?ref=v0-guide',
+    affiliateLink: 'https://v0.app/pricing?ref=v0-guide',
   },
 ];
 

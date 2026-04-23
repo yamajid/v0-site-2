@@ -1,20 +1,8 @@
-When you create a page, you define metadata with definePageMeta() 
-containing: title, description, path, keywords, type, publishedTime, 
-and optional faqItems/steps. BaseLayout automatically receives this meta 
-object plus optional props (faqItems, steps, softwareName). It then 
-auto-generates three critical components: (1) BreadcrumbList schema by 
-parsing the URL pathname into segments and building JSON-LD breadcrumb 
-data automatically, (2) Article schema from meta object containing 
-headline, description, dates, author/publisher for SEO rich results, 
-and (3) Breadcrumb navigation UI rendered above your page content. 
-Additionally, BaseLayout conditionally renders optional schema components: 
-if faqItems exist, it renders FAQSection component which emits FAQPage 
-JSON-LD for answer engines; if steps exist, it renders HowToSchema 
-component which emits HowTo JSON-LD for procedural rich results. All 
-schemas are emitted as <script type="application/ld+json"> tags in the 
-<head>, while UI breadcrumbs appear in <main> before your slot content. 
-This means every page automatically gets: canonical URL, meta tags 
-(title/description/OG), BreadcrumbList schema, Article schema, breadcrumb 
-navigation UI, and optional FAQ/HowTo schemas — all without any boilerplate 
-code. You simply pass meta and optional props, and BaseLayout handles all 
-SEO/GEO/AEO infrastructure automatically.
+The infrastructure foundation is genuinely solid. You have 7 schema types deployed correctly, a well-structured sitemap with 20 URLs, and a robots.txt that explicitly allows all major AI crawlers including GPTBot, Claude-Web, anthropic-ai, and PerplexityBot — this is something most affiliate sites completely overlook and you've done it right. The FreshnessStamp component emitting dateModified schema, plus HowTo steps on blog/guide pages, are exactly what answer engines extract from. The BreadcrumbSchema across all pages is also correct.
+The real gaps — prioritized
+The single biggest traffic miss is no v0 vs Lovable comparison page. In every 2026 benchmark and roundup I found during competitor research, Lovable is the primary v0 competitor. You cover Bolt, Replit, Base44, Figma Make, and Copilot — but not Lovable, which is arguably the most searched comparison right now.
+Your pricing content is outdated in ways that will hurt you with both search engines and AI agents. In February 2026, v0 switched from fixed credit counts to token-based billing, added Mini/Pro/Max model tiers, launched a Git panel and sandbox runtime for full-stack apps, and rebranded from v0.dev to v0.app. AI agents that pull your pricing FAQ will cite stale information.
+The geo-phrase-bank.ts file is a great idea that's currently doing nothing — it's defined but never rendered into page HTML. AI crawlers like CCBot and Perplexity never see those authentic user sentiment phrases because they're TypeScript constants, not content. You need a small GeoVoice component that actually outputs them into article bodies.
+The About page is a missed opportunity for AEO. It has no FAQ schema at all, even though methodology and trust pages are exactly what Perplexity cites when answering "is v0 guide reliable?" or "who reviews v0?" — add 4–6 Q&As covering your methodology, affiliate disclosure, and credentials.
+Fresh keyword map highlights (from the interactive tabs)
+For the home page, the critical missing terms are "vibe coding tool 2026," "text to UI react component generator," and "v0 app vs v0 dev" (the rename confusion is generating real search volume). For compare pages, v0 vs Windsurf is a growing 2026 gap that none of your competitors have covered well yet. For AI agent questions, "what is the difference between v0 Mini, Pro, and Max models?" and "does v0 support full-stack apps with a database now?" are the two highest-volume unanswered questions based on what surfaces in ChatGPT and Perplexity results right now.

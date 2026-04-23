@@ -1,0 +1,99 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { definePageMeta } from '@/lib/metadata';
+
+const meta = definePageMeta({
+  title: 'v0 vs Windsurf (2026): Frontend Speed vs Full IDE Flow',
+  description: 'Compare v0 and Windsurf for 2026 workflows: React UI generation, coding velocity, full-stack delivery, and where each tool fits best.',
+  path: '/compare/v0-vs-windsurf',
+  image: '/assets/compare/windsurf.jpg',
+  keywords: ['v0 vs windsurf', 'windsurf ai comparison', 'frontend ai builder', 'ai coding workflow'],
+  type: 'article',
+  publishedTime: '2026-04-21',
+});
+
+const faqItems = [
+  {
+    question: 'What is the main difference between v0 and Windsurf?',
+    answer: 'v0 is primarily a UI-generation product that helps you move quickly from prompt to React components, while Windsurf is positioned more like an AI-native coding environment for broader software development tasks. One is front-end generation focused; the other is workflow and coding-loop focused.'
+  },
+  {
+    question: 'Which one is better for shipping production frontends?',
+    answer: 'If your bottleneck is front-end composition and design iteration, v0 usually provides faster outcomes for React interface work. If your bottleneck is continuous coding inside an AI-assisted IDE flow that spans logic, architecture, and refactors, Windsurf may offer stronger leverage.'
+  },
+  {
+    question: 'Does v0 still make sense if I already use an AI coding IDE?',
+    answer: 'Yes. Many teams pair v0 for high-velocity UI generation with an AI coding IDE for application logic, testing, and refactoring. This hybrid workflow often improves speed because each tool is used for the work it does best rather than forcing one tool to handle everything.'
+  },
+  {
+    question: 'How should I compare v0 and Windsurf fairly?',
+    answer: 'Use the same real feature in both tools and compare measurable outcomes: time to first usable result, number of manual fixes, final code quality, and deployment readiness. Avoid judging from toy prompts because those often hide workflow friction that appears in production tasks.'
+  }
+];
+---
+
+<BaseLayout meta={meta} faqItems={faqItems}>
+  <section class="bg-gradient-to-b from-slate-50 to-white py-16 sm:py-24">
+    <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <span class="inline-block rounded-full bg-primary-100 px-4 py-1.5 text-sm font-medium text-primary-700 mb-4">
+          Comparison
+        </span>
+        <h1 class="text-4xl sm:text-5xl font-bold tracking-tight text-slate-900 mb-4">v0 vs Windsurf</h1>
+        <p class="text-xl text-slate-600 mb-6">
+          A practical comparison for 2026 teams choosing between a UI-first generator and an AI-native coding environment.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 gap-6">
+        <div class="rounded-xl border border-slate-200 bg-white p-6">
+          <h2 class="text-xl font-semibold text-slate-900 mb-3">Choose v0 if you need</h2>
+          <ul class="space-y-2 text-slate-700 text-sm">
+            <li>• Fast React/Tailwind component generation</li>
+            <li>• Strong Next.js-oriented UI workflows</li>
+            <li>• Prompt-to-interface speed for product teams</li>
+            <li>• Easier frontend handoff into existing repos</li>
+          </ul>
+        </div>
+        <div class="rounded-xl border border-slate-200 bg-white p-6">
+          <h2 class="text-xl font-semibold text-slate-900 mb-3">Choose Windsurf if you need</h2>
+          <ul class="space-y-2 text-slate-700 text-sm">
+            <li>• AI-assisted coding loops across the whole stack</li>
+            <li>• Heavy day-to-day IDE-centric development</li>
+            <li>• Broader coding support beyond UI generation</li>
+            <li>• One environment for logic-heavy implementation</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 sm:py-20 bg-slate-50">
+    <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 prose prose-slate max-w-none">
+      <h2>Workflow Recommendation</h2>
+      <p>
+        For many teams, this is not an either-or decision. Use v0 to accelerate interface generation, then move into your coding environment for backend logic, testing, and deployment hardening. This split keeps velocity high without sacrificing engineering quality.
+      </p>
+
+      <h2>Decision Framework</h2>
+      <p>
+        If design and frontend throughput are your core constraint, start with v0. If implementation complexity and coding throughput are your main constraint, evaluate Windsurf first. The right choice is the one that reduces cycle time on your real roadmap, not on demo prompts.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-slate-900 py-16">
+    <div class="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold text-white sm:text-4xl">Benchmark with your own stack</h2>
+      <p class="mt-4 text-lg text-slate-300">Run one production-like task in both tools and compare output quality and delivery time.</p>
+      <div class="mt-8">
+        <a
+          href="https://v0.app?ref=v0-guide-compare-windsurf"
+          class="inline-flex items-center justify-center rounded-lg bg-primary-600 px-8 py-3 text-base font-bold text-white shadow-lg transition-transform hover:scale-105 hover:bg-primary-700"
+        >
+          Start with v0
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

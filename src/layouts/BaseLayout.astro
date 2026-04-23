@@ -4,7 +4,8 @@ import Header from '@/components/Astro/Header.astro';
 import Footer from '@/components/Astro/Footer.astro';
 import SEO from '@/components/Astro/SEO.astro';
 import GA4Script from '@/components/analytics/GA4Script.astro';
-import JSONLDScript from '@/components/schema/JSONLDScript.astro';
+import OrganizationSchema from '@/components/schema/OrganizationSchema.astro';
+import AuthorSchema from '@/components/schema/AuthorSchema.astro';
 import type { PageMetaResolved } from '@/lib/metadata';
 import { initSiteConfig, getSiteUrl } from '@/lib/site-config';
 import FAQSection from '@/components/schema/FAQSection.astro';
@@ -18,7 +19,10 @@ interface Props {
   faqItems?: { question: string; answer: string }[];
   steps?: { name: string; text: string }[];
   softwareName?: string;
+  softwareCategory?: string;
+  softwareOffers?: Array<{ price: string | number; currency: string; availability?: string }>;
   aggregateRating?: { ratingValue: number; reviewCount: number };
+  authorName?: string;
 }
 
 const { 
@@ -26,6 +30,9 @@ const {
   faqItems,
   steps,
   softwareName,
+  softwareCategory,
+  softwareOffers,
+  authorName = "v0 Guide Editorial",
 } = Astro.props;
 
 // ── Auto-generate BreadcrumbList from pathname ─────────────────────────────
@@ -58,16 +65,29 @@ const breadcrumbSchema = {
 const articleSchema = {
   "@context": "https://schema.org",
   "@type": "Article",
-  headline: meta.title,
-  description: meta.description,
-  datePublished: meta.publishedTime,
-  image: siteUrl + meta.image,
-  author: { "@type": "Organization", name: "v0guide.com" },
-  publisher: {
-    "@type": "Organization",
-    name: "v0guide.com",
-    logo: { "@type": "ImageObject", url: siteUrl + "/assets/og-default.jpg" },
+  "headline": meta.title,
+  "description": meta.description,
+  "datePublished": meta.publishedTime,
+  "image": siteUrl + meta.image,
+  "author": { 
+    "@type": "Person", 
+    "@id": `${siteUrl}/#author-${authorName.toLowerCase().replace(/\s+/g, '-')}`,
+    "name": authorName
   },
+  "publisher": {
+    "@type": "Organization",
+    "@id": `${siteUrl}/#organization`,
+    "name": "v0 Guide",
+    "logo": { 
+      "@type": "ImageObject", 
+      "@id": `${siteUrl}/#logo`,
+      "url": siteUrl + "/assets/logo.png" 
+    },
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": siteUrl + pathname
+  }
 };
 
 // ── FAQPage schema (only if faqItems exist) ────────────────────────────────
@@ -119,6 +139,12 @@ const howToSchema = steps && steps.length > 0 ? {
     <!-- Google Analytics 4 -->
     <GA4Script />
 
+    <!-- Global Organization Schema (Establish Authority) -->
+    <OrganizationSchema />
+
+    <!-- Author Authority (GEO Signal) -->
+    <AuthorSchema name={authorName} />
+
     <!-- BreadcrumbList JSON-LD (auto-generated, every page) -->
     <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
 
@@ -130,6 +156,15 @@ const howToSchema = steps && steps.length > 0 ? {
 
     <!-- HowTo JSON-LD (only if steps exist) -->
     {howToSchema && <script type="application/ld+json" set:html={JSON.stringify(howToSchema)} />}
+
+    <!-- SoftwareApplication JSON-LD (Identify the Product) -->
+    {softwareName && (
+      <SoftwareAppSchema 
+        name={softwareName} 
+        category={softwareCategory} 
+        offers={softwareOffers}
+      />
+    )}
   </head>
   <body class="flex flex-col min-h-screen bg-white font-sans text-gray-900 antialiased">
     <Header />

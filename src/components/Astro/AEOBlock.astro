@@ -1,0 +1,26 @@
+---
+// src/components/Astro/AEOBlock.astro
+/**
+ * AEOBlock: A semantic wrapper designed to highlight "Direct Answers" for AI crawlers.
+ * Following the principle of "Semantic Highlighting" for Answer Engine Optimization.
+ */
+interface Props {
+  heading?: string;
+  type?: 'definition' | 'summary' | 'verdict';
+}
+
+const { heading, type = 'summary' } = Astro.props;
+
+const typeStyles = {
+  definition: 'border-l-4 border-blue-500 bg-blue-50',
+  summary: 'border-l-4 border-green-500 bg-green-50',
+  verdict: 'border-l-4 border-purple-500 bg-purple-50',
+};
+---
+
+<div class={`p-6 my-8 rounded-r-lg ${typeStyles[type]}`} data-aeo-type={type}>
+  {heading && <h3 class="text-lg font-bold mb-2 text-gray-900">{heading}</h3>}
+  <div class="text-lg text-gray-800 leading-relaxed italic">
+    <slot />
+  </div>
+</div>

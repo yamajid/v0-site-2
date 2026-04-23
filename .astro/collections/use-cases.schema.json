@@ -1,55 +1,85 @@
 {
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "type": "object",
-  "properties": {
-    "title": {
-      "type": "string"
-    },
-    "description": {
-      "type": "string"
-    },
-    "useCase": {
-      "type": "string"
-    },
-    "publishDate": {
-      "type": "string",
-      "format": "date-time"
-    },
-    "updatedDate": {
-      "type": "string",
-      "format": "date-time"
-    },
-    "author": {
-      "type": "string"
-    },
-    "audience": {
-      "type": "string"
-    },
-    "keyBenefits": {
-      "type": "array",
-      "items": {
-        "type": "string"
-      }
-    },
-    "image": {
-      "type": "string"
-    },
-    "affiliateLink": {
-      "type": "string",
-      "format": "uri"
-    },
-    "$schema": {
-      "type": "string"
+  "$ref": "#/definitions/use-cases",
+  "definitions": {
+    "use-cases": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "useCase": {
+          "type": "string"
+        },
+        "publishDate": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "type": "string",
+              "format": "date"
+            },
+            {
+              "type": "integer",
+              "format": "unix-time"
+            }
+          ]
+        },
+        "updatedDate": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "type": "string",
+              "format": "date"
+            },
+            {
+              "type": "integer",
+              "format": "unix-time"
+            }
+          ]
+        },
+        "author": {
+          "type": "string"
+        },
+        "audience": {
+          "type": "string"
+        },
+        "keyBenefits": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "image": {
+          "type": "string"
+        },
+        "affiliateLink": {
+          "type": "string",
+          "format": "uri"
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "title",
+        "description",
+        "useCase",
+        "publishDate",
+        "author",
+        "audience",
+        "keyBenefits",
+        "affiliateLink"
+      ],
+      "additionalProperties": false
     }
   },
-  "required": [
-    "title",
-    "description",
-    "useCase",
-    "publishDate",
-    "author",
-    "audience",
-    "keyBenefits",
-    "affiliateLink"
-  ]
+  "$schema": "http://json-schema.org/draft-07/schema#"
 }

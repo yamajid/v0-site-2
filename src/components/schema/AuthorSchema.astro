@@ -1,0 +1,45 @@
+---
+// src/components/schema/AuthorSchema.astro
+import { getSiteUrl } from '@/lib/site-config';
+
+interface Props {
+  name: string;
+  role?: string;
+  bio?: string;
+  image?: string;
+  twitter?: string;
+  github?: string;
+}
+
+const { 
+  name, 
+  role = "AI Technical Writer", 
+  bio = "Expert in Generative UI, React ecosystem, and agentic development workflows.",
+  image = "/assets/authors/editorial-team.jpg",
+  twitter = "https://twitter.com/v0_guide",
+  github = "https://github.com/v0-guide"
+} = Astro.props;
+
+const siteUrl = getSiteUrl();
+const authorId = `${siteUrl}/#author-${name.toLowerCase().replace(/\s+/g, '-')}`;
+
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": authorId,
+  "name": name,
+  "jobTitle": role,
+  "description": bio,
+  "image": {
+    "@type": "ImageObject",
+    "url": siteUrl + image
+  },
+  "url": siteUrl + "/about",
+  "sameAs": [
+    twitter,
+    github
+  ].filter(Boolean)
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(personSchema)} />

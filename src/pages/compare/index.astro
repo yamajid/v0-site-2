@@ -4,6 +4,7 @@
 
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { definePageMeta } from '@/lib/metadata';
+import GeoVoice from '@/components/Astro/GeoVoice.astro';
 
 const title = 'v0 Comparisons - Find the Best AI UI Tool';
 const description = 'Detailed, data-driven comparisons between v0 and other AI development tools.';
@@ -18,15 +19,47 @@ const meta = definePageMeta({
 
 // ✅ Planned comparisons per SEO strategy
 const comparisons = [
+  { slug: 'v0-vs-lovable', title: 'v0 vs Lovable', description: 'UI-first control vs rapid app-first workflows', image: '/assets/compare/lovable.jpg' },
+  { slug: 'v0-vs-windsurf', title: 'v0 vs Windsurf', description: 'Prompted UI generation vs AI-native IDE coding loop', image: '/assets/compare/windsurf.jpg' },
   { slug: 'v0-vs-replit', title: 'v0 vs Replit', description: 'UI generation vs full-stack deployment workflows', image: '/assets/compare/replit.jpg' },
   { slug: 'v0-vs-bolt', title: 'v0 vs Bolt.new', description: 'Component-focused vs app-focused AI builders', image: '/assets/compare/bolt.jpg' },
   { slug: 'v0-vs-base44', title: 'v0 vs Base44', description: 'Code generation vs no-code platform capabilities', image: '/assets/compare/base44.jpg' },
   { slug: 'v0-vs-figma-make', title: 'v0 vs Figma Make', description: 'AI prompt-to-code vs design-to-code workflows', image: '/assets/compare/figma.jpg' },
   { slug: 'v0-vs-github-copilot', title: 'v0 vs GitHub Copilot', description: 'UI-specific AI vs general code assistant', image: '/assets/compare/copilot.jpg' },
 ];
+
+const faqItems = [
+  {
+    question: 'What is the best v0 alternative in 2026?',
+    answer: 'The best alternative depends on your workflow. If you want faster end-to-end app assembly, tools like Lovable or Bolt may fit better. If you want deeper code control and React/Next.js component quality, v0 often remains the better option. Use one real project to benchmark speed and output quality before deciding.'
+  },
+  {
+    question: 'Should I choose v0, Bolt, Lovable, or Windsurf?',
+    answer: 'Choose based on your bottleneck. Pick v0 for UI-first React workflows, Bolt or Lovable for faster app-level execution, and Windsurf if your team needs AI-native coding flow inside an IDE. The right decision comes from comparing delivery time, rework effort, and final code quality on the same feature.'
+  },
+  {
+    question: 'Can v0 handle full-stack projects now?',
+    answer: 'v0 now supports broader workflows than earlier releases, including Git-connected iteration and runtime-oriented patterns. For production deployment, teams should still validate backend architecture, database design, and security controls in their own stack rather than relying only on generated output.'
+  }
+];
+
+const siteBase = Astro.site?.toString().replace(/\/$/, '') ?? 'https://v0-guide.com';
+const itemListSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'v0 Comparison Guides',
+  itemListElement: comparisons.map((comp, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    name: comp.title,
+    url: `${siteBase}/compare/${comp.slug}/`,
+  })),
+};
 ---
 
-<BaseLayout meta={meta}>
+<BaseLayout meta={meta} faqItems={faqItems}>
+  <script type="application/ld+json" set:html={JSON.stringify(itemListSchema)} />
+
   <!-- Header -->
   <section class="bg-gradient-to-b from-primary-50 to-white py-16 sm:py-24">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
@@ -37,7 +70,7 @@ const comparisons = [
         How v0 Stacks Up
       </h1>
       <p class="mx-auto mt-4 max-w-2xl text-lg text-gray-600">
-        {meta.description}
+        Lovable and Windsurf are the top v0 alternatives in 2026. Below are detailed, data-driven comparisons to help you choose the right AI development tool for your workflow.
       </p>
     </div>
   </section>
@@ -73,6 +106,10 @@ const comparisons = [
             </div>
           </a>
         ))}
+      </div>
+
+      <div class="mx-auto mt-10 max-w-4xl">
+        <GeoVoice title="What teams report in real workflows" category="mixed" limit={4} />
       </div>
     </div>
   </section>

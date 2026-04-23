@@ -1,0 +1,472 @@
+
+<h2 class="sr-only">SEO, GEO, and AEO infrastructure audit and keyword map for v0-guide.com</h2>
+
+<style>
+  .section { margin: 0 0 2rem; }
+  .section-title { font-size: 13px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-text-secondary); margin: 0 0 0.75rem; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 1rem 1.25rem; }
+  .card-label { font-size: 12px; color: var(--color-text-secondary); margin: 0 0 4px; }
+  .card-value { font-size: 22px; font-weight: 500; color: var(--color-text-primary); margin: 0 0 4px; }
+  .card-sub { font-size: 12px; color: var(--color-text-secondary); margin: 0; }
+  .badge { display: inline-block; font-size: 11px; font-weight: 500; padding: 2px 8px; border-radius: 4px; }
+  .badge-ok { background: #EAF3DE; color: #27500A; }
+  .badge-warn { background: #FAEEDA; color: #633806; }
+  .badge-miss { background: #FCEBEB; color: #791F1F; }
+  .check-row { display: flex; align-items: flex-start; gap: 10px; padding: 8px 0; border-bottom: 0.5px solid var(--color-border-tertiary); font-size: 14px; }
+  .check-row:last-child { border-bottom: none; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
+  .dot-ok { background: #639922; }
+  .dot-warn { background: #EF9F27; }
+  .dot-miss { background: #E24B4A; }
+  .kw-tag { display: inline-block; background: var(--color-background-secondary); border: 0.5px solid var(--color-border-tertiary); border-radius: 4px; font-size: 12px; padding: 3px 8px; margin: 3px 3px 3px 0; color: var(--color-text-primary); }
+  .kw-tag.hot { background: #E6F1FB; border-color: #85B7EB; color: #0C447C; }
+  .kw-tag.gap { background: #FCEBEB; border-color: #F09595; color: #791F1F; }
+  .kw-tag.aeo { background: #EAF3DE; border-color: #97C459; color: #27500A; }
+  .page-row { display: flex; align-items: center; gap: 8px; padding: 7px 0; border-bottom: 0.5px solid var(--color-border-tertiary); font-size: 13px; }
+  .page-row:last-child { border-bottom: none; }
+  .page-path { color: var(--color-text-secondary); min-width: 180px; font-family: var(--font-mono); font-size: 12px; }
+  .badges { display: flex; gap: 4px; flex-wrap: wrap; }
+  .tab-row { display: flex; gap: 8px; margin-bottom: 1rem; flex-wrap: wrap; }
+  .tab { font-size: 12px; font-weight: 500; padding: 4px 12px; border-radius: 4px; border: 0.5px solid var(--color-border-secondary); cursor: pointer; background: var(--color-background-primary); color: var(--color-text-secondary); }
+  .tab.active { background: var(--color-background-secondary); color: var(--color-text-primary); border-color: var(--color-border-primary); }
+  .kwmap-section { display: none; }
+  .kwmap-section.active { display: block; }
+  .kw-item { display: flex; align-items: flex-start; justify-content: space-between; padding: 8px 0; border-bottom: 0.5px solid var(--color-border-tertiary); gap: 12px; }
+  .kw-item:last-child { border-bottom: none; }
+  .kw-text { font-size: 13px; color: var(--color-text-primary); flex: 1; }
+  .kw-intent { font-size: 11px; color: var(--color-text-secondary); margin-top: 2px; }
+  .kw-right { display: flex; gap: 6px; flex-direction: column; align-items: flex-end; }
+  .priority { font-size: 11px; font-weight: 500; padding: 2px 6px; border-radius: 3px; }
+  .p-high { background: #FCEBEB; color: #791F1F; }
+  .p-med { background: #FAEEDA; color: #633806; }
+  .p-aeo { background: #EAF3DE; color: #27500A; }
+</style>
+
+<div class="section">
+  <p class="section-title">Infrastructure overview</p>
+  <div class="grid-3">
+    <div class="card">
+      <p class="card-label">Schema types deployed</p>
+      <p class="card-value">7</p>
+      <p class="card-sub">WebSite · Article · FAQ · HowTo · Breadcrumb · SoftwareApp · Organization</p>
+    </div>
+    <div class="card">
+      <p class="card-label">Pages in sitemap</p>
+      <p class="card-value">20</p>
+      <p class="card-sub">All with lastmod · changefreq · priority 0.8</p>
+    </div>
+    <div class="card">
+      <p class="card-label">AI crawler allowlist</p>
+      <p class="card-value">9+</p>
+      <p class="card-sub">GPTBot · Claude-Web · Perplexity · Applebot · CCBot + SEO bots</p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <p class="section-title">SEO infrastructure — page-by-page status</p>
+  <div class="card">
+    <div class="page-row" style="font-weight: 500; font-size: 12px; color: var(--color-text-secondary);">
+      <span class="page-path">Page</span>
+      <div class="badges">Schema · Canonical · OG · Keywords · FAQ · HowTo · Date</div>
+    </div>
+    <div class="page-row">
+      <span class="page-path">/</span>
+      <div class="badges">
+        <span class="badge badge-ok">WebSite+FAQ</span>
+        <span class="badge badge-ok">Canonical</span>
+        <span class="badge badge-ok">OG+Twitter</span>
+        <span class="badge badge-ok">Keywords</span>
+        <span class="badge badge-ok">3 FAQs</span>
+        <span class="badge badge-warn">No HowTo</span>
+        <span class="badge badge-ok">dateModified</span>
+      </div>
+    </div>
+    <div class="page-row">
+      <span class="page-path">/about/</span>
+      <div class="badges">
+        <span class="badge badge-warn">Article only</span>
+        <span class="badge badge-ok">Canonical</span>
+        <span class="badge badge-ok">OG</span>
+        <span class="badge badge-warn">4 kw only</span>
+        <span class="badge badge-miss">No FAQ</span>
+        <span class="badge badge-miss">No HowTo</span>
+        <span class="badge badge-ok">publishedTime</span>
+      </div>
+    </div>
+    <div class="page-row">
+      <span class="page-path">/compare/ (hub)</span>
+      <div class="badges">
+        <span class="badge badge-warn">No schema</span>
+        <span class="badge badge-ok">Canonical</span>
+        <span class="badge badge-ok">OG</span>
+        <span class="badge badge-warn">Thin kw</span>
+        <span class="badge badge-miss">No FAQ</span>
+        <span class="badge badge-miss">No HowTo</span>
+        <span class="badge badge-warn">No dates</span>
+      </div>
+    </div>
+    <div class="page-row">
+      <span class="page-path">/compare/v0-vs-*/</span>
+      <div class="badges">
+        <span class="badge badge-ok">Article+FAQ</span>
+        <span class="badge badge-ok">Canonical</span>
+        <span class="badge badge-ok">OG</span>
+        <span class="badge badge-ok">dateModified</span>
+        <span class="badge badge-ok">2 FAQs each</span>
+        <span class="badge badge-warn">No SoftwareApp</span>
+      </div>
+    </div>
+    <div class="page-row">
+      <span class="page-path">/pricing/</span>
+      <div class="badges">
+        <span class="badge badge-ok">FAQ</span>
+        <span class="badge badge-ok">OG</span>
+        <span class="badge badge-warn">No SoftwareApp</span>
+        <span class="badge badge-warn">2 FAQs only</span>
+        <span class="badge badge-miss">No HowTo</span>
+        <span class="badge badge-ok">dateModified</span>
+      </div>
+    </div>
+    <div class="page-row">
+      <span class="page-path">/blog/getting-started/</span>
+      <div class="badges">
+        <span class="badge badge-ok">Article+HowTo</span>
+        <span class="badge badge-ok">5 steps</span>
+        <span class="badge badge-ok">FreshnessStamp</span>
+        <span class="badge badge-ok">OG+Twitter</span>
+        <span class="badge badge-ok">dateModified</span>
+      </div>
+    </div>
+    <div class="page-row">
+      <span class="page-path">/use-cases/*</span>
+      <div class="badges">
+        <span class="badge badge-ok">HowTo (some)</span>
+        <span class="badge badge-ok">Steps</span>
+        <span class="badge badge-warn">No FAQ</span>
+        <span class="badge badge-ok">dateModified</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <p class="section-title">GEO (Generative Engine Optimization) checklist</p>
+  <div class="card">
+    <div class="check-row">
+      <div class="dot dot-ok"></div>
+      <div>
+        <strong>AI crawlers explicitly allowed in robots.txt</strong>
+        <p style="margin:2px 0 0; font-size:12px; color:var(--color-text-secondary);">GPTBot, Claude-Web, PerplexityBot, Applebot-Extended, CCBot, anthropic-ai all listed — excellent GEO signal</p>
+      </div>
+    </div>
+    <div class="check-row">
+      <div class="dot dot-ok"></div>
+      <div>
+        <strong>GEO phrase bank exists (geo-phrase-bank.ts)</strong>
+        <p style="margin:2px 0 0; font-size:12px; color:var(--color-text-secondary);">Positive + frustration sentiment phrases ready — but only 6 phrases total, needs expansion</p>
+      </div>
+    </div>
+    <div class="check-row">
+      <div class="dot dot-ok"></div>
+      <div>
+        <strong>FreshnessStamp component with dateModified schema</strong>
+        <p style="margin:2px 0 0; font-size:12px; color:var(--color-text-secondary);">Article schema emits datePublished + dateModified on blog/guide pages — AI models favor recency signals</p>
+      </div>
+    </div>
+    <div class="check-row">
+      <div class="dot dot-warn"></div>
+      <div>
+        <strong>GEO phrases not injected into page content</strong>
+        <p style="margin:2px 0 0; font-size:12px; color:var(--color-text-secondary);">The phrase bank is defined but no component or layout actually renders it into HTML — AI scrapers see nothing</p>
+      </div>
+    </div>
+    <div class="check-row">
+      <div class="dot dot-warn"></div>
+      <div>
+        <strong>No conversational Q&A blocks outside FAQ schema</strong>
+        <p style="margin:2px 0 0; font-size:12px; color:var(--color-text-secondary);">LLMs like natural paragraph-style Q&A, not just accordion FAQs. QandASection component exists but seems underused</p>
+      </div>
+    </div>
+    <div class="check-row">
+      <div class="dot dot-miss"></div>
+      <div>
+        <strong>No entity disambiguation (no Person / Organization markup on authors)</strong>
+        <p style="margin:2px 0 0; font-size:12px; color:var(--color-text-secondary);">ArticleSchema uses author name string only — no sameAs URLs. Weakens E-E-A-T signals for AI retrieval</p>
+      </div>
+    </div>
+    <div class="check-row">
+      <div class="dot dot-miss"></div>
+      <div>
+        <strong>No speakable schema</strong>
+        <p style="margin:2px 0 0; font-size:12px; color:var(--color-text-secondary);">speakable schema hints which text snippets are ideal for voice/AI extraction — missing entirely</p>
+      </div>
+    </div>
+    <div class="check-row">
+      <div class="dot dot-warn"></div>
+      <div>
+        <strong>RSS feed exists but rss.xml has no full content</strong>
+        <p style="margin:2px 0 0; font-size:12px; color:var(--color-text-secondary);">Perplexity and other AI tools crawl RSS for freshness signals — include full article text in feed items</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <p class="section-title">AEO (Answer Engine Optimization) checklist</p>
+  <div class="card">
+    <div class="check-row">
+      <div class="dot dot-ok"></div>
+      <div>
+        <strong>FAQPage schema on home, what-is, compare, pricing pages</strong>
+        <p style="margin:2px 0 0; font-size:12px; color:var(--color-text-secondary);">Correctly structured with Question + Answer types — strong snippet candidacy</p>
+      </div>
+    </div>
+    <div class="check-row">
+      <div class="dot dot-ok"></div>
+      <div>
+        <strong>HowTo schema on blog and use-case pages</strong>
+        <p style="margin:2px 0 0; font-size:12px; color:var(--color-text-secondary);">Numbered steps with name + text — AI agents extract procedural content from this</p>
+      </div>
+    </div>
+    <div class="check-row">
+      <div class="dot dot-ok"></div>
+      <div>
+        <strong>Breadcrumb schema on all pages</strong>
+        <p style="margin:2px 0 0; font-size:12px; color:var(--color-text-secondary);">Helps search and AI understand site hierarchy — all pages include BreadcrumbSchema component</p>
+      </div>
+    </div>
+    <div class="check-row">
+      <div class="dot dot-warn"></div>
+      <div>
+        <strong>FAQ answers are too short (1–2 sentences)</strong>
+        <p style="margin:2px 0 0; font-size:12px; color:var(--color-text-secondary);">Perplexity and ChatGPT prefer answers of 40–80 words with a clear first sentence. Expand each answer</p>
+      </div>
+    </div>
+    <div class="check-row">
+      <div class="dot dot-miss"></div>
+      <div>
+        <strong>About page has zero FAQ schema</strong>
+        <p style="margin:2px 0 0; font-size:12px; color:var(--color-text-secondary);">High-trust pages with methodology/credentials are prime for "who made this" type AI queries — needs FAQs</p>
+      </div>
+    </div>
+    <div class="check-row">
+      <div class="dot dot-miss"></div>
+      <div>
+        <strong>Compare hub (/compare/) has no schema at all</strong>
+        <p style="margin:2px 0 0; font-size:12px; color:var(--color-text-secondary);">This page should have ItemList + FAQPage schema to capture "best v0 alternatives" type AI queries</p>
+      </div>
+    </div>
+    <div class="check-row">
+      <div class="dot dot-warn"></div>
+      <div>
+        <strong>No AggregateRating schema on compare pages</strong>
+        <p style="margin:2px 0 0; font-size:12px; color:var(--color-text-secondary);">aggregateRating field exists in PageMeta interface but no compare page actually populates it</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <p class="section-title">Live keyword map — fresh from competitor research (April 2026)</p>
+  <div class="tab-row">
+    <button class="tab active" onclick="showKw('home')">Home page</button>
+    <button class="tab" onclick="showKw('about')">About page</button>
+    <button class="tab" onclick="showKw('compare')">Compare pages</button>
+    <button class="tab" onclick="showKw('aeo')">AI agent questions</button>
+  </div>
+
+  <div class="card">
+    <div id="kw-home" class="kwmap-section active">
+      <div class="kw-item">
+        <div><p class="kw-text">v0 by vercel review 2026</p><p class="kw-intent">Informational → comparison intent</p></div>
+        <div class="kw-right"><span class="priority p-high">HIGH</span><span class="badge badge-ok">In meta</span></div>
+      </div>
+      <div class="kw-item">
+        <div><p class="kw-text">what is v0 by vercel</p><p class="kw-intent">Definitional — top AI/Perplexity query</p></div>
+        <div class="kw-right"><span class="priority p-high">HIGH</span><span class="badge badge-ok">Own page</span></div>
+      </div>
+      <div class="kw-item">
+        <div><p class="kw-text">vibe coding tool 2026</p><p class="kw-intent">Trending category term — use in H1/intro</p></div>
+        <div class="kw-right"><span class="priority p-high">HIGH</span><span class="badge badge-miss">Missing</span></div>
+      </div>
+      <div class="kw-item">
+        <div><p class="kw-text">text to UI react component generator</p><p class="kw-intent">Tool category — AI assistants cite this</p></div>
+        <div class="kw-right"><span class="priority p-high">HIGH</span><span class="badge badge-miss">Missing</span></div>
+      </div>
+      <div class="kw-item">
+        <div><p class="kw-text">prompt to production react code</p><p class="kw-intent">Outcome language — matches v0 Feb 2026 rebrand</p></div>
+        <div class="kw-right"><span class="priority p-high">HIGH</span><span class="badge badge-miss">Missing</span></div>
+      </div>
+      <div class="kw-item">
+        <div><p class="kw-text">v0 shadcn tailwind component generator</p><p class="kw-intent">Technical — developer searching for stack match</p></div>
+        <div class="kw-right"><span class="priority p-med">MED</span><span class="badge badge-warn">Partial</span></div>
+      </div>
+      <div class="kw-item">
+        <div><p class="kw-text">best AI app builder for next.js 2026</p><p class="kw-intent">Comparison category — high buying intent</p></div>
+        <div class="kw-right"><span class="priority p-med">MED</span><span class="badge badge-miss">Missing</span></div>
+      </div>
+      <div class="kw-item">
+        <div><p class="kw-text">v0 app vs v0 dev — what changed</p><p class="kw-intent">Brand rename confusion — v0.dev → v0.app Jan 2026</p></div>
+        <div class="kw-right"><span class="priority p-high">HIGH</span><span class="badge badge-miss">Missing</span></div>
+      </div>
+      <div class="kw-item">
+        <div><p class="kw-text">generative UI tool for saas dashboards</p><p class="kw-intent">Use-case match — current competitor gap</p></div>
+        <div class="kw-right"><span class="priority p-med">MED</span><span class="badge badge-miss">Missing</span></div>
+      </div>
+    </div>
+
+    <div id="kw-about" class="kwmap-section">
+      <div class="kw-item">
+        <div><p class="kw-text">who writes v0 guide reviews</p><p class="kw-intent">E-E-A-T trust query — AI agents check author credibility</p></div>
+        <div class="kw-right"><span class="priority p-high">HIGH</span><span class="badge badge-miss">Missing from page</span></div>
+      </div>
+      <div class="kw-item">
+        <div><p class="kw-text">how is v0 guide tested — methodology</p><p class="kw-intent">AI citation check — Perplexity cites sites with methodology pages</p></div>
+        <div class="kw-right"><span class="priority p-high">HIGH</span><span class="badge badge-warn">Partial — no FAQ</span></div>
+      </div>
+      <div class="kw-item">
+        <div><p class="kw-text">is v0 guide affiliated with vercel</p><p class="kw-intent">Disclosure query — users and AI agents check this</p></div>
+        <div class="kw-right"><span class="priority p-high">HIGH</span><span class="badge badge-miss">Missing</span></div>
+      </div>
+      <div class="kw-item">
+        <div><p class="kw-text">unbiased v0 vercel review site</p><p class="kw-intent">Trust signal — add "unbiased" + methodology to meta description</p></div>
+        <div class="kw-right"><span class="priority p-med">MED</span><span class="badge badge-warn">Weak meta</span></div>
+      </div>
+      <div class="kw-item">
+        <div><p class="kw-text">v0 guide testing criteria and scoring</p><p class="kw-intent">Structured credibility — add a scoring rubric section</p></div>
+        <div class="kw-right"><span class="priority p-med">MED</span><span class="badge badge-warn">Unstructured</span></div>
+      </div>
+      <div class="kw-item">
+        <div><p class="kw-text">affiliate disclosure AI tool review site</p><p class="kw-intent">Regulatory + trust — Google HCU penalises hidden affiliate sites</p></div>
+        <div class="kw-right"><span class="priority p-high">HIGH</span><span class="badge badge-warn">Buried in list</span></div>
+      </div>
+    </div>
+
+    <div id="kw-compare" class="kwmap-section">
+      <div class="kw-item">
+        <div><p class="kw-text">v0 vs bolt which is better for react 2026</p><p class="kw-intent">Decision intent — primary compare query</p></div>
+        <div class="kw-right"><span class="priority p-high">HIGH</span><span class="badge badge-ok">Page exists</span></div>
+      </div>
+      <div class="kw-item">
+        <div><p class="kw-text">v0 vs lovable — missing page</p><p class="kw-intent">Lovable is top competitor — no compare page exists</p></div>
+        <div class="kw-right"><span class="priority p-high">HIGH</span><span class="badge badge-miss">Page missing</span></div>
+      </div>
+      <div class="kw-item">
+        <div><p class="kw-text">v0 vs windsurf AI coding tool</p><p class="kw-intent">Windsurf is trending in 2026 comparisons — gap</p></div>
+        <div class="kw-right"><span class="priority p-high">HIGH</span><span class="badge badge-miss">Page missing</span></div>
+      </div>
+      <div class="kw-item">
+        <div><p class="kw-text">v0 vs cursor AI for frontend components</p><p class="kw-intent">Cursor is frequently compared with v0 in 2026 content</p></div>
+        <div class="kw-right"><span class="priority p-high">HIGH</span><span class="badge badge-warn">Blog post only</span></div>
+      </div>
+      <div class="kw-item">
+        <div><p class="kw-text">v0 token-based pricing vs fixed credits</p><p class="kw-intent">Feb 2026 billing change — high search spike</p></div>
+        <div class="kw-right"><span class="priority p-high">HIGH</span><span class="badge badge-miss">Not addressed</span></div>
+      </div>
+      <div class="kw-item">
+        <div><p class="kw-text">v0 vs replit for full-stack apps</p><p class="kw-intent">Specific question AI agents answer frequently</p></div>
+        <div class="kw-right"><span class="priority p-med">MED</span><span class="badge badge-ok">Page exists</span></div>
+      </div>
+      <div class="kw-item">
+        <div><p class="kw-text">can v0 do backend and database</p><p class="kw-intent">Top-asked limitation question — must appear in compare FAQs</p></div>
+        <div class="kw-right"><span class="priority p-high">HIGH</span><span class="badge badge-miss">No FAQ on this</span></div>
+      </div>
+      <div class="kw-item">
+        <div><p class="kw-text">v0 vs base44 — which is better for non-developers</p><p class="kw-intent">Non-dev persona — currently in your sitemap</p></div>
+        <div class="kw-right"><span class="priority p-med">MED</span><span class="badge badge-ok">Page exists</span></div>
+      </div>
+    </div>
+
+    <div id="kw-aeo" class="kwmap-section">
+      <p style="font-size:13px; color:var(--color-text-secondary); margin:0 0 1rem;">Questions people ask AI agents (ChatGPT, Perplexity, Claude) about v0 — these should map directly to FAQ schema answers on your pages.</p>
+      <div class="kw-item">
+        <div><p class="kw-text">Is v0 free to use?</p><p class="kw-intent">Most asked — needs direct "Yes, with $5/mo credits" answer + pricing link</p></div>
+        <div class="kw-right"><span class="priority p-high">HIGH</span><span class="badge badge-ok">Home FAQ</span></div>
+      </div>
+      <div class="kw-item">
+        <div><p class="kw-text">Does v0 support full-stack apps with a database?</p><p class="kw-intent">Critical limitation question — v0 now has Snowflake/AWS integrations (Feb 2026)</p></div>
+        <div class="kw-right"><span class="priority p-high">HIGH</span><span class="badge badge-miss">Missing</span></div>
+      </div>
+      <div class="kw-item">
+        <div><p class="kw-text">What framework does v0 use?</p><p class="kw-intent">React + Tailwind + shadcn/ui — needs one-sentence answer in FAQ</p></div>
+        <div class="kw-right"><span class="priority p-high">HIGH</span><span class="badge badge-warn">Scattered</span></div>
+      </div>
+      <div class="kw-item">
+        <div><p class="kw-text">How much does v0 cost per month in 2026?</p><p class="kw-intent">Pricing changed to token-based billing Feb 2026 — old content is wrong</p></div>
+        <div class="kw-right"><span class="priority p-high">HIGH</span><span class="badge badge-warn">Needs update</span></div>
+      </div>
+      <div class="kw-item">
+        <div><p class="kw-text">Can v0 import a GitHub repo?</p><p class="kw-intent">New Feb 2026 feature — sandbox runtime + Git panel</p></div>
+        <div class="kw-right"><span class="priority p-high">HIGH</span><span class="badge badge-miss">Missing</span></div>
+      </div>
+      <div class="kw-item">
+        <div><p class="kw-text">Is v0 good for non-developers and beginners?</p><p class="kw-intent">Common persona question — v0.app repositioned for non-devs in 2026</p></div>
+        <div class="kw-right"><span class="priority p-med">MED</span><span class="badge badge-miss">Missing FAQ</span></div>
+      </div>
+      <div class="kw-item">
+        <div><p class="kw-text">What is the difference between v0 Mini, Pro, and Max models?</p><p class="kw-intent">New model tiering introduced — highly asked in communities</p></div>
+        <div class="kw-right"><span class="priority p-high">HIGH</span><span class="badge badge-miss">Missing</span></div>
+      </div>
+      <div class="kw-item">
+        <div><p class="kw-text">How do I push v0 output to GitHub?</p><p class="kw-intent">HowTo query — maps perfectly to your guides/github-sync page</p></div>
+        <div class="kw-right"><span class="priority p-med">MED</span><span class="badge badge-ok">Guide page</span></div>
+      </div>
+      <div class="kw-item">
+        <div><p class="kw-text">Is v0 code production-ready without changes?</p><p class="kw-intent">Key anxiety question — your guides page covers this</p></div>
+        <div class="kw-right"><span class="priority p-med">MED</span><span class="badge badge-ok">Guide page</span></div>
+      </div>
+      <div class="kw-item">
+        <div><p class="kw-text">Does v0 work with Figma?</p><p class="kw-intent">Figma import added in Premium tier — missing from all pages</p></div>
+        <div class="kw-right"><span class="priority p-med">MED</span><span class="badge badge-miss">Missing</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <p class="section-title">Top 5 action priorities</p>
+  <div class="grid-2">
+    <div class="card" style="border-left: 2px solid #E24B4A;">
+      <p class="card-label" style="color:#791F1F;">1 — Critical gap</p>
+      <p style="font-size:14px; font-weight:500; margin:4px 0;">Add v0 vs Lovable compare page</p>
+      <p style="font-size:12px; color:var(--color-text-secondary); margin:0;">Lovable is the #1 cited v0 competitor in all 2026 benchmarks. No compare page = missing the biggest traffic opportunity.</p>
+    </div>
+    <div class="card" style="border-left: 2px solid #E24B4A;">
+      <p class="card-label" style="color:#791F1F;">2 — Critical gap</p>
+      <p style="font-size:14px; font-weight:500; margin:4px 0;">Update pricing + FAQs for Feb 2026 changes</p>
+      <p style="font-size:12px; color:var(--color-text-secondary); margin:0;">Token-based billing replaced fixed credits. v0.dev → v0.app rename. Mini/Pro/Max model tiers. All missing or outdated.</p>
+    </div>
+    <div class="card" style="border-left: 2px solid #EF9F27;">
+      <p class="card-label" style="color:#633806;">3 — High priority</p>
+      <p style="font-size:14px; font-weight:500; margin:4px 0;">Add FAQ schema + AI-focused Q&As to About page</p>
+      <p style="font-size:12px; color:var(--color-text-secondary); margin:0;">About page has no FAQ schema. AI agents cite methodology pages — add 4–6 Q&As about who you are, how you test, and affiliate disclosure.</p>
+    </div>
+    <div class="card" style="border-left: 2px solid #EF9F27;">
+      <p class="card-label" style="color:#633806;">4 — High priority</p>
+      <p style="font-size:14px; font-weight:500; margin:4px 0;">Inject GEO phrase bank into actual page content</p>
+      <p style="font-size:12px; color:var(--color-text-secondary); margin:0;">geo-phrase-bank.ts exists but is never rendered to HTML. Add a GeoVoice component that injects authentic user sentiment into article bodies.</p>
+    </div>
+    <div class="card" style="border-left: 2px solid #639922;">
+      <p class="card-label" style="color:#27500A;">5 — Quick win</p>
+      <p style="font-size:14px; font-weight:500; margin:4px 0;">Add ItemList + FAQ schema to /compare/ hub</p>
+      <p style="font-size:12px; color:var(--color-text-secondary); margin:0;">The compare index has zero schema. Add an ItemList linking to each comparison and FAQs like "what is the best v0 alternative in 2026?"</p>
+    </div>
+    <div class="card" style="border-left: 2px solid #639922;">
+      <p class="card-label" style="color:#27500A;">6 — Quick win</p>
+      <p style="font-size:14px; font-weight:500; margin:4px 0;">Add "vibe coding" + "v0.app" to home page copy</p>
+      <p style="font-size:12px; color:var(--color-text-secondary); margin:0;">"Vibe coding" is the dominant 2026 search term in this space. The v0.dev → v0.app rebrand is a confusion query. Both missing from home page metadata.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+function showKw(tab) {
+  document.querySelectorAll('.kwmap-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('kw-' + tab).classList.add('active');
+  event.target.classList.add('active');
+}
+</script>

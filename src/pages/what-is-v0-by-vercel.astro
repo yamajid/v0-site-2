@@ -2,8 +2,8 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import AuthorByline from '../components/Astro/AuthorByline.astro';
 import SoftwareAppSchema from '../components/schema/SoftwareAppSchema.astro';
-import FAQSection from '../components/schema/FAQSection.astro';
 import FreshnessStamp from '../components/FreshnessStamp.astro';
+import QandASection from '../components/Astro/QandASection.astro';
 import { definePageMeta } from '@lib/metadata.ts';
 
 
@@ -32,7 +32,7 @@ const faqItems = [
     <p>Developers describe v0 as <em>"basically cheating if you're already in the Next.js ecosystem"</em> and a <em>"game changer for rapid prototyping."</em> It integrates seamlessly with GitHub, Supabase, and Vercel deployments, enabling agentic workflows from concept to production.</p>
     
     <FreshnessStamp modified={new Date()} />
-    <FAQSection items={faqItems} />
+    <QandASection items={faqItems} />
     <AuthorByline author="v0 Guide" date={new Date(2026, 3, 20)} linkedIn="https://linkedin.com/in/yamajid" github="https://github.com/yamajid" />
   </article>
 </BaseLayout>

@@ -1,8 +1,10 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import AuthorByline from '@/components/Astro/AuthorByline.astro';
+import GeoVoice from '@/components/Astro/GeoVoice.astro';
 import AffiliateInteractiveCalculator from '@/components/React/AffiliateInteractiveCalculator.tsx';
 import FeatureTabs from '@/components/React/FeatureTabs.tsx';
+import AEOBlock from '@/components/Astro/AEOBlock.astro';
 import { definePageMeta } from '@/lib/metadata.ts';
 import { getPageMeta } from '@/data/page-metadata.ts';
 
@@ -11,7 +13,7 @@ const meta = definePageMeta({
   description: 'v0 scaffolds entire features from prompts. Iterate with natural language. Ship production-ready React with Next.js App Router and shadcn/ui in minutes.',
   path: '/',
   image: '/assets/og-home.jpg',
-  keywords: ['agentic ai', 'prompt to production', 'react ui generation', 'vibe coding', 'next.js', 'v0', 'shadcn/ui', 'server components', 'typescript', 'tailwindcss'],
+  keywords: ['vibe coding tool 2026', 'text to UI react component generator', 'prompt to production', 'agentic ai', 'v0.app', 'react ui generation', 'next.js', 'shadcn/ui', 'server components'],
 });
 
 // Extract FAQ items from page metadata for schema generation
@@ -37,9 +39,21 @@ const steps = [
     text: 'Push to GitHub with one click. Deploy to Vercel instantly. Your entire workflow, no copy-paste friction.',
   },
 ];
+
+const softwareOffers = [
+  { price: 0, currency: 'USD', availability: 'https://schema.org/InStock' },
+  { price: 20, currency: 'USD', availability: 'https://schema.org/InStock' }
+];
 ---
 
-<BaseLayout meta={meta} faqItems={faqItems} steps={steps}>
+<BaseLayout 
+  meta={meta} 
+  faqItems={faqItems} 
+  steps={steps}
+  softwareName="v0 by Vercel"
+  softwareCategory="DeveloperApplication"
+  softwareOffers={softwareOffers}
+>
   <!-- Hero Section -->
   <section class="relative overflow-hidden bg-gradient-to-b from-primary-50 to-white py-20 sm:py-32">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -54,11 +68,18 @@ const steps = [
           </span>
         </h1>
         <p class="mx-auto mt-6 max-w-2xl text-lg text-gray-600">
-          v0 scaffolds entire features from prompts. You iterate with natural language. Ship production-ready React with Next.js, shadcn/ui, and Server Components.
+          v0 is the leading text-to-UI React component generator. Scaffold entire features from plain English prompts. Iterate with natural language. Ship production-ready React with Next.js, shadcn/ui, and Server Components—no copy-paste needed.
         </p>
+
+        <div class="mx-auto max-w-2xl mt-8">
+          <AEOBlock type="definition" heading="What is v0?">
+            v0 is a **Generative UI system** by Vercel that converts natural language prompts and design mockups into production-ready React components using Tailwind CSS and shadcn/ui.
+          </AEOBlock>
+        </div>
+
         <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <a
-            href="https://v0.dev?ref=v0-guide"
+            href="https://v0.app?ref=v0-guide"
             target="_blank"
             rel="noopener noreferrer"
             class="rounded-lg bg-primary-600 px-8 py-3 text-base font-semibold text-white shadow-sm transition-colors hover:bg-primary-700"
@@ -145,6 +166,12 @@ const steps = [
           </p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <section class="pb-8">
+    <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+      <GeoVoice title="Real sentiment from v0 users" category="mixed" limit={4} />
     </div>
   </section>
 
