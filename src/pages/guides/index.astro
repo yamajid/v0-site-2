@@ -1,7 +1,12 @@
 ---
-import BaseLayout from '@layouts/BaseLayout.astro';
+// src/pages/guides/index.astro
+import BaseLayout from '@/layouts/BaseLayout.astro';
 import AuthorByline from '@/components/Astro/AuthorByline.astro';
 import { definePageMeta } from '@/lib/metadata';
+import { getCollection } from 'astro:content';
+
+const title = 'Guides - v0-guide';
+const description = 'Step-by-step tutorials and evergreen guides for mastering v0 by Vercel.';
 
 const meta = definePageMeta({
   title: 'Guides - v0-guide',
@@ -10,16 +15,94 @@ const meta = definePageMeta({
   image: '/assets/advanced-techniques.jpg',
   keywords: ['home', 'affiliate', 'ai-ui'],
 });
-// const title = 'Guides - v0-guide';
-// const description = 'Step-by-step tutorials and evergreen guides for mastering v0 by Vercel.';
+
+const sortedGuides = (await getCollection('guides')).sort(
+(a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()
+);
+
 ---
 
 <BaseLayout meta={meta}>
-  <section>
-    <h1>Guides</h1>
+  <!-- Hero -->
+  <section class="bg-gradient-to-b from-primary-50 to-white py-16 sm:py-24">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+      <span class="inline-block rounded-full bg-primary-100 px-4 py-1.5 text-sm font-medium text-primary-700">
+        In-Depth Guides
+      </span>
+      <h1 class="mt-4 text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
+        Master v0 by Vercel
+      </h1>
+      <p class="mx-auto mt-4 max-w-2xl text-lg text-slate-600">
+        {description}
+      </p>
+    </div>
   </section>
 
+  <!-- Guides List -->
+  <section class="py-12 sm:py-16">
+    <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+      {sortedGuides.length === 0 ? (
+        <div class="text-center py-12">
+          <p class="text-gray-500 text-lg">New guides coming soon. Stay tuned!</p>
+        </div>
+      ) : (
+        <div class="space-y-8">
+          {sortedGuides.map((guide) => (
+            <article class="group relative flex flex-col items-start justify-between rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:shadow-md sm:flex-row sm:items-center sm:p-8">
+              <div class="flex-1">
+                <div class="flex items-center gap-x-4 text-xs">
+                  <time datetime={guide.data.publishDate.toISOString()} class="text-slate-500">
+                    {guide.data.publishDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+                  </time>
+                  <span class="relative z-10 rounded-full bg-slate-100 px-3 py-1.5 font-medium text-slate-600">
+                    Guide
+                  </span>
+                </div>
+                <div class="group relative">
+                  <h3 class="mt-3 text-xl font-semibold leading-6 text-slate-900 group-hover:text-primary-600">
+                    <a href={`/guides/${guide.slug}`}>
+                      <span class="absolute inset-0"></span>
+                      {guide.data.title}
+                    </a>
+                  </h3>
+                  <p class="mt-3 line-clamp-2 text-sm leading-6 text-slate-600">
+                    {guide.data.description}
+                  </p>
+                </div>
+              </div>
+              <div class="mt-6 flex shrink-0 items-center sm:mt-0 sm:ml-8">
+                <span class="inline-flex items-center text-sm font-medium text-primary-600">
+                  Read guide
+                  <svg class="ml-1.5 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                  </svg>
+                </span>
+              </div>
+            </article>
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+
+  <!-- Bottom CTA -->
+  <section class="bg-slate-900 py-12">
+    <div class="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-bold text-white">Need a quick start?</h2>
+      <p class="mt-2 text-slate-300">Generate your first UI in seconds.</p>
+      <div class="mt-6">
+        <a 
+          href="https://v0.app?ref=v0-guide"
+          target="_blank"
+          rel="noopener noreferrer sponsored"
+          class="inline-flex items-center justify-center rounded-lg bg-primary-600 px-6 py-2.5 text-sm font-bold text-white hover:bg-primary-700 transition"
+        >
+          Try v0 Free →
+        </a>
+      </div>
+    </div>
+  </section>
   <article class="mx-auto max-w-4xl px-4 py-12">
-    <AuthorByline author="v0 Guide" date={new Date(2026, 3, 20)} linkedIn="https://linkedin.com/in/yamajid" github="https://github.com/yamajid" />
+    <AuthorByline author="v0 Guide" date={new Date()} linkedIn="https://linkedin.com/in/yamajid" github="https://github.com/yamajid" />
   </article>
 </BaseLayout>

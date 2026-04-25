@@ -1,134 +1,92 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://v0-guide.com/</loc>
-    <lastmod>2026-04-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://v0-guide.com/pricing/</loc>
-    <lastmod>2026-04-01</lastmod>
+    <loc>https://v0-guide.com/about/</loc>
+    <lastmod>2026-04-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://v0-guide.com/blog/</loc>
-    <lastmod>2026-04-01</lastmod>
+    <lastmod>2026-04-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://v0-guide.com/compare/</loc>
-    <lastmod>2026-04-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://v0-guide.com/guides/</loc>
-    <lastmod>2026-04-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://v0-guide.com/use-cases/</loc>
-    <lastmod>2026-04-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://v0-guide.com/what-is-v0-by-vercel/</loc>
-    <lastmod>2026-04-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://v0-guide.com/blog/advanced-v0-techniques/</loc>
-    <lastmod>2026-03-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://v0-guide.com/blog/getting-started-with-v0/</loc>
-    <lastmod>2026-03-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://v0-guide.com/blog/v0-pricing-review-2026/</loc>
-    <lastmod>2026-04-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://v0-guide.com/blog/v0-vs-cursor-ai/</loc>
-    <lastmod>2026-03-20</lastmod>
+    <lastmod>2026-04-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://v0-guide.com/compare/v0-vs-base44/</loc>
-    <lastmod>2026-03-10</lastmod>
+    <lastmod>2026-04-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://v0-guide.com/compare/v0-vs-bolt/</loc>
-    <lastmod>2026-03-25</lastmod>
+    <lastmod>2026-04-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://v0-guide.com/compare/v0-vs-figma-make/</loc>
-    <lastmod>2026-03-15</lastmod>
+    <lastmod>2026-04-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://v0-guide.com/compare/v0-vs-github-copilot/</loc>
-    <lastmod>2026-03-20</lastmod>
+    <lastmod>2026-04-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://v0-guide.com/compare/v0-vs-lovable/</loc>
-    <lastmod>2026-04-21</lastmod>
+    <lastmod>2026-04-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://v0-guide.com/compare/v0-vs-replit/</loc>
-    <lastmod>2026-03-25</lastmod>
+    <lastmod>2026-04-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://v0-guide.com/compare/v0-vs-windsurf/</loc>
-    <lastmod>2026-04-21</lastmod>
+    <lastmod>2026-04-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://v0-guide.com/use-cases/agentic-workflows/</loc>
-    <lastmod>2026-03-15</lastmod>
+    <loc>https://v0-guide.com/guides/</loc>
+    <lastmod>2026-04-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://v0-guide.com/use-cases/internal-tools-dashboards/</loc>
-    <lastmod>2026-03-10</lastmod>
+    <loc>https://v0-guide.com</loc>
+    <lastmod>2026-04-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://v0-guide.com/pricing/</loc>
+    <lastmod>2026-04-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://v0-guide.com/use-cases/personal-projects-side-hustles/</loc>
-    <lastmod>2026-03-20</lastmod>
+    <loc>https://v0-guide.com/use-cases/</loc>
+    <lastmod>2026-04-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://v0-guide.com/use-cases/prototyping-wireframing/</loc>
-    <lastmod>2026-03-15</lastmod>
+    <loc>https://v0-guide.com/what-is-v0-by-vercel/</loc>
+    <lastmod>2026-04-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

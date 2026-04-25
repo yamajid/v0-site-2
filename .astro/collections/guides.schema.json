@@ -4,6 +4,14 @@
     "guides": {
       "type": "object",
       "properties": {
+        "seoTitle": {
+          "type": "string",
+          "maxLength": 80
+        },
+        "seoDescription": {
+          "type": "string",
+          "maxLength": 160
+        },
         "title": {
           "type": "string"
         },
@@ -66,11 +74,32 @@
         "readingTime": {
           "type": "number"
         },
+        "faqItems": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "question": {
+                "type": "string"
+              },
+              "answer": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "question",
+              "answer"
+            ],
+            "additionalProperties": false
+          }
+        },
         "$schema": {
           "type": "string"
         }
       },
       "required": [
+        "seoTitle",
+        "seoDescription",
         "title",
         "description",
         "publishDate",

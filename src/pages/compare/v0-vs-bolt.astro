@@ -2,6 +2,7 @@
 // src/pages/v0-site-2/compare/v0-vs-bolt.astro
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { definePageMeta } from '@/lib/metadata';
+import AEOBlock from '@/components/Astro/AEOBlock.astro';
 
 const meta = definePageMeta({
   title: 'v0 vs Bolt.new: Which AI UI Generator Wins for Your Project? (2026)',
@@ -58,9 +59,9 @@ const faqItems = [
         <div class="text-sm text-slate-600 mb-2">
           By <strong>v0 Guide</strong> — Editorial
         </div>
-        <p class="text-base text-slate-700 font-medium mb-6">
-          Short answer: Bolt.new is faster to production for agencies (full-stack + infra included). v0 wins for Next.js-native, design-first workflows.
-        </p>
+        <AEOBlock type="verdict" heading="Short Answer">
+          Bolt.new is faster to production for agencies (full-stack + infra included). v0 wins for Next.js-native, design-first workflows.
+        </AEOBlock>
       </div>
 
       <!-- TL;DR Table -->

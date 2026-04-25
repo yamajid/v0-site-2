@@ -1,50 +1,49 @@
 import type { APIRoute } from 'astro';
 
 export const GET: APIRoute = async ({ site }) => {
-  const pages = [
-    { path: '', lastmod: '2026-04-17' },
-    { path: 'pricing/', lastmod: '2026-04-01' },
-    { path: 'blog/', lastmod: '2026-04-01' },
-    { path: 'compare/', lastmod: '2026-04-01' },
-    { path: 'guides/', lastmod: '2026-04-01' },
-    { path: 'use-cases/', lastmod: '2026-04-01' },
-    { path: 'what-is-v0-by-vercel/', lastmod: '2026-04-01' },
-    { path: 'blog/advanced-v0-techniques/', lastmod: '2026-03-15' },
-    { path: 'blog/getting-started-with-v0/', lastmod: '2026-03-01' },
-    { path: 'blog/v0-pricing-review-2026/', lastmod: '2026-04-01' },
-    { path: 'blog/v0-vs-cursor-ai/', lastmod: '2026-03-20' },
-    { path: 'compare/v0-vs-base44/', lastmod: '2026-03-10' },
-    { path: 'compare/v0-vs-bolt/', lastmod: '2026-03-25' },
-    { path: 'compare/v0-vs-figma-make/', lastmod: '2026-03-15' },
-    { path: 'compare/v0-vs-github-copilot/', lastmod: '2026-03-20' },
-    { path: 'compare/v0-vs-lovable/', lastmod: '2026-04-21' },
-    { path: 'compare/v0-vs-replit/', lastmod: '2026-03-25' },
-    { path: 'compare/v0-vs-windsurf/', lastmod: '2026-04-21' },
-    { path: 'use-cases/agentic-workflows/', lastmod: '2026-03-15' },
-    { path: 'use-cases/internal-tools-dashboards/', lastmod: '2026-03-10' },
-    { path: 'use-cases/personal-projects-side-hustles/', lastmod: '2026-03-20' },
-    { path: 'use-cases/prototyping-wireframing/', lastmod: '2026-03-15' },
-  ];
+  const baseUrl = site ? site.href : 'https://v0-guide.com';
+  
+  // Use import.meta.glob to dynamically fetch all Astro pages
+  const pages = import.meta.glob('./**/*.astro', { eager: true });
+  
+  const currentDate = new Date().toISOString().split('T')[0];
+  
+  const urls = Object.keys(pages).map((filePath) => {
+    // filePath format: "./index.astro" or "./compare/v0-vs-bolt.astro"
+    let path = filePath.replace('./', '').replace('.astro', '');
+    
+    // Normalize paths (removes the 'index' file name from roots/subdirectories)
+    if (path === 'index') {
+      path = ''; // Root site
+    } else if (path.endsWith('/index')) {
+      path = path.replace(/\/index$/, '/');
+    } else if (!path.endsWith('/')) {
+      path = `${path}/`; // Add trailing slash for consistency
+    }
 
-  const baseUrl = site || 'https://v0-guide.com';
+    // Skip 404 pages or dynamic segments mapped as actual names
+    if (path.includes('404') || path.includes('[')) return null;
+
+    const cleanBaseUrl = baseUrl.endsWith('/') ? baseUrl.slice(0, -1) : baseUrl;
+    const urlPath = path === '' ? cleanBaseUrl : `${cleanBaseUrl}/${path}`;
+    
+    return `  <url>
+    <loc>${urlPath}</loc>
+    <lastmod>${currentDate}</lastmod>
+    <changefreq>${path === '' ? 'weekly' : 'monthly'}</changefreq>
+    <priority>${path === '' ? '1.0' : '0.8'}</priority>
+  </url>`;
+  }).filter(Boolean);
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${pages
-  .map(
-    (page) => `  <url>
-    <loc>${baseUrl}${page.path}</loc>
-    <lastmod>${page.lastmod}</lastmod>
-    <changefreq>${page.path === '/' ? 'weekly' : 'monthly'}</changefreq>
-    <priority>${page.path === '/' ? '1.0' : '0.8'}</priority>
-  </url>`
-  )
-  .join('\n')}
+${urls.join('\n')}
 </urlset>`;
 
   return new Response(sitemap, {
     headers: {
       'Content-Type': 'application/xml',
+      'Cache-Control': 'public, max-age=3600'
     },
   });
 };

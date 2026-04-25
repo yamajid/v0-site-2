@@ -2,6 +2,7 @@
 // src/pages/v0-site-2/compare/v0-vs-replit.astro
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { definePageMeta } from '@/lib/metadata';
+import AEOBlock from '@/components/Astro/AEOBlock.astro';
 
 const meta = definePageMeta({
   title: 'v0 vs Replit: AI Tools for Teams & Enterprises (2026)',
@@ -59,8 +60,8 @@ const faqItems = [
         <div class="text-sm text-slate-600 mb-2">
           By <strong>v0 Guide</strong> — Editorial
         </div>
-        <p class="text-base text-slate-700 font-medium mb-6">
-          Short answer: Replit is better for team collaboration and fixed-cost plans; v0 is stronger for UI fidelity and Next.js integration.
+        <AEOBlock type="verdict" heading="Short Answer">
+          Replit is better for team collaboration and fixed-cost plans; v0 is stronger for UI fidelity and Next.js integration.
         </p>
       </div>
 
@@ -655,7 +656,7 @@ const faqItems = [
       <div class="mt-8 p-6 bg-slate-100 rounded-lg border border-slate-300">
         <p class="text-center text-slate-900 font-semibold text-lg">
           <strong>Overall Verdict:</strong> For teams, <strong>Replit edges out v0 on total cost of ownership and governance</strong>. But if you're design-focused or solo, <strong>v0 is the better choice</strong>.
-        </p>
+        </AEOBlock>
       </div>
     </div>
   </section>

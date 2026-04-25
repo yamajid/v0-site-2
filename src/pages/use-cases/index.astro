@@ -1,10 +1,9 @@
 ---
 // src/pages/use-cases/index.astro
-// Minimal static page: Use Cases Hub (placeholder)
-
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import AuthorByline from '@/components/Astro/AuthorByline.astro';
 import { definePageMeta } from '@/lib/metadata';
+import { getCollection } from 'astro:content';
 
 const title = 'Use Cases - v0-guide';
 const description = 'Explore real-world ways to use v0 by Vercel for faster UI development.';
@@ -16,37 +15,14 @@ const meta = definePageMeta({
   image: '/assets/og-home.jpg',
   keywords: ['home', 'affiliate', 'ai-ui'],
 });
-// ✅ Planned use cases per SEO strategy (Section 2.3)
-const useCases = [
-  {
-    slug: 'internal-tools-dashboards',
-    title: 'Building Internal Tools & Admin Dashboards',
-    description: 'Rapidly generate admin panels, data tables, and workflow tools.',
-    icon: '📊'
-  },
-  {
-    slug: 'prototyping-wireframing',
-    title: 'Product Prototyping & Wireframing',
-    description: 'Go from idea to interactive prototype in minutes, not hours.',
-    icon: '✏️'
-  },
-  {
-    slug: 'personal-projects-side-hustles',
-    title: 'Personal Projects & Side-Hustles',
-    description: 'Build landing pages, portfolios, and MVPs without design skills.',
-    icon: '🚀'
-  },
-  {
-    slug: 'agentic-workflows',
-    title: 'Agentic Development Workflows',
-    description: 'Integrate v0 into AI agent pipelines for autonomous UI generation.',
-    icon: '🤖'
-  },
-];
+
+const sortedUseCases = (await getCollection('use-cases')).sort(
+(a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()
+);
+
 ---
 
 <BaseLayout meta={meta}>
-  
   <!-- Hero -->
   <section class="bg-gradient-to-b from-primary-50 to-white py-16 sm:py-24">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
@@ -65,25 +41,31 @@ const useCases = [
   <!-- Use Cases Grid -->
   <section class="py-12 sm:py-16">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="grid gap-8 sm:grid-cols-2">
-        {useCases.map((useCase) => (
-          <a 
-            href={`/use-cases/${useCase.slug}`}
-            class="group block p-6 rounded-xl border border-slate-200 bg-white shadow-sm transition-all hover:shadow-md hover:-translate-y-0.5"
-          >
-            <div class="text-3xl mb-4">{useCase.icon}</div>
-            <h3 class="text-lg font-semibold text-slate-900 group-hover:text-primary-600">
-              {useCase.title}
-            </h3>
-            <p class="mt-2 text-sm text-slate-600">
-              {useCase.description}
-            </p>
-            <p class="mt-4 text-sm text-primary-600 font-medium group-hover:underline">
-              Learn more →
-            </p>
-          </a>
-        ))}
-      </div>
+      {sortedUseCases.length === 0 ? (
+        <div class="text-center py-12">
+          <p class="text-gray-500 text-lg">New use cases coming soon. Stay tuned!</p>
+        </div>
+      ) : (
+        <div class="grid gap-8 sm:grid-cols-2">
+          {sortedUseCases.map((useCase) => (
+            <a 
+              href={`/use-cases/${useCase.slug}`}
+              class="group block p-6 rounded-xl border border-slate-200 bg-white shadow-sm transition-all hover:shadow-md hover:-translate-y-0.5"
+            >
+              <div class="text-3xl mb-4">🚀</div>
+              <h3 class="text-lg font-semibold text-slate-900 group-hover:text-primary-600">
+                {useCase.data.title}
+              </h3>
+              <p class="mt-2 text-sm text-slate-600">
+                {useCase.data.description}
+              </p>
+              <p class="mt-4 text-sm text-primary-600 font-medium group-hover:underline">
+                Learn more →
+              </p>
+            </a>
+          ))}
+        </div>
+      )}
     </div>
   </section>
 
@@ -95,6 +77,8 @@ const useCases = [
       <div class="mt-6">
         <a 
           href="https://v0.app?ref=v0-guide"
+          target="_blank"
+          rel="noopener noreferrer sponsored"
           class="inline-flex items-center justify-center rounded-lg bg-primary-600 px-6 py-2.5 text-sm font-bold text-white hover:bg-primary-700 transition"
         >
           Try v0 Free →

@@ -1,116 +1,99 @@
 ---
 // src/pages/compare/index.astro
-// Static comparison index: clickable cards linking to individual comparison pages
-
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import AuthorByline from '@/components/Astro/AuthorByline.astro';
 import { definePageMeta } from '@/lib/metadata';
-import GeoVoice from '@/components/Astro/GeoVoice.astro';
+import { getCollection } from 'astro:content';
 
-const title = 'v0 Comparisons - Find the Best AI UI Tool';
-const description = 'Detailed, data-driven comparisons between v0 and other AI development tools.';
+const title = 'Compare AI UI Builders - v0-guide';
+const description = 'How does v0 by Vercel stack up against other AI UI generators and coding assistants?';
 
 const meta = definePageMeta({
-  title: 'v0 Comparisons - Find the Best AI UI Tool',
-  description: 'Detailed, data-driven comparisons between v0 and other AI development tools.',
+  title: 'Compare AI UI Builders - v0-guide',
+  description: 'How does v0 by Vercel stack up against other AI UI generators and coding assistants?',
   path: '/compare',
   image: '/assets/og-home.jpg',
-  keywords: ['home', 'affiliate', 'ai-ui'],
+  keywords: ['compare', 'ai-ui', 'v0 alternatives'],
 });
 
-// ✅ Planned comparisons per SEO strategy
-const comparisons = [
-  { slug: 'v0-vs-lovable', title: 'v0 vs Lovable', description: 'UI-first control vs rapid app-first workflows', image: '/assets/compare/lovable.jpg' },
-  { slug: 'v0-vs-windsurf', title: 'v0 vs Windsurf', description: 'Prompted UI generation vs AI-native IDE coding loop', image: '/assets/compare/windsurf.jpg' },
-  { slug: 'v0-vs-replit', title: 'v0 vs Replit', description: 'UI generation vs full-stack deployment workflows', image: '/assets/compare/replit.jpg' },
-  { slug: 'v0-vs-bolt', title: 'v0 vs Bolt.new', description: 'Component-focused vs app-focused AI builders', image: '/assets/compare/bolt.jpg' },
-  { slug: 'v0-vs-base44', title: 'v0 vs Base44', description: 'Code generation vs no-code platform capabilities', image: '/assets/compare/base44.jpg' },
-  { slug: 'v0-vs-figma-make', title: 'v0 vs Figma Make', description: 'AI prompt-to-code vs design-to-code workflows', image: '/assets/compare/figma.jpg' },
-  { slug: 'v0-vs-github-copilot', title: 'v0 vs GitHub Copilot', description: 'UI-specific AI vs general code assistant', image: '/assets/compare/copilot.jpg' },
-];
+const sortedComparisons = (await getCollection('compare')).sort(
+(a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()
+);
 
-const faqItems = [
-  {
-    question: 'What is the best v0 alternative in 2026?',
-    answer: 'The best alternative depends on your workflow. If you want faster end-to-end app assembly, tools like Lovable or Bolt may fit better. If you want deeper code control and React/Next.js component quality, v0 often remains the better option. Use one real project to benchmark speed and output quality before deciding.'
-  },
-  {
-    question: 'Should I choose v0, Bolt, Lovable, or Windsurf?',
-    answer: 'Choose based on your bottleneck. Pick v0 for UI-first React workflows, Bolt or Lovable for faster app-level execution, and Windsurf if your team needs AI-native coding flow inside an IDE. The right decision comes from comparing delivery time, rework effort, and final code quality on the same feature.'
-  },
-  {
-    question: 'Can v0 handle full-stack projects now?',
-    answer: 'v0 now supports broader workflows than earlier releases, including Git-connected iteration and runtime-oriented patterns. For production deployment, teams should still validate backend architecture, database design, and security controls in their own stack rather than relying only on generated output.'
-  }
-];
-
-const siteBase = Astro.site?.toString().replace(/\/$/, '') ?? 'https://v0-guide.com';
-const itemListSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'ItemList',
-  name: 'v0 Comparison Guides',
-  itemListElement: comparisons.map((comp, index) => ({
-    '@type': 'ListItem',
-    position: index + 1,
-    name: comp.title,
-    url: `${siteBase}/compare/${comp.slug}/`,
-  })),
-};
 ---
 
-<BaseLayout meta={meta} faqItems={faqItems}>
-  <script type="application/ld+json" set:html={JSON.stringify(itemListSchema)} />
-
-  <!-- Header -->
+<BaseLayout meta={meta}>
+  <!-- Hero -->
   <section class="bg-gradient-to-b from-primary-50 to-white py-16 sm:py-24">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
       <span class="inline-block rounded-full bg-primary-100 px-4 py-1.5 text-sm font-medium text-primary-700">
-        Comparisons
+        Compare Tools
       </span>
-      <h1 class="mt-4 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
-        How v0 Stacks Up
+      <h1 class="mt-4 text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
+        v0 vs The Ecosystem
       </h1>
-      <p class="mx-auto mt-4 max-w-2xl text-lg text-gray-600">
-        Lovable and Windsurf are the top v0 alternatives in 2026. Below are detailed, data-driven comparisons to help you choose the right AI development tool for your workflow.
+      <p class="mx-auto mt-4 max-w-2xl text-lg text-slate-600">
+        {description}
       </p>
     </div>
   </section>
 
-  <!-- Cards Grid -->
+  <!-- Comparison Map -->
   <section class="py-12 sm:py-16">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-        {comparisons.map((comp) => (
-          <a href={`/compare/${comp.slug}`} class="group block overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition-all hover:shadow-md hover:-translate-y-0.5">
-            <!-- Image with graceful fallback -->
-            <div class="aspect-video overflow-hidden bg-gray-100">
-              <img
-                src={comp.image}
-                alt={comp.title}
-                class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                loading="lazy"
-                onerror="this.parentElement.style.backgroundColor='#f1f5f9'; this.style.display='none'"
-              />
-            </div>
-            
-            <!-- Content -->
-            <div class="p-6">
-              <h2 class="text-lg font-semibold text-gray-900 group-hover:text-primary-600">
-                {comp.title}
-              </h2>
-              <p class="mt-2 text-sm text-gray-600">
-                {comp.description}
+      {sortedComparisons.length === 0 ? (
+        <div class="text-center py-12">
+          <p class="text-gray-500 text-lg">Comparisons coming soon. Stay tuned!</p>
+        </div>
+      ) : (
+        <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          {sortedComparisons.map((item) => (
+            <a 
+              href={`/compare/${item.slug}`}
+              class="group block p-6 rounded-xl border border-slate-200 bg-white shadow-sm transition-all hover:shadow-md hover:-translate-y-0.5"
+            >
+              <div class="flex items-center justify-between mb-4">
+                <div class="text-2xl font-bold text-slate-900">v0</div>
+                <div class="text-sm font-medium text-slate-400 border border-slate-200 rounded px-2 py-1">vs</div>
+                <div class="text-2xl font-bold text-slate-900">{item.data.title.replace('v0 vs ', '').replace('v0 vs. ', '')}</div>
+              </div>
+              <h3 class="text-lg font-semibold text-slate-900 group-hover:text-primary-600">
+                {item.data.title}
+              </h3>
+              <p class="mt-2 text-sm text-slate-600 mb-4 h-10 line-clamp-2">
+                {item.data.description}
               </p>
-              <p class="mt-4 text-sm text-primary-600 font-medium group-hover:underline">
-                Read comparison →
-              </p>
-            </div>
-          </a>
-        ))}
-      </div>
+              <div class="flex items-center text-sm text-primary-600 font-medium pb-2">
+                <span>Read analysis</span>
+                <svg class="ml-1.5 h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </div>
+            </a>
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
 
-      <div class="mx-auto mt-10 max-w-4xl">
-        <GeoVoice title="What teams report in real workflows" category="mixed" limit={4} />
+  <!-- Bottom CTA -->
+  <section class="bg-slate-900 py-12">
+    <div class="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-bold text-white">Compare for yourself</h2>
+      <p class="mt-2 text-slate-300">Experience how fast you can iterate with v0.</p>
+      <div class="mt-6">
+        <a 
+          href="https://v0.app?ref=v0-guide"
+          target="_blank"
+          rel="noopener noreferrer sponsored"
+          class="inline-flex items-center justify-center rounded-lg bg-primary-600 px-6 py-2.5 text-sm font-bold text-white hover:bg-primary-700 transition"
+        >
+          Try v0 Free →
+        </a>
       </div>
     </div>
   </section>
+  <article class="mx-auto max-w-4xl px-4 py-12">
+    <AuthorByline author="v0 Guide" date={new Date(2026, 3, 20)} linkedIn="https://linkedin.com/in/yamajid" github="https://github.com/yamajid" />
+  </article>
 </BaseLayout>

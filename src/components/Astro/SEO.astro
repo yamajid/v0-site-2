@@ -1,6 +1,6 @@
 ---
 // src/components/SEO.astro
-import { getSiteUrlWithPath } from '@/lib/site-config';
+import { getSiteUrlWithPath, getSiteUrl } from '@/lib/site-config';
 
 
 
@@ -41,7 +41,7 @@ const {
   author = 'v0-Guide',
 } = Astro.props;
 
-const siteURL = Astro.site?.href || 'https://v0-guide.com';
+const siteURL = getSiteUrl();
 const ogImage = image.startsWith('http') ? image : getSiteUrlWithPath(image);
 const canonical = canonicalURL || Astro.url.href;
 ---
@@ -93,10 +93,6 @@ const canonical = canonicalURL || Astro.url.href;
   },
   "publisher": {
     "@type": "Organization",
-    "name": "v0-guide",
-    "logo": {
-      "@type": "ImageObject",
-      "url": `${siteURL}/assets/logo.png`
-    }
+    "@id": `${siteURL}/#organization`
   }
 })} />

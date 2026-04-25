@@ -1,18 +1,12 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
 import { getPageMeta } from "../data/page-metadata";
-import FAQSection from "../components/schema/FAQSection.astro";
-import HowToSchema from "../components/schema/HowToSchema.astro";
-import SoftwareAppSchema from "../components/schema/SoftwareAppSchema.astro";
 import { getSiteUrl } from "@/lib/site-config";
-// import AggregateRatingSchema from "../components/schema/AggregateRatingSchema.astro";
+import type { PageMetaResolved } from '@/lib/metadata';
 
 const { pathname } = Astro.url;
+const metaData = getPageMeta(pathname);
 
-// ── Pull metadata from central store ──────────────────────────────────────
-const meta = getPageMeta(pathname);
-
-// Props can still override individual fields if a page needs it
 interface Props {
   title?: string;
   description?: string;
@@ -26,91 +20,35 @@ interface Props {
 }
 
 const {
-  title        = meta.title,
-  description  = meta.description,
-  ogImage      = meta.ogImage ?? "/assets/og-default.jpg",
-  datePublished = meta.datePublished,
-  dateModified  = meta.dateModified,
-  faqItems      = meta.faqItems,
-  steps         = meta.steps,
-  softwareName  = meta.softwareName,
-  aggregateRating = meta.aggregateRating,
+  title        = metaData.title,
+  description  = metaData.description,
+  ogImage      = metaData.ogImage ?? "/assets/og-default.jpg",
+  datePublished = metaData.datePublished,
+  dateModified  = metaData.dateModified,
+  faqItems      = metaData.faqItems,
+  steps         = metaData.steps,
+  softwareName  = metaData.softwareName,
+  aggregateRating = metaData.aggregateRating,
 } = Astro.props;
 
-// ── Auto-generate BreadcrumbList from pathname ─────────────────────────────
-const siteUrl  = getSiteUrl();
-const segments = pathname.replace(/^\/|\/$/g, "").split("/").filter(Boolean);
+const siteUrl = getSiteUrl();
 
-const breadcrumbs = [
-  { name: "Home", url: siteUrl + "/" },
-  ...segments.map((seg, i) => ({
-    name: seg
-      .replace(/-/g, " ")
-      .replace(/\b\w/g, (c) => c.toUpperCase()),
-    url: siteUrl + "/" + segments.slice(0, i + 1).join("/") + "/",
-  })),
-];
-
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  itemListElement: breadcrumbs.map((crumb, i) => ({
-    "@type": "ListItem",
-    position: i + 1,
-    name: crumb.name,
-    item: crumb.url,
-  })),
-};
-
-// ── Article schema ─────────────────────────────────────────────────────────
-const articleSchema = {
-  "@context": "https://schema.org",
-  "@type": "Article",
-  headline: title,
-  description,
-  datePublished,
-  dateModified,
-  image: siteUrl + ogImage,
-  author: { "@type": "Organization", name: "v0guide.com" },
-  publisher: {
-    "@type": "Organization",
-    name: "v0guide.com",
-    logo: { "@type": "ImageObject", url: siteUrl + "/assets/og-default.jpg" },
-  },
+const resolvedMeta: PageMetaResolved = {
+  title: title,
+  description: description,
+  image: ogImage,
+  canonicalURL: siteUrl + pathname,
+  type: 'article',
+  keywords: [], // Empty array as fallback
+  publishedTime: datePublished,
 };
 ---
 
-<BaseLayout title={title} description={description} ogImage={ogImage}>
-
-  <!-- BreadcrumbList JSON-LD (auto-generated, every page) -->
-  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} slot="head" />
-
-  <!-- Article JSON-LD -->
-  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} slot="head" />
-
-  <!-- Breadcrumb UI -->
-  {segments.length > 0 && (
-    <nav aria-label="Breadcrumb" class="breadcrumb">
-      <ol>
-        {breadcrumbs.map((crumb, i) => (
-          <li>
-            {i < breadcrumbs.length - 1
-              ? <a href={crumb.url}>{crumb.name}</a>
-              : <span aria-current="page">{crumb.name}</span>
-            }
-          </li>
-        ))}
-      </ol>
-    </nav>
-  )}
-
-  <!-- Page content slot -->
+<BaseLayout 
+  meta={resolvedMeta}
+  faqItems={faqItems}
+  steps={steps}
+  softwareName={softwareName}
+>
   <slot />
-
-  <!-- Schema components — only render when props are present -->
-  {faqItems?.length     && <FAQSection items={faqItems} />}
-  {steps?.length        && <HowToSchema name={title} steps={steps} />}
-  {softwareName         && <SoftwareAppSchema name={softwareName} />}
-  <!-- {aggregateRating      && <AggregateRatingSchema {...aggregateRating} />} -->
-
 </BaseLayout>

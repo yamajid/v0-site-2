@@ -2,6 +2,7 @@
 // src/pages/v0-site-2/compare/v0-vs-github-copilot.astro
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { definePageMeta } from '@/lib/metadata';
+import AEOBlock from '@/components/Astro/AEOBlock.astro';
 
 const meta = definePageMeta({
   title: 'v0 vs GitHub Copilot: AI Coding Tools Compared (2026)',
@@ -58,8 +59,8 @@ const faqItems = [
         <div class="text-sm text-slate-600 mb-2">
           By <strong>v0 Guide</strong> — Editorial
         </div>
-        <p class="text-base text-slate-700 font-medium mb-6">
-          Short answer: Use v0 for UI generation and Copilot for backend or multi-language coding — together they make a faster full-stack workflow.
+        <AEOBlock type="verdict" heading="Short Answer">
+          Use v0 for UI generation and Copilot for backend or multi-language coding — together they make a faster full-stack workflow.
         </p>
       </div>
 
@@ -660,7 +661,7 @@ const faqItems = [
       <div class="mt-8 p-6 bg-slate-100 rounded-lg border border-slate-300">
         <p class="text-center text-slate-900 font-semibold text-lg">
           <strong>Overall Verdict:</strong> For React-only projects, <strong>v0 wins</strong>. For backend/full-stack, <strong>Copilot wins</strong>. For maximum speed building full-stack products, <strong>use both ($30-40/month is worth the ROI)</strong>.
-        </p>
+        </AEOBlock>
       </div>
     </div>
   </section>

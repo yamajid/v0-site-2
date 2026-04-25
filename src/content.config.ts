@@ -3,6 +3,8 @@ import { defineCollection, z } from 'astro:content';
 const blogCollection = defineCollection({
   type: 'content',
   schema: z.object({
+    seoTitle: z.string().max(80),
+    seoDescription: z.string().max(160),
     title: z.string(),
     description: z.string(),
     publishDate: z.coerce.date(),
@@ -13,12 +15,15 @@ const blogCollection = defineCollection({
     image: z.string().optional(),
     featured: z.boolean().default(false),
     readingTime: z.number().optional(),
+    faqItems: z.array(z.object({ question: z.string(), answer: z.string() })).optional(),
   }),
 });
 
 const compareCollection = defineCollection({
   type: 'content',
   schema: z.object({
+    seoTitle: z.string().max(80),
+    seoDescription: z.string().max(160),
     title: z.string(),
     description: z.string(),
     competitor: z.string(),
@@ -31,12 +36,15 @@ const compareCollection = defineCollection({
     rating: z.number().min(0).max(5),
     image: z.string().optional(),
     affiliateLink: z.string().url(),
+    faqItems: z.array(z.object({ question: z.string(), answer: z.string() })).optional(),
   }),
 });
 
 const useCasesCollection = defineCollection({
   type: 'content',
   schema: z.object({
+    seoTitle: z.string().max(80),
+    seoDescription: z.string().max(160),
     title: z.string(),
     description: z.string(),
     useCase: z.string(),
@@ -47,12 +55,15 @@ const useCasesCollection = defineCollection({
     keyBenefits: z.array(z.string()),
     image: z.string().optional(),
     affiliateLink: z.string().url(),
+    faqItems: z.array(z.object({ question: z.string(), answer: z.string() })).optional(),
   }),
 });
 
 const guidesCollection = defineCollection({
   type: 'content',
   schema: z.object({
+    seoTitle: z.string().max(80),
+    seoDescription: z.string().max(160),
     title: z.string(),
     description: z.string(),
     publishDate: z.coerce.date(),
@@ -62,6 +73,7 @@ const guidesCollection = defineCollection({
     tags: z.array(z.string()).default([]),
     image: z.string().optional(),
     readingTime: z.number().optional(),
+    faqItems: z.array(z.object({ question: z.string(), answer: z.string() })).optional(),
   }),
 });
 

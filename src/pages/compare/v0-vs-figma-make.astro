@@ -2,6 +2,7 @@
 // src/pages/v0-site-2/compare/v0-vs-figma-make.astro
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { definePageMeta } from '@/lib/metadata';
+import AEOBlock from '@/components/Astro/AEOBlock.astro';
 
 const meta = definePageMeta({
   title: 'v0 vs Figma Make: Design-to-Code Workflow Comparison (2026)',
@@ -58,8 +59,8 @@ const faqItems = [
         <div class="text-sm text-slate-600 mb-2">
           By <strong>v0 Guide</strong> — Editorial
         </div>
-        <p class="text-base text-slate-700 font-medium mb-6">
-          Short answer: Figma Make is ideal for designers who need token preservation and fast visual iterations; v0 is better for Next.js handoffs and dev workflows.
+        <AEOBlock type="verdict" heading="Short Answer">
+          Figma Make is ideal for designers who need token preservation and fast visual iterations; v0 is better for Next.js handoffs and dev workflows.
         </p>
       </div>
 
@@ -628,7 +629,7 @@ const faqItems = [
       <div class="mt-8 p-6 bg-slate-100 rounded-lg border border-slate-300">
         <p class="text-center text-slate-900 font-semibold text-lg">
           Choose based on your role and needs. <strong>For designers and design teams, Figma Make wins decisively.</strong> <strong>For developers, v0 wins decisively.</strong>
-        </p>
+        </AEOBlock>
       </div>
     </div>
   </section>

@@ -70,7 +70,7 @@ const articleSchema = {
   "datePublished": meta.publishedTime,
   "image": siteUrl + meta.image,
   "author": { 
-    "@type": "Person", 
+    "@type": authorName === "v0 Guide Editorial" || authorName === "v0 Guide" ? "Organization" : "Person", 
     "@id": `${siteUrl}/#author-${authorName.toLowerCase().replace(/\s+/g, '-')}`,
     "name": authorName
   },
@@ -89,33 +89,6 @@ const articleSchema = {
     "@id": siteUrl + pathname
   }
 };
-
-// ── FAQPage schema (only if faqItems exist) ────────────────────────────────
-const faqPageSchema = faqItems && faqItems.length > 0 ? {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faqItems.map(item => ({
-    "@type": "Question",
-    name: item.question,
-    acceptedAnswer: {
-      "@type": "Answer",
-      text: item.answer,
-    },
-  })),
-} : null;
-
-// ── HowTo schema (only if steps exist) ──────────────────────────────────────
-const howToSchema = steps && steps.length > 0 ? {
-  "@context": "https://schema.org",
-  "@type": "HowTo",
-  name: meta.title,
-  step: steps.map((step, index) => ({
-    "@type": "HowToStep",
-    position: index + 1,
-    name: step.name,
-    text: step.text,
-  })),
-} : null;
 ---
 
 <!doctype html>
@@ -149,21 +122,8 @@ const howToSchema = steps && steps.length > 0 ? {
     <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
 
     <!-- Article JSON-LD -->
-    <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
-
-    <!-- FAQPage JSON-LD (only if faqItems exist) -->
-    {faqPageSchema && <script type="application/ld+json" set:html={JSON.stringify(faqPageSchema)} />}
-
-    <!-- HowTo JSON-LD (only if steps exist) -->
-    {howToSchema && <script type="application/ld+json" set:html={JSON.stringify(howToSchema)} />}
-
-    <!-- SoftwareApplication JSON-LD (Identify the Product) -->
-    {softwareName && (
-      <SoftwareAppSchema 
-        name={softwareName} 
-        category={softwareCategory} 
-        offers={softwareOffers}
-      />
+    {meta.type === 'article' && (
+      <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
     )}
   </head>
   <body class="flex flex-col min-h-screen bg-white font-sans text-gray-900 antialiased">
@@ -190,7 +150,13 @@ const howToSchema = steps && steps.length > 0 ? {
       <!-- Schema components — only render when props are present -->
       {faqItems?.length     && <FAQSection items={faqItems} />}
       {steps?.length        && <HowToSchema name={meta.title} steps={steps} />}
-      {softwareName         && <SoftwareAppSchema name={softwareName} />}
+      {softwareName         && (
+        <SoftwareAppSchema 
+          name={softwareName} 
+          category={softwareCategory} 
+          offers={softwareOffers}
+        />
+      )}
     </main>
     <Footer />
   </body>

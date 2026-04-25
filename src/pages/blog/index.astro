@@ -1,10 +1,9 @@
 ---
 // src/pages/blog/index.astro
-// Simple static cards: image + title → clickable link to blog post
-
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import AuthorByline from '@/components/Astro/AuthorByline.astro';
 import { definePageMeta } from '@/lib/metadata.ts';
+import { getCollection } from 'astro:content';
 
 const meta = definePageMeta({
   title: 'Blog - Vercel v0 guide',
@@ -14,38 +13,9 @@ const meta = definePageMeta({
   keywords: ['home', 'affiliate', 'ai-ui'],
 });
 
-
-// ✅ Minimal static data: only what's needed for linking
-const posts = [
-  {
-    slug: 'getting-started-with-v0',
-    title: 'Getting Started with v0: A Complete Beginner\'s Guide',
-    image: '/assets/blog/getting-started.jpg', // placeholder - we'll add real images in P1 Task #4
-    category: 'Tutorial',
-    date: 'Apr 10, 2026',
-  },
-  {
-    slug: 'v0-vs-cursor-ai',
-    title: 'v0 vs Cursor AI: Which is Better for UI Development?',
-    image: '/assets/blog/v0-vs-cursor.jpg',
-    category: 'Comparison',
-    date: 'Apr 8, 2026',
-  },
-  {
-    slug: 'advanced-v0-techniques',
-    title: 'Advanced v0 Techniques: Prompts, Iteration & Export',
-    image: '/assets/blog/advanced-techniques.jpg',
-    category: 'Advanced',
-    date: 'Mar 15, 2026',
-  },
-  {
-    slug: 'v0-pricing-review-2026',
-    title: 'v0 Pricing Tiers Explained: Which Plan Is Right for You?',
-    image: '/assets/blog/pricing-2026.jpg',
-    category: 'Guide',
-    date: 'Apr 1, 2026',
-  },
-];
+const sortedPosts = (await getCollection('blog')).sort(
+(a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()
+);
 ---
 
 <BaseLayout meta={meta}>
@@ -67,38 +37,46 @@ const posts = [
   <!-- Blog Cards Grid -->
   <section class="py-12 sm:py-16">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-        {posts.map((post) => (
-          <a href={`/blog/${post.slug}`} class="group block overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition-all hover:shadow-md hover:-translate-y-0.5">
-            <!-- Card Image (with fallback background) -->
-            <div class="aspect-video overflow-hidden bg-gray-100">
-              <img
-                src={post.image}
-                alt={post.title}
-                class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                loading="lazy"
-                onerror="this.parentElement.style.backgroundColor='#f1f5f9'; this.style.display='none'"
-              />
-            </div>
-            
-            <!-- Card Content -->
-            <div class="p-6">
-              <div class="flex items-center gap-2 text-xs text-gray-500">
-                <span class="rounded-full bg-primary-100 px-2 py-0.5 font-medium text-primary-700">
-                  {post.category}
-                </span>
-                <time dateTime={post.date}>{post.date}</time>
+      {sortedPosts.length === 0 ? (
+        <div class="text-center py-12">
+          <p class="text-gray-500 text-lg">New posts coming soon. Stay tuned!</p>
+        </div>
+      ) : (
+        <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          {sortedPosts.map((post) => (
+            <a href={`/blog/${post.slug}`} class="group block overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition-all hover:shadow-md hover:-translate-y-0.5">
+              <!-- Card Image -->
+              <div class="aspect-video overflow-hidden bg-gray-100">
+                <img
+                  src={post.data.image || '/assets/og-default.jpg'}
+                  alt={post.data.title}
+                  class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  loading="lazy"
+                  onerror="this.parentElement.style.backgroundColor='#f1f5f9'; this.style.display='none'"
+                />
               </div>
-              <h2 class="mt-3 text-lg font-semibold text-gray-900 group-hover:text-primary-600">
-                {post.title}
-              </h2>
-              <p class="mt-2 text-sm text-primary-600 font-medium group-hover:underline">
-                Read article →
-              </p>
-            </div>
-          </a>
-        ))}
-      </div>
+              
+              <!-- Card Content -->
+              <div class="p-6">
+                <div class="flex items-center gap-2 text-xs text-gray-500">
+                  <span class="rounded-full bg-primary-100 px-2 py-0.5 font-medium text-primary-700">
+                    {post.data.category}
+                  </span>
+                  <time dateTime={post.data.publishDate.toISOString()}>
+                    {post.data.publishDate.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
+                  </time>
+                </div>
+                <h2 class="mt-3 text-lg font-semibold text-gray-900 group-hover:text-primary-600">
+                  {post.data.title}
+                </h2>
+                <p class="mt-2 text-sm text-primary-600 font-medium group-hover:underline">
+                  Read article →
+                </p>
+              </div>
+            </a>
+          ))}
+        </div>
+      )}
     </div>
   </section>
 

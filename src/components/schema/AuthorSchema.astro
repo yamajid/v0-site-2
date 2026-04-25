@@ -23,12 +23,14 @@ const {
 const siteUrl = getSiteUrl();
 const authorId = `${siteUrl}/#author-${name.toLowerCase().replace(/\s+/g, '-')}`;
 
+const isBrand = name === "v0 Guide Editorial" || name === "v0 Guide";
+
 const personSchema = {
   "@context": "https://schema.org",
-  "@type": "Person",
+  "@type": isBrand ? "Organization" : "Person",
   "@id": authorId,
   "name": name,
-  "jobTitle": role,
+  ...(isBrand ? {} : { "jobTitle": role }),
   "description": bio,
   "image": {
     "@type": "ImageObject",
