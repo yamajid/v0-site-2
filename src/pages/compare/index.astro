@@ -4,7 +4,10 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import AuthorByline from '@/components/Astro/AuthorByline.astro';
 import { definePageMeta } from '@/lib/metadata';
 import { getCollection } from 'astro:content';
+import { getPageMeta } from '@/data/page-metadata.ts';
 
+const pageMeta = getPageMeta('/compare');
+  
 const title = 'Compare AI UI Builders - v0-guide';
 const description = 'How does v0 by Vercel stack up against other AI UI generators and coding assistants?';
 
@@ -14,6 +17,8 @@ const meta = definePageMeta({
   path: '/compare',
   image: '/assets/og-home.jpg',
   keywords: ['compare', 'ai-ui', 'v0 alternatives'],
+  publishedTime: pageMeta.datePublished,
+  modifiedTime: pageMeta.dateModified,
 });
 
 const sortedComparisons = (await getCollection('compare')).sort(

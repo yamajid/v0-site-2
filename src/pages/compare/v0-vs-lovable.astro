@@ -2,6 +2,9 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { definePageMeta } from '@/lib/metadata';
 import AEOBlock from '@/components/Astro/AEOBlock.astro';
+import { getPageMeta } from '@/data/page-metadata.ts';
+
+const pageMeta = getPageMeta('/compare/v0-vs-lovable');
 
 const meta = definePageMeta({
   title: 'v0 vs Lovable (2026): Which AI Builder Is Better?',
@@ -10,7 +13,8 @@ const meta = definePageMeta({
   image: '/assets/compare/lovable.jpg',
   keywords: ['v0 vs lovable', 'lovable alternative', 'ai app builder comparison 2026', 'v0 full stack'],
   type: 'article',
-  publishedTime: '2026-04-21',
+  publishedTime: pageMeta.datePublished,
+  modifiedTime: pageMeta.dateModified,
 });
 
 const faqItems = [

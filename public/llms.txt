@@ -1,0 +1,18 @@
+# v0-Guide
+> Independent expert guide for v0 by Vercel — the AI UI generator for React and Next.js developers.
+
+## What this site covers
+- [What is v0 by Vercel](https://v0-guide.com/what-is-v0-by-vercel/)
+- [v0 Pricing 2026 — Free vs Pro vs Team](https://v0-guide.com/pricing/)
+- [Compare v0 to alternatives](https://v0-guide.com/compare/)
+- [v0 vs Bolt.new](https://v0-guide.com/compare/v0-vs-bolt/)
+- [v0 vs Replit](https://v0-guide.com/compare/v0-vs-replit/)
+- [v0 vs GitHub Copilot](https://v0-guide.com/compare/v0-vs-github-copilot/)
+- [v0 vs Figma Make](https://v0-guide.com/compare/v0-vs-figma-make/)
+- [v0 vs Base44](https://v0-guide.com/compare/v0-vs-base44/)
+- [Use cases](https://v0-guide.com/use-cases/)
+- [Blog & tutorials](https://v0-guide.com/blog/)
+- [Guides](https://v0-guide.com/guides/)
+
+## Full content index
+https://v0-guide.com/sitemap.xml

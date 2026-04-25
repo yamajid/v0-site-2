@@ -2,7 +2,11 @@
 // src/pages/compare/v0-vs-base44.astro
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { definePageMeta } from '@/lib/metadata';
+import { getPageMeta } from '@/data/page-metadata.ts';
 import AEOBlock from '@/components/Astro/AEOBlock.astro';
+
+
+const pageMeta = getPageMeta('/compare/v0-vs-base44');
 
 const meta = definePageMeta({
   title: 'v0 vs Base44: No-Code AI Tools for Founders (2026 Guide)',
@@ -11,7 +15,8 @@ const meta = definePageMeta({
   image: '/assets/compare/base44.jpg',
   keywords: ['v0 vs base44', 'no-code ai builder', 'non-technical founder ai tool', 'base44 alternative', 'v0 for non-coders'],
   type: 'article',
-  publishedTime: '2026-04-18',
+  publishedTime: pageMeta.datePublished,
+  modifiedTime: pageMeta.dateModified,
 });
 
 const faqItems = [

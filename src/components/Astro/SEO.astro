@@ -80,19 +80,19 @@ const canonical = canonicalURL || Astro.url.href;
 <script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "name": "v0-guide",
+  "name": "v0-Guide",
   "url": siteURL,
   "description": "Expert guides, comparisons, and reviews for v0 by Vercel.",
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": {
-      "@type": "EntryPoint",
-      "urlTemplate": `${siteURL}?search={search_term_string}`
-    },
-    "query-input": "required name=search_term_string"
-  },
   "publisher": {
     "@type": "Organization",
-    "@id": `${siteURL}/#organization`
+    "name": "v0-Guide",
+    "logo": {
+      "@type": "ImageObject",
+      "url": getSiteUrlWithPath('/assets/logo.svg')
+    }
   }
 })} />
+
+<!-- Self-referencing hreflang (future-proofing for localization) -->
+<link rel="alternate" hreflang="en" href={canonical} />
+<link rel="alternate" hreflang="x-default" href={canonical} />

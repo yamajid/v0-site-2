@@ -3,6 +3,10 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { definePageMeta } from '@/lib/metadata';
 import AEOBlock from '@/components/Astro/AEOBlock.astro';
+import { getPageMeta } from '@/data/page-metadata.ts';
+
+const pageMeta = getPageMeta('/compare/v0-vs-figma-make');
+
 
 const meta = definePageMeta({
   title: 'v0 vs Figma Make: Design-to-Code Workflow Comparison (2026)',
@@ -11,7 +15,8 @@ const meta = definePageMeta({
   image: '/assets/compare/figma.jpg',
   keywords: ['v0 vs figma make', 'design to code', 'figma design tokens', 'design system code generation', 'designer ai tool'],
   type: 'article',
-  publishedTime: '2026-04-18',
+  publishedTime: pageMeta.datePublished,
+  modifiedTime: pageMeta.dateModified,
 });
 
 const faqItems = [

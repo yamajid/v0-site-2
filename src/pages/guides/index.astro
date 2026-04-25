@@ -4,6 +4,9 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import AuthorByline from '@/components/Astro/AuthorByline.astro';
 import { definePageMeta } from '@/lib/metadata';
 import { getCollection } from 'astro:content';
+import { getPageMeta } from '@/data/page-metadata.ts';
+
+const pageMeta = getPageMeta('/guides');
 
 const title = 'Guides - v0-guide';
 const description = 'Step-by-step tutorials and evergreen guides for mastering v0 by Vercel.';
@@ -14,6 +17,8 @@ const meta = definePageMeta({
   path: '/guides',
   image: '/assets/advanced-techniques.jpg',
   keywords: ['home', 'affiliate', 'ai-ui'],
+  publishedTime: pageMeta.datePublished,
+  modifiedTime: pageMeta.dateModified,
 });
 
 const sortedGuides = (await getCollection('guides')).sort(

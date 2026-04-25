@@ -5,6 +5,9 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import AuthorByline from '@/components/Astro/AuthorByline.astro';
 import { definePageMeta } from '@/lib/metadata';
+import { getPageMeta } from '@/data/page-metadata.ts';
+
+const pageMeta = getPageMeta('/pricing');
 
 const title = 'v0 Pricing (2026) - v0-guide';
 const description = 'Understand v0 pricing in 2026: free access, token-based paid usage, model tiers (Mini/Pro/Max), and team options.';
@@ -15,6 +18,8 @@ const meta = definePageMeta({
   path: '/pricing',
   image: '/assets/og-home.jpg',
   keywords: ['v0 pricing 2026', 'v0 token billing', 'v0 mini pro max', 'v0 app'],
+  publishedTime: pageMeta.datePublished,
+  modifiedTime: pageMeta.dateModified,
 });
 // 2026-safe plan framing: avoid hardcoding volatile pricing numbers
 const tiers = [

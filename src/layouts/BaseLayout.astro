@@ -65,29 +65,21 @@ const breadcrumbSchema = {
 const articleSchema = {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": meta.title,
-  "description": meta.description,
-  "datePublished": meta.publishedTime,
-  "image": siteUrl + meta.image,
-  "author": { 
-    "@type": authorName === "v0 Guide Editorial" || authorName === "v0 Guide" ? "Organization" : "Person", 
-    "@id": `${siteUrl}/#author-${authorName.toLowerCase().replace(/\s+/g, '-')}`,
-    "name": authorName
+  headline: meta.title,
+  description: meta.description,
+  datePublished: meta.publishedTime,
+  dateModified: meta.modifiedTime ?? meta.publishedTime,
+  image: siteUrl + meta.image,
+  author: {
+    "@type": "Person",
+    name: "v0 Guide Editorial",
+    url: siteUrl + "/about/",
   },
-  "publisher": {
+  publisher: {
     "@type": "Organization",
-    "@id": `${siteUrl}/#organization`,
-    "name": "v0 Guide",
-    "logo": { 
-      "@type": "ImageObject", 
-      "@id": `${siteUrl}/#logo`,
-      "url": siteUrl + "/assets/logo.png" 
-    },
+    name: "v0-Guide",
+    logo: { "@type": "ImageObject", url: siteUrl + "/assets/logo.svg" },
   },
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": siteUrl + pathname
-  }
 };
 ---
 
@@ -107,6 +99,7 @@ const articleSchema = {
       keywords={meta.keywords}
       type={meta.type}
       publishedTime={meta.publishedTime}
+      modifiedTime={meta.modifiedTime}
     />
 
     <!-- Google Analytics 4 -->
@@ -176,6 +169,31 @@ const articleSchema = {
       @apply text-gray-900 bg-white;
     }
   }
+    /* Breadcrumb nav */
+  nav.breadcrumb ol {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.25rem;
+    list-style: none;
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+    color: theme('colors.gray.500');
+  }
+  nav.breadcrumb li + li::before {
+    content: '/';
+    margin-right: 0.25rem;
+    opacity: 0.4;
+  }
+  nav.breadcrumb a {
+    color: theme('colors.gray.500');
+    text-decoration: none;
+  }
+  nav.breadcrumb a:hover {
+    text-decoration: underline;
+    color: theme('colors.gray.700');
+  }
+
 
   @layer components {
     .container {

@@ -3,16 +3,19 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { definePageMeta } from '@/lib/metadata';
 import AEOBlock from '@/components/Astro/AEOBlock.astro';
+import { getPageMeta } from '@/data/page-metadata.ts';
+
+const pageMeta = getPageMeta('/compare/v0-vs-replit');
 
 const meta = definePageMeta({
   title: 'v0 vs Replit: AI Tools for Teams & Enterprises (2026)',
   description: 'Compare v0 and Replit—which AI tool is best for teams? Learn about team pricing, enterprise SSO, full-stack capabilities, and real-world scenarios for scaling companies.',
-  path: '/v0-site-2/compare/v0-vs-replit',
   path: '/compare/v0-vs-replit',
   image: '/assets/compare/replit.jpg',
   keywords: ['v0 vs replit', 'replit alternative for ui', 'v0 vs replit for teams', 'team ai tool comparison', 'enterprise development platform'],
   type: 'article',
-  publishedTime: '2026-04-18',
+  publishedTime: pageMeta.datePublished,
+  modifiedTime: pageMeta.dateModified,
 });
 
 const faqItems = [

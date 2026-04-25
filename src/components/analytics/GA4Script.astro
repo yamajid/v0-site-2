@@ -2,7 +2,7 @@
 // src/components/analytics/GA4Script.astro
 // Insert your GA4 Measurement ID below (format: G-XXXXXXXXXX)
 
-const MEASUREMENT_ID = 'G-XXXXXXXXXX'; // ← REPLACE WITH YOUR MEASUREMENT ID
+const MEASUREMENT_ID = import.meta.env.PUBLIC_GA_ID ?? 'G-XXXXXXXXXX';
 
 ---
 

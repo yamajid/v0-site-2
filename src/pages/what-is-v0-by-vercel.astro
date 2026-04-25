@@ -5,7 +5,10 @@ import SoftwareAppSchema from '../components/schema/SoftwareAppSchema.astro';
 import FreshnessStamp from '../components/FreshnessStamp.astro';
 import QandASection from '../components/Astro/QandASection.astro';
 import { definePageMeta } from '@lib/metadata.ts';
+import { getPageMeta } from '@/data/page-metadata.ts';
 
+
+const pageMeta = getPageMeta('/what-is-v0-by-vercel');
 
 const meta = definePageMeta({
   title: 'What is v0 by Vercel?',
@@ -13,6 +16,8 @@ const meta = definePageMeta({
   path: '/what-is-v0-by-vercel',
   image: '/assets/og-what-is-v0.jpg',
   keywords: ['guide', 'introduction', 'how-it-works'],
+  publishedTime: pageMeta.datePublished,
+  modifiedTime: pageMeta.dateModified,
 });
 
 const faqItems = [

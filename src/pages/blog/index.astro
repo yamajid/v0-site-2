@@ -4,6 +4,10 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import AuthorByline from '@/components/Astro/AuthorByline.astro';
 import { definePageMeta } from '@/lib/metadata.ts';
 import { getCollection } from 'astro:content';
+import { getPageMeta } from '@/data/page-metadata.ts';
+
+
+const pageMeta = getPageMeta('/blog');
 
 const meta = definePageMeta({
   title: 'Blog - Vercel v0 guide',
@@ -11,6 +15,8 @@ const meta = definePageMeta({
   path: '/blog',
   image: '/assets/og-default.jpg',
   keywords: ['home', 'affiliate', 'ai-ui'],
+  publishedTime: pageMeta.datePublished,
+  modifiedTime: pageMeta.dateModified,
 });
 
 const sortedPosts = (await getCollection('blog')).sort(

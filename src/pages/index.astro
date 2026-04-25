@@ -8,16 +8,21 @@ import AEOBlock from '@/components/Astro/AEOBlock.astro';
 import { definePageMeta } from '@/lib/metadata.ts';
 import { getPageMeta } from '@/data/page-metadata.ts';
 
+
+ 
+const pageMeta = getPageMeta('/');
+
 const meta = definePageMeta({
   title: 'v0 — Prompt to Production — Agentic AI for React — AI UI Generator',
   description: 'v0 scaffolds entire features from prompts. Iterate with natural language. Ship production-ready React with Next.js App Router and shadcn/ui in minutes.',
   path: '/',
   image: '/assets/og-home.jpg',
+  publishedTime: pageMeta.datePublished,
+  modifiedTime: pageMeta.dateModified,
   keywords: ['vibe coding tool 2026', 'text to UI react component generator', 'prompt to production', 'agentic ai', 'v0.app', 'react ui generation', 'next.js', 'shadcn/ui', 'server components'],
 });
 
 // Extract FAQ items from page metadata for schema generation
-const pageMeta = getPageMeta('/');
 const faqItems = pageMeta.faqItems || [];
 
 // Define HowTo steps for workflow schema

@@ -4,6 +4,10 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import { definePageMeta } from '@/lib/metadata';
 import AEOBlock from '@/components/Astro/AEOBlock.astro';
 
+import { getPageMeta } from '@/data/page-metadata.ts';
+
+const pageMeta = getPageMeta('/compare/v0-vs-github-copilot');
+
 const meta = definePageMeta({
   title: 'v0 vs GitHub Copilot: AI Coding Tools Compared (2026)',
   description: 'Compare v0 and GitHub Copilot—which AI tool should you use? Learn about UI generation, code quality, IDE integration, pricing, and when to use each for React, backend, and full-stack development.',
@@ -11,7 +15,8 @@ const meta = definePageMeta({
   image: '/assets/compare/copilot.jpg',
   keywords: ['v0 vs github copilot', 'github copilot vs v0', 'copilot for react ui', 'ai coding assistant', 'best ai code generator'],
   type: 'article',
-  publishedTime: '2026-04-18',
+  publishedTime: pageMeta.datePublished,
+  modifiedTime: pageMeta.dateModified,
 });
 
 const faqItems = [

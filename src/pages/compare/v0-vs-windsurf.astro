@@ -2,6 +2,10 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { definePageMeta } from '@/lib/metadata';
 import AEOBlock from '@/components/Astro/AEOBlock.astro';
+import { getPageMeta } from '@/data/page-metadata.ts';
+
+
+const pageMeta = getPageMeta('/compare/v0-vs-windsurf');
 
 const meta = definePageMeta({
   title: 'v0 vs Windsurf (2026): Frontend Speed vs Full IDE Flow',
@@ -10,7 +14,8 @@ const meta = definePageMeta({
   image: '/assets/compare/windsurf.jpg',
   keywords: ['v0 vs windsurf', 'windsurf ai comparison', 'frontend ai builder', 'ai coding workflow'],
   type: 'article',
-  publishedTime: '2026-04-21',
+  publishedTime: pageMeta.datePublished,
+  modifiedTime: pageMeta.dateModified,
 });
 
 const faqItems = [

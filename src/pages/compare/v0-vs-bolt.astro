@@ -4,6 +4,10 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import { definePageMeta } from '@/lib/metadata';
 import AEOBlock from '@/components/Astro/AEOBlock.astro';
 
+import { getPageMeta } from '@/data/page-metadata.ts';
+
+const pageMeta = getPageMeta('/compare/v0-vs-bolt');
+
 const meta = definePageMeta({
   title: 'v0 vs Bolt.new: Which AI UI Generator Wins for Your Project? (2026)',
   description: 'Compare v0 and Bolt.new—which AI generator is better? Learn about error handling, pricing, design systems, and best use cases for agencies and developers.',
@@ -11,7 +15,9 @@ const meta = definePageMeta({
   image: '/assets/compare/bolt.jpg',
   keywords: ['v0 vs bolt.new', 'bolt.new alternative', 'ai ui generator comparison', 'bolt vs v0 for agencies', 'error handling ai tools'],
   type: 'article',
-  publishedTime: '2026-04-18',
+  publishedTime: pageMeta.datePublished,
+  modifiedTime: pageMeta.dateModified,
+
 });
 
 const faqItems = [

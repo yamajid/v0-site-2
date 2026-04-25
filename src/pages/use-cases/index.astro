@@ -4,6 +4,9 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import AuthorByline from '@/components/Astro/AuthorByline.astro';
 import { definePageMeta } from '@/lib/metadata';
 import { getCollection } from 'astro:content';
+import { getPageMeta } from '@/data/page-metadata.ts';
+
+const pageMeta = getPageMeta('/use-cases');
 
 const title = 'Use Cases - v0-guide';
 const description = 'Explore real-world ways to use v0 by Vercel for faster UI development.';
@@ -14,6 +17,8 @@ const meta = definePageMeta({
   path: '/use-cases',
   image: '/assets/og-home.jpg',
   keywords: ['home', 'affiliate', 'ai-ui'],
+  publishedTime: pageMeta.datePublished,
+  modifiedTime: pageMeta.dateModified,  
 });
 
 const sortedUseCases = (await getCollection('use-cases')).sort(

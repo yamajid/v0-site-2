@@ -3,6 +3,11 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import { definePageMeta } from '@/lib/metadata';
 import GeoVoice from '@/components/Astro/GeoVoice.astro';
 
+import { getPageMeta } from '@/data/page-metadata.ts';
+
+
+const pageMeta = getPageMeta('/about');
+
 const meta = definePageMeta({
   title: 'About v0 Guide — Our Testing Methodology',
   description: 'Learn how we test v0 and AI tools. Our methodology, author credentials, and commitment to unbiased reviews.',
@@ -10,7 +15,8 @@ const meta = definePageMeta({
   image: '/assets/og-default.jpg',
   keywords: ['about v0 guide', 'testing methodology', 'author credentials', 'affiliate disclosure'],
   type: 'article',
-  publishedTime: '2026-04-01',
+  publishedTime: pageMeta.datePublished,
+  modifiedTime: pageMeta.dateModified,
 });
 
 const faqItems = [

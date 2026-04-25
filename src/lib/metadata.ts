@@ -5,7 +5,7 @@ import { getRouteFromPathname } from '@/lib/site-config';
 
 
 export const SITE = {
-  title: 'The best way to use V0 By Vercel',
+  title: 'The V0-Guide',
   description: 'Expert guides, comparisons, and tutorials for v0 by Vercel',
   url: getSiteUrl(),
   image: '/assets/og-default.jpg',
@@ -22,6 +22,7 @@ export type PageMetaInput = {
   keywords?: string[];
   type?: 'website' | 'article';
   publishedTime?: string;
+  modifiedTime?: string;
 };
 
 export type PageMetaResolved = {
@@ -32,6 +33,7 @@ export type PageMetaResolved = {
   keywords: string[];
   type: 'website' | 'article';
   publishedTime?: string;
+  modifiedTime?: string;
 };
 
 /**
@@ -46,10 +48,11 @@ export function definePageMeta(input: PageMetaInput, pathname?: string): PageMet
     title: `${input.title} | ${SITE.title}`,
     description: input.description || SITE.description,
     image: input.image || SITE.image,
-    canonicalURL: `${siteUrl}${resolvedPath === '/' ? '' : resolvedPath}`,
+    canonicalURL: `${siteUrl}${resolvedPath === '/' ? '/' : resolvedPath}`,
     keywords: [...new Set([...SITE.keywords, ...(input.keywords || [])])],
     type: input.type || 'website',
     publishedTime: input.publishedTime,
+    modifiedTime: input.modifiedTime,
   };
 }
 
@@ -72,5 +75,6 @@ export function defineContentMeta(collection: string, data: {
     keywords: data.tags,
     type: 'article',
     publishedTime: data.publishedAt,
+    
   });
 }
